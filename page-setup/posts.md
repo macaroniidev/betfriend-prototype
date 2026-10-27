@@ -10,17 +10,17 @@ with whichever ad sent the visitor.
 - Facts come from `betfriend-prototype/public/landing/COPY.md` (examples and FAQ) and `public/js/plans.js` (prices).
   The dollar examples are the same recomputed ones the landing page uses.
 
-## 1. Profile picture + cover: pick one pair
+## 1. Profile picture + cover: final choice
 
-| Pair | Profile picture | Cover | Best for |
-|---|---|---|---|
-| **A · Every edge (recommended)** | `profile-A.png`: Mate's face on I4 green, the same mark as the logo tile | `cover-A.png`: "Every betting edge. One membership." + 6 tool chips + the live Arbitrage screen | Says what the product is and shows it working. It matches the landing hero, so ad → Page → page all read the same way. |
-| B · Second opinion | `profile-B.png`: Mate on deep green with a lime ring | `cover-B.png`: Coach Mate with the flag + the tagline + one line on the 25 tools | The warmest, most brand-led option. It has less product proof. |
-| C · Product wall | `profile-C.png`: the app icon on lime | `cover-C.png`: "25 betting tools. One membership." over 5 framed app screens | The most "software" feel. The screens are small on phones. |
+**Use pair A: `profile-A.png` + `cover-C.png`.** (Decided 2026-10-27: the product-wall cover is the stronger hook.)
 
-**Why A:** the profile picture is the only part that shows on every ad, at about 40px. A's face fills the circle, so
-it stays readable at that size, and it is the same mark visitors see on the landing page. The cover names the product
-in its first line, as the brand guide requires for cold traffic, and shows real product UI instead of a promise.
+- **Profile picture, `profile-A.png`:** Mate's face on I4 green, the same mark as the logo tile. It fills the circle, so it
+  stays readable at the ~40px size it shows next to every ad.
+- **Cover, `cover-C.png`:** "25 betting tools. One membership." over five framed app screens (Promos, Arbitrage, Sharp
+  money, Live AI, Traders). It shows the breadth of the product at a glance.
+
+Alternatives kept for later tests: `cover-A.png` ("Every betting edge. One membership." + tool chips + Arbitrage screen),
+`profile-B.png` + `cover-B.png` (Coach Mate + "Every bet gets a second opinion."), and `profile-C.png` (app icon on lime).
 
 **Specs used.** Cover rendered at 1640×624, which is 2× the 820×312 desktop view. Phones show only the centre 16:9
 slice (640×360), about x 265–1375 of this file, and every word sits inside x 300–1340. Profile pictures are
@@ -30,7 +30,7 @@ phone and use drag-to-reposition if needed.
 
 Upload notes: upload the PNG (not a JPEG) so the text stays sharp. Don't add text to the cover's description field
 beyond the line below; it shows when people open the photo.
-- Cover description: `BetFriend: every betting edge, one membership. 21+ only. Gambling problem? Call 1-800-GAMBLER. BetFriend is software, not a sportsbook.`
+- Cover description: `BetFriend: 25 betting tools, one membership. 21+ only. Gambling problem? Call 1-800-GAMBLER. BetFriend is software, not a sportsbook.`
 
 ## 2. Page details
 
@@ -231,7 +231,7 @@ Per-photo descriptions (optional; they show when someone opens a photo):
 
 ## 5. Before ads go live: Page checks
 
-- [ ] Pair chosen and uploaded; cover checked on a phone and a desktop.
+- [ ] `profile-A.png` and `cover-C.png` uploaded; cover checked on a phone and a desktop.
 - [ ] Bio, category, Sign up button and About filled in (§2). The `[FILL]` fields are done.
 - [ ] All 9 posts published in order, P9 pinned.
 - [ ] Every link points to the owned domain, not `macaroniidev.github.io` (prespend 🔴 4).
