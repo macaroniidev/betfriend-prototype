@@ -1,0 +1,154 @@
+﻿"id","stage","angle","format","primary_text","headline","description","CTA","URL","creative_files","tools_sold","notes"
+"TOF-1","TOF","Bet both sides, keep the gap (arbitrage in dollars)","static 1:1 / 4:5 / 9:16","Two sportsbooks priced the same prop differently. Bet both sides and you keep the gap, whichever one hits.
+
+Example: $187 on Over 0.5 at +183 (Book A) pays back $529.21. $300 on Under 0.5 at −130 (Book B) pays back $530.77. $487 in, you keep $42.21 or $43.77.
+
+We scan 17 books, exchanges and markets and give you the exact stake for each side. 7 days free, $0 today.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Bet both sides. Keep the gap.","7 days free · $0 today","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=both&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_tof&utm_content=TOF-1","creatives/TOF-1/TOF-1-1x1.jpg | creatives/TOF-1/TOF-1-4x5.jpg | creatives/TOF-1/TOF-1-9x16.jpg","Arbitrage & +EV (pre-match + live)","Message-matches the landing hero (?h=both shows the same $487 example and live calculator). Math: 187×2.83=529.21; 300×1.76923=530.77; 529.21−487=42.21, 530.77−487=43.77. Avoids 'guaranteed' (Meta flags it); the math carries the claim."
+"TOF-2","TOF","Bonus bets → withdrawable cash (promo conversion)","static 1:1 / 4:5 / 9:16","A $200 bonus bet can't be withdrawn. Converted, it can.
+
+Example: put the bonus bet on the Mavericks at +275 (Book A); a win pays $550. Hedge $440 cash on the Nuggets at −400 (Book B); a win pays back $550. Either team wins, you're up $110 in withdrawable cash.
+
+Promo Optimizer ranks every offer in your state by the cash it converts to. Promo Converter gives you the exact two bets. From $29.99/mo, first 7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Turn bonus bets into cash","From $29.99 · 7 days free","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_tof&utm_content=TOF-2","creatives/TOF-2/TOF-2-1x1.jpg | creatives/TOF-2/TOF-2-4x5.jpg | creatives/TOF-2/TOF-2-9x16.jpg","Promo Converter; Promo Optimizer","Matches landing ?h=promo hero. Math: bonus bet stake not returned, so +275 on $200 = $550 winnings; 440×(1+100/400)=550; both outcomes +$110 (55% conversion). Lowest-price entry plan ($29.99) = cheapest trial for cold traffic."
+"TOF-3","TOF","The sharps got limited — follow their money (Sharp Money + Pro Bettor Signals)","static 1:1 / 4:5 / 9:16","Books limit sharp bettors. So the sharps moved to Novig and ProphetX, where every bet is public.
+
+When a line there suddenly spikes in volume, Sharp Money finds the best price on the same bet at your US books and tells you how much to bet. Example: exchange price jumps −105 → −125 while Book A still has −105. At a 55.6% fair chance, that's about +$8.47 per $100.
+
+Pro Bettor Signals pings you the moment top-ranked bettors bet. 7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Bet where the pros put their money","Sharp Money · 7 days free","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=sharp&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_tof&utm_content=TOF-3","creatives/TOF-3/TOF-3-1x1.jpg | creatives/TOF-3/TOF-3-4x5.jpg | creatives/TOF-3/TOF-3-9x16.jpg","Sharp Money; Pro Bettor Signals","Screenshot shows the Live spike feed: Tottenham ML $30k in 5 min on Novig (3.9× normal) → bet365 +199, +4.31% edge, $25 to win $50. CROP OUT the 'Signal record (90d) 54.4% · +7.2% ROI · +126.4u' tile: it is prototype demo data and reads as a win-rate claim. EV math: −125 → 125/225 = 55.56%; −105 pays $95.24/$100; 0.5556×95.24 − 0.4444×100 = +8.47. 'Top-ranked' = ranked by profit, ROI and CLV (plans.js). Matches landing ?h=sharp."
+"TOF-4","TOF","Stack price shock ($1,349.95 of tools vs $199.99)","static 1:1 / 4:5 / 9:16","Bought separately, the betting tools pros stack cost $1,349.95 a month at listed prices. Here they're one login.
+
+All-Access puts arbs and +EV (pre-match and live), middles, low holds, promo conversion, sharp money, pro bettor signals, AI picks, live AI and Kalshi/Polymarket traders in one login for $199.99. That's $1,149.96 a month less.
+
+Every tool free for 7 days. $0 today.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","25 betting tools for $199.99/mo","vs $1,349.95 stacked","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=stack&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_tof&utm_content=TOF-4","creatives/TOF-4/TOF-4-1x1.jpg | creatives/TOF-4/TOF-4-4x5.jpg | creatives/TOF-4/TOF-4-9x16.jpg","Arbitrage & +EV (pre-match + live); Middles; Low Holds; Promo Converter; Sharp Money; Pro Bettor Signals; AI Sports Picks; Live AI Analysis; Prediction-Market Traders (Kalshi/Polymarket)","Competitor prices: Stack total $1,349.95 = OddsJam Live Arb & EV $499.99 + Sharp Money $199.99 + Prediction Traders $449.99 (SportsBetting/betfriend-offer-strategy-2026-10-27/work/oddsjam-tiers.csv) + Rithmm Pro $49.99 (…/work/rithmm-tiers.csv) + Outlier Pro + React Live $79.99 (…/work/outlier-tiers.csv) + BetQL All Access $70.00 (…/work/betql-tiers.csv); same table as betfriend-prototype/public/landing/COPY.md §12. Sum 499.99+199.99+449.99+49.99+79.99+70.00 = 1,349.95; savings 1,149.96 (85.2%). Overlay rounds to $1,350 as the landing ?h=stack H1 does. OddsJam Promo Arbitrage ($79.99) left out to avoid double counting (COPY.md §12). Naming competitors is allowed comparative advertising but can draw trademark complaints; keep prices current (checked 2026-10-23)."
+"TOF-5","TOF","Copy prediction-market traders (Kalshi/Polymarket + AI market picks)","static 1:1 / 4:5 / 9:16","On Kalshi and Polymarket you trade against other people, not the house. So follow the ones with the best records.
+
+Prediction Traders ranks traders on Kalshi, Polymarket, ProphetX and Novig, sizes each position and deep-links the trade. AI Market Picks prices every contract against fair value. Exit alerts tell you when to sell.
+
+Example: buy 100 YES at 54¢ ($54). Exit alert at 66¢, sell for $66: +$12 before the final whistle.
+
+7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Follow top Kalshi & Polymarket traders","From $99.99 · 7 days free","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=traders&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_tof&utm_content=TOF-5","creatives/TOF-5/TOF-5-1x1.jpg | creatives/TOF-5/TOF-5-4x5.jpg | creatives/TOF-5/TOF-5-9x16.jpg","Prediction-Market Traders (Kalshi/Polymarket); AI Prediction-Market Picks","Matches landing ?h=traders hero and COPY.md §9 example. 100×0.54=54; 100×0.66=66; 12/54=22.2%. 'Before venue fees' kept on the card. Do NOT use the app-pm-markets screenshot uncropped for this audience: its left list shows election markets, which can push the ad into Meta's social-issues/political category."
+"MOF-1","MOF","Objection: 'too good to be true' — show the whole trick","static 1:1 / 4:5 / 9:16","Sounds too good to be true? Fair. Here's the whole trick, no picks involved.
+
+Books set their own prices, and they disagree. Example: Over 214.5 at +137 (Book A), Under 214.5 at −122 (Book B). $217 and $283 on them. The Over pays back $514.29, the Under $514.97. $500 in, you keep $14.29 or $14.97.
+
+Small per bet, so we scan every book all day, size every one, and add Low Holds to clear playthrough for pennies.
+
+Every number before you bet. 7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","No picks. Just two prices.","See the math · 7 days free","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=both&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_mof&utm_content=MOF-1#how","creatives/MOF-1/MOF-1-1x1.jpg | creatives/MOF-1/MOF-1-4x5.jpg | creatives/MOF-1/MOF-1-9x16.jpg","Arbitrage & +EV (pre-match + live); Low Holds","Lands on #how ('Place two bets. One wins. You keep the gap.') with the same $500 example. Math: 217×2.37=514.29; 283×(1+100/122)=514.97. Low Holds: −102 both sides on $1,000 returns $990.20 ($9.80 cost). Coach Mate with film reel = 'watch the tape' framing for the skeptic."
+"MOF-2","MOF","Live is where gaps open wider (live arbs, live +EV, Sportsbook Screen)","static 1:1 / 4:5 / 9:16","Books have to reprice every possession. That's when their numbers drift apart the most.
+
+Example, 3rd quarter: Over 221.5 at +125 (Book A), Under 221.5 at +105 (Book B). $238 and $262 pay back $535.50 or $537.10. $500 in: +$35.50 or +$37.10, about 7%. Our pre-match example paid 2.9%.
+
+Live arbs and live +EV with auto refresh, plus the Sportsbook Screen: every market across your books in real time, to run your own strategy.
+
+7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Live gaps pay 2–3x more","Live Arb & EV · 7 days free","Learn More","https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_mof&utm_content=MOF-2#arbitrage","creatives/MOF-2/MOF-2-1x1.jpg | creatives/MOF-2/MOF-2-4x5.jpg | creatives/MOF-2/MOF-2-9x16.jpg","Arbitrage & +EV (pre-match + live); Sportsbook Screen","'Live arbs 2 to 3x more profitable' is the plans.js / landing claim; the example shows ~7% vs the 2.9% pre-match example (≈2.5x). Math: 238×2.25=535.50; 262×2.05=537.10. Sportsbook Screen sold in copy; for a screen-template variant use app-screen (live moneylines across books, fair odds, hold column)."
+"MOF-3","MOF","Middles & Low Holds — when both bets can win","static 1:1 / 4:5 / 9:16","Lines move. When one book still has 44.5 and another has moved to 47.5, you can take both sides, and both can win.
+
+Example: Over 44.5 at +100 ($100, Book A) and Under 47.5 at −105 ($105, Book B). Lands on 45, 46 or 47: both win, +$200. Anywhere else: $0 or −$5.
+
+Same family, Low Holds: both sides at −102, $500 each = $1,000 of playthrough for $9.80.
+
+Both come with Pre-Match Arbitrage & EV ($79.99). 7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Two bets. Both can win.","Middles + Low Holds","Learn More","https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_mof&utm_content=MOF-3#arbitrage","creatives/MOF-3/MOF-3-1x1.jpg | creatives/MOF-3/MOF-3-4x5.jpg | creatives/MOF-3/MOF-3-9x16.jpg","Middles; Low Holds","Honest downside shown (−$5), which helps Meta review and credibility. Math: 100×2=200; 105×(1+100/105)=205; both = 405−205 = +200. Low hold: 500×(1+100/102)=990.20 per side; 1,000−990.20 = 9.80. Bonus tools on Pre-Match Arbitrage & EV per plans.js."
+"MOF-4","MOF","Objection: 'I already use OddsJam' — plan-by-plan price check","static 1:1 / 4:5 / 9:16","Using OddsJam? Line up the plans.
+
+Live Arbitrage & EV: $149.99 here, $499.99 there. Sharp Money: $79.99 vs $199.99. Prediction-market traders: $99.99 vs $449.99. All three in All-Access for $199.99, with AI picks, live AI analysis, pro bettor signals and the Daily Card on top.
+
+Run both side by side for 7 days free before you cancel anything.
+
+OddsJam prices as listed, Oct 2026.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Live arbs: $149.99, not $499.99","Plan-by-plan price check","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=stack&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_mof&utm_content=MOF-4#compare","creatives/MOF-4/MOF-4-1x1.jpg | creatives/MOF-4/MOF-4-4x5.jpg | creatives/MOF-4/MOF-4-9x16.jpg","Arbitrage & +EV (pre-match + live); Sharp Money; Prediction-Market Traders (Kalshi/Polymarket); Promo Converter","Competitor prices: SportsBetting/betfriend-offer-strategy-2026-10-27/work/oddsjam-tiers.csv (OddsJam billing API, SportsBetting/oddsjam-lp/docs/bf/oddsjam/billing-plans_2026-10-23.json) — Live Arbitrage & EV (Platinum) $499.99, Pre-Match Arbitrage & EV (Gold) $199.99, Sharp Money $199.99, Prediction Traders $449.99, Promo Arbitrage $79.99. Last row: 499.99+199.99+449.99 = 1,149.97 (Pre-Match not added, Live includes it). OddsJam runs first-month coupons (50% off Live; $250 off Traders) — the table compares list prices, keep 'listed' wording. BetFriend prices from public/js/plans.js. Trademark: comparative use is allowed; keep claims to price only."
+"MOF-5","MOF","AI that shows its work (Live AI Analysis + AI Sports Picks)","static 1:1 / 4:5 / 9:16","Eight games on at once and you can only watch one. Our AI watches all of them.
+
+Live AI Analysis tracks win probability and momentum play by play and flags the live bets where books are slowest to react. Before the game, AI Sports Picks prices every side, total and prop and grades the best plays A+ to C.
+
+Example: model gives Over 24.5 points a 58% chance; best price −110. 58% × $90.91 − 42% × $100 = +$10.73 per $100.
+
+From $39.99/mo, 7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Every live game, read by AI","From $39.99 · 7 days free","Learn More","https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_mof&utm_content=MOF-5#ai","creatives/MOF-5/MOF-5-1x1.jpg | creatives/MOF-5/MOF-5-4x5.jpg | creatives/MOF-5/MOF-5-9x16.jpg","Live AI Analysis; AI Sports Picks","Screenshot: live scoreboard strip (8 games), Lions 22 – Bengals 21 Q3 with model win probability chart, projected final, and 'Live bet suggestions' with model vs implied %. Clean of record claims. Do NOT swap in app-ai-picks without masking its 'Model ROI (60d) +14.8%' tile and '+96.5u' record panel — demo data, no real graded record exists ([FILL: graded AI record]). Math: −110 pays 90.91; 0.58×90.91 − 0.42×100 = 10.73."
+"BOF-1","BOF","Offer: every tool, $0 today (All-Access trial)","static 1:1 / 4:5 / 9:16","Still deciding? Run it on tonight's card, free.
+
+7 days of All-Access: arbs and +EV (pre-match and live), middles, low holds, promo converter + optimizer, sharp money, pro bettor signals, parlay builder, sportsbook screen, AI picks, live AI, and Kalshi/Polymarket traders with AI market picks.
+
+$0 today. Then $199.99/mo, or cancel from your account before day 7 and pay nothing.
+
+[FILL: one real member result or quote, with permission]
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Every tool free for 7 days","$0 today · cancel anytime","Get Offer","https://macaroniidev.github.io/betfriend-prototype/?h=stack&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_bof&utm_content=BOF-1#plans","creatives/BOF-1/BOF-1-1x1.jpg | creatives/BOF-1/BOF-1-4x5.jpg | creatives/BOF-1/BOF-1-9x16.jpg","Arbitrage & +EV (pre-match + live); Pro Bettor Signals; Live AI Analysis; AI Sports Picks; AI Prediction-Market Picks; Promo Optimizer; Middles; Low Holds; Sportsbook Screen; Sharp Money; Promo Converter; Parlay Builder; Prediction-Market Traders (Kalshi/Polymarket)","Retarget page visitors who reached #plans or any app screen (7–14 days). Remove the [FILL] line if no real proof exists at launch — never invent one. Trial terms mirror COPY.md hero microcopy. Lands on #plans with the stack hero."
+"BOF-2","BOF","Retarget Arbitrage screen viewers (the row, read out loud)","static 1:1 / 4:5 / 9:16","The arbitrage feed is updating right now.
+
+Every row is two prices at two books, the exact stake for each, and what you keep. The top row in this screen: $436.16 on Over 1.5 at +137 and $563.84 on Under 1.5 at −120 pay back about $1,033.70 either way. $1,000 in, +$33.70.
+
+Pre-match from $79.99, live from $149.99, everything for $199.99. First 7 days free, $0 today.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Tonight's arbs, stakes worked out","7 days free · $0 today","Sign Up","https://macaroniidev.github.io/betfriend-prototype/app/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_bof&utm_content=BOF-2#arbitrage","creatives/BOF-2/BOF-2-1x1.jpg | creatives/BOF-2/BOF-2-4x5.jpg | creatives/BOF-2/BOF-2-9x16.jpg","Arbitrage & +EV (pre-match + live)","Audience: visitors of app/#arbitrage (exact-screen retarget). Screen shows 20 pre-match arbs across 8 books; top row Barkov points Over 1.5 +137 / Under 1.5 −120, stakes $436.16 / $563.84, +$33.70. Verified: 436.16×2.37 = 1,033.70; 563.84×(1+100/120) = 1,033.71. Optional zoom-lens on that row (landing CRO issue 1). Screenshot shows real book abbreviations; that's the product UI, copy keeps books unnamed."
+"BOF-3","BOF","Retarget Parlay Builder viewers (same parlay, bigger payout)","static 1:1 / 4:5 / 9:16","Same three legs, a different payout at every book.
+
+Parlay Builder picks +EV and Sharp Money legs, then prices the parlay at each of your books and points you to the one paying most. In this screen, the best book paid $115 more on a $50 parlay than the worst one.
+
+Included with Pre-Match Arbitrage & EV ($79.99), Live Arbitrage & EV, Sharp Money and All-Access. 7 days free, $0 today.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Same parlay. Bigger payout.","7 days free · $0 today","Sign Up","https://macaroniidev.github.io/betfriend-prototype/app/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_bof&utm_content=BOF-3#parlay-builder","creatives/BOF-3/BOF-3-1x1.jpg | creatives/BOF-3/BOF-3-4x5.jpg | creatives/BOF-3/BOF-3-9x16.jpg","Parlay Builder; Arbitrage & +EV (pre-match + live)","Audience: visitors of app/#parlay-builder. '+$115 more' is read straight off the screenshot ('vs worst book +$115 more' on $50 at bet365 +1437); no other parlay number is restated. Parlays are not presented as profitable — the claim is only best price vs worst price. Plan inclusion per plans.js bonus lists."
+"BOF-4","BOF","Retarget Daily Card viewers (every edge, ranked; account-limit objection)","static 1:1 / 4:5 / 9:16","One list every morning, ranked for your books and state: arbs, +EV bets, promos, middles, sharp moves, pro bettor signals, AI picks and prediction-market trades.
+
+Work it from the top, stake already sized. Worried about limits? Account health shows which of your books have capped you, right next to the card.
+
+Top 3 free on every account. The full card comes with All-Access: 7 days free, $0 today.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Today's edges, ranked for you","Full card free for 7 days","Try for Free","https://macaroniidev.github.io/betfriend-prototype/app/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_bof&utm_content=BOF-4#daily","creatives/BOF-4/BOF-4-1x1.jpg | creatives/BOF-4/BOF-4-4x5.jpg | creatives/BOF-4/BOF-4-9x16.jpg","Arbitrage & +EV (pre-match + live); Pro Bettor Signals; Live AI Analysis; AI Sports Picks; AI Prediction-Market Picks; Promo Optimizer; Middles; Low Holds; Sportsbook Screen; Sharp Money; Promo Converter; Parlay Builder; Prediction-Market Traders (Kalshi/Polymarket)","Audience: visitors of app/#daily. CROP OUT the 'Your betting' panel (Profit $932, ROI 10.6%, CLV) and blur the '$2,092 expected value' header figure — prototype demo numbers that read as results. Keep the ranked rows (promo cash values, $37.49 locked live arb) and the Account health list (Limited · max $165 / $86) — that panel is the honest answer to the limits objection. Top-3-free per plans.js Free plan."
+"BOF-5","BOF","Objection: price — pick your entry point (plan ladder)","static 1:1 / 4:5 / 9:16","Don't need all 25 tools? Start with one.
+
+Promo Converter $29.99. AI Picks & Live Analysis $39.99. Sharp Money or Pro Bettor Signals $79.99. Prediction Markets $99.99. Live Arbitrage & EV (with Sportsbook Screen, Parlay Builder, middles and low holds) $149.99.
+
+Or everything for $199.99: all seven plans together would cost $559.93. Every plan starts with 7 days free, $0 today.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Plans from $29.99. All for $199.99.","Every plan: 7 days free","Sign Up","https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_bof&utm_content=BOF-5#plans","creatives/BOF-5/BOF-5-1x1.jpg | creatives/BOF-5/BOF-5-4x5.jpg | creatives/BOF-5/BOF-5-9x16.jpg","Promo Converter; Promo Optimizer; AI Sports Picks; Live AI Analysis; Sharp Money; Pro Bettor Signals; Prediction-Market Traders (Kalshi/Polymarket); AI Prediction-Market Picks; Arbitrage & +EV (pre-match + live); Sportsbook Screen; Parlay Builder; Middles; Low Holds","Prices from public/js/plans.js. Standalone sum 29.99+79.99+149.99+79.99+79.99+99.99+39.99 = 559.93. Upgrade delta 199.99−149.99 = 50.00 (matches landing nudge). Promo Optimizer is in the Promo Converter plan (plans.js tools)."
+"TOF-V1","TOF","Two phones, two prices (arbitrage)","video 10s 9:16","Two books. Same bet. Different prices. Bet both and keep the gap.
+
+Example: $487 split $187 at +183 / $300 at −130 across two books. +$42 or +$44, whichever side hits. We find it and size both stakes.
+
+7 days free, $0 today.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Bet both sides. Keep the gap.","7 days free · $0 today","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=both&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_tof&utm_content=TOF-V1","videos/TOF-V1.mp4","Arbitrage & +EV (pre-match + live)","Math as TOF-1 (529.21 / 530.77 back on 487)."
+"TOF-V2","TOF","Bonus bets turn into cash (promo conversion)","video 5s 9:16","Bonus bets can't be withdrawn. Converted, they can.
+
+Example: a $200 bonus bet at +275 plus a $440 hedge at −400 = +$110 cash, whichever team wins. Promo Optimizer ranks every offer in your state; Promo Converter gives you both bets. From $29.99, 7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Turn bonus bets into cash","From $29.99 · 7 days free","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_tof&utm_content=TOF-V2","videos/TOF-V2.mp4","Promo Converter; Promo Optimizer","Math as TOF-2. Kling handles particle/money motion well; keep bills denomination-free in prompt if it renders digits (re-roll)."
+"MOF-V1","MOF","Live game, live edge (live arbs + Live AI)","video 10s 9:16","Books reprice every possession. That's when gaps open widest.
+
+Live arbs and live +EV with auto refresh, and Live AI Analysis reading win probability and momentum on every game. Example: a 3rd-quarter total, +$35 to +$37 on $500, whichever side hits.
+
+7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Live gaps pay 2–3x more","Live Arb & EV + Live AI","Learn More","https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_mof&utm_content=MOF-V1#arbitrage","videos/MOF-V1.mp4","Arbitrage & +EV (pre-match + live); Live AI Analysis","Math as MOF-2 (535.50 / 537.10 on 500)."
+"MOF-V2","MOF","Where the sharp money went (Sharp Money + Pro Bettor Signals)","video 10s 9:16","Books limit sharp bettors, so they bet on Novig and ProphetX, where every bet is public.
+
+When volume spikes there, Sharp Money finds the best price at your US books and sizes the bet. Pro Bettor Signals pings you when top-ranked bettors bet, with the best price still available. 7 days free.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Bet where the pros put their money","Sharp Money · Pro Signals","Learn More","https://macaroniidev.github.io/betfriend-prototype/?h=sharp&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_mof&utm_content=MOF-V2#sharp","videos/MOF-V2.mp4","Sharp Money; Pro Bettor Signals","No edge/record numbers in captions (none are real yet). 'Top-ranked' = ranked by profit, ROI and CLV per plans.js."
+"BOF-V1","BOF","Morning Daily Card — every tool, $0 today","video 5s 9:16","Every edge from 25 tools, ranked for your books every morning.
+
+Arbs, +EV, middles, low holds, promos, sharp money, pro signals, parlay builder, sportsbook screen, AI picks, live AI and Kalshi/Polymarket traders. All-Access is 7 days free: $0 today, then $199.99/mo unless you cancel.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Every tool free for 7 days","$0 today · cancel anytime","Try for Free","https://macaroniidev.github.io/betfriend-prototype/app/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_bof&utm_content=BOF-V1#daily","videos/BOF-V1.mp4","Arbitrage & +EV (pre-match + live); Pro Bettor Signals; Live AI Analysis; AI Sports Picks; AI Prediction-Market Picks; Promo Optimizer; Middles; Low Holds; Sportsbook Screen; Sharp Money; Promo Converter; Parlay Builder; Prediction-Market Traders (Kalshi/Polymarket)","Retarget app-screen visitors; pairs with BOF-4. Lands on app/#daily."
+"BOF-V2","BOF","Exit alert in the stands (prediction-market traders + AI market picks)","video 5s 9:16","Bought YES at 54¢. Exit alert at 66¢. Sold before the final whistle.
+
+Example: 100 contracts, $54 in, $66 out: +$12 before venue fees. Ranked traders, AI fair value and exit alerts on Kalshi, Polymarket, ProphetX and Novig. Prediction Markets $99.99, 7 days free, $0 today.
+
+21+. Gambling problem? Call 1-800-GAMBLER.","Know when to sell","7 days free · $0 today","Sign Up","https://macaroniidev.github.io/betfriend-prototype/app/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_launch_bof&utm_content=BOF-V2#prediction-traders","videos/BOF-V2.mp4","Prediction-Market Traders (Kalshi/Polymarket); AI Prediction-Market Picks","Retarget app/#prediction-traders, #pm-picks, #pm-markets, #exit-alerts visitors. Math as TOF-5."
