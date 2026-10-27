@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BetFriend All-Access</title>
+<meta name="description" content="Arbitrage, +EV, middles, promo conversion, sharp money, pro bettor signals, AI picks and prediction-market traders, ranked for your books every morning. 25 tools, 17 books. 7 days free.">
+<meta name="theme-color" content="#118A4C">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BetFriend">
+<meta property="og:title" content="Every betting edge. One membership. | BetFriend">
+<meta property="og:description" content="Example: $487 across two books. +$42 if the Over hits, +$44 if the Under hits. 25 tools for US sports bettors, 7 days free.">
+<meta property="og:image" content="img/app-daily.png">
+<meta property="og:image:width" content="1192">
+<meta property="og:image:height" content="947">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="img/mate-face.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Figtree:wght@500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="landing.css">
+<link rel="preload" as="image" type="image/webp" href="img/app-daily.webp" imagesrcset="img/app-daily.webp 1x, img/app-daily@2x.webp 2x">
+</head>
+<body>
+<a class="bf2-skip" href="#main">Skip to content</a>
+
+<!-- 0. Top bar -->
+<header class="bf2-head" id="top">
+  <div class="bf2-wrap bf2-head-in">
+    <a class="bf-logo bf-logo-dark" href="#top" aria-label="BetFriend home">
+      <img src="img/mate-face-deep.svg" width="36" height="36" alt="">
+      <span class="bf-word" aria-hidden="true">Bet<span>Friend</span></span>
+    </a>
+    <nav class="bf2-nav" id="site-nav" aria-label="Page sections">
+      <a href="#how">How it works</a>
+      <a href="#tools">Tools</a>
+      <a href="#daily">Daily Card</a>
+      <a href="#compare">Compare</a>
+      <a href="#plans">Plans</a>
+      <a href="#faq">FAQ</a>
+      <a class="bf2-cta bf2-cta-lime bf2-nav-cta" href="app/#pricing">Start free trial</a>
+    </nav>
+    <div class="bf2-head-right">
+      <span class="bf2-age" title="21 and over only">21+</span>
+      <a class="bf2-cta bf2-cta-lime bf2-head-cta" href="app/#pricing"><span class="lg">Start free trial</span><span class="sm">Try it free</span></a>
+      <button class="bf2-burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 1. Hero -->
+<div class="bf2-hero-band">
+  <section class="bf2-wrap bf2-hero" aria-labelledby="hero-h1">
+    <div class="bf2-hero-copy">
+      <p class="bf2-source" id="hero-source" hidden>From Instagram: here's the math behind the ad.</p>
+      <p class="bf2-kicker" id="hero-kicker">25 betting tools · 17 books · one membership</p>
+      <h1 id="hero-h1">Every betting edge. One membership.</h1>
+      <p class="bf2-lead" id="hero-sub">We scan every book you use, rank today's edges every morning and tell you exactly what to bet, where, and how much.</p>
+      <ul class="bf2-chips" aria-label="Included in All-Access">
+        <li>Arbitrage</li><li>+EV</li><li>Middles</li><li>Low holds</li><li>Promos</li><li>Sharp money</li><li>Pro bettor signals</li><li>AI picks</li><li>Live AI</li><li>Prediction markets</li><li>Daily Card</li>
+      </ul>
+      <div class="bf2-proof-row">
+        <img class="bf2-proof-mate" src="img/coach-mate-gameplan.svg" width="58" height="65" alt="">
+        <p class="bf2-proof" id="hero-proof">Example: $487 across two books. +$42 if the Over hits, +$44 if the Under hits.</p>
+      </div>
+      <a id="hero-cta" class="bf2-cta bf2-cta-lime" href="app/#pricing">See today's edges free</a>
+      <ul class="bf2-assure">
+        <li><span><b>$0 today</b>, 7 days free</span></li>
+        <li>Cancel anytime</li>
+        <li><span>Then $199.99/mo for All-Access unless you cancel. Card required.</span></li>
+      </ul>
+      <a class="bf2-alt-link" href="#plans">Just want one tool? See standalone plans from $29.99 <span aria-hidden="true">→</span></a>
+    </div>
+
+    <div class="bf2-hero-art">
+      <img class="bf2-hero-mate" src="img/coach-mate-gameplan.svg" width="136" height="152" alt="">
+      <figure class="bf2-slip bf2-slip-hero" id="calc">
+        <figcaption>Player prop · Made threes · Over/Under 0.5 <span>Example</span></figcaption>
+        <ul>
+          <li><span class="bf2-leg"><b>Over 0.5</b><small>Book A</small></span><span class="bf2-odds">+183</span><span class="bf2-stake" data-calc="s1">$187</span></li>
+          <li><span class="bf2-leg"><b>Under 0.5</b><small>Book B</small></span><span class="bf2-odds">−130</span><span class="bf2-stake" data-calc="s2">$300</span></li>
+        </ul>
+        <p class="bf2-result" data-calc="result" aria-live="polite">+$42 to +$44 on $487, whichever side hits</p>
+        <p class="bf2-math" data-calc="math">$187 at +183 pays back $529.21. $300 at −130 pays back $530.77. You put in $487, so you keep $42.21 or $43.77.</p>
+        <div class="bf2-calc">
+          <label for="calc-stake">Try your own stake</label>
+          <div class="bf2-calc-row">
+            <button type="button" class="bf2-step" data-step="-50" aria-label="Lower total stake by $50">−</button>
+            <div class="bf2-calc-input"><span aria-hidden="true">$</span><input id="calc-stake" type="number" inputmode="numeric" min="100" max="10000" step="1" value="487"></div>
+            <button type="button" class="bf2-step" data-step="50" aria-label="Raise total stake by $50">+</button>
+          </div>
+          <input class="bf2-range" type="range" min="100" max="5000" step="1" value="487" aria-label="Total stake across both books">
+          <p class="bf2-calc-note">We split it for you: <b data-calc="roi">8.7% to 9.0%</b> back whichever side hits.</p>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="bf2-wrap bf2-hero-shot-wrap">
+    <figure class="bf2-shot bf2-hero-shot">
+      <div class="bf2-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Today's Daily Card</span></div>
+      <picture>
+        <source type="image/webp" srcset="img/app-daily.webp 1x, img/app-daily@2x.webp 2x">
+        <img src="img/app-daily.png" width="1192" height="947" fetchpriority="high" alt="BetFriend's Daily Card: $2,092 of expected value across 45 ranked moves, with promos, live arbitrage and exit alerts, each with a one-tap bet button, next to your profit, ROI and sportsbook account health">
+      </picture>
+    </figure>
+  </div>
+</div>
+
+<!-- 2. Stats -->
+<section class="bf2-stats-sec" aria-label="BetFriend in numbers">
+  <div class="bf2-wrap">
+    <div class="bf2-facts">
+      <div><b>25 tools, one login</b><span>Arbitrage to prediction markets, plus the Daily Card that ranks them all.</span></div>
+      <div><b>17 books, exchanges &amp; markets</b><span>Every major US sportsbook, plus Novig, ProphetX, PrizePicks, Underdog, Kalshi and Polymarket.</span></div>
+      <div><b>Live arbs pay 2 to 3x more</b><span>Books must adjust odds in real time, so live gaps open wider than pre-match ones.</span></div>
+      <div><b>$199.99 for everything</b><span>Buying the same tools separately runs $1,349.95 a month.</span></div>
+    </div>
+    <div class="bf2-marquee" aria-label="Sportsbooks, exchanges and markets covered">
+      <ul class="bf2-mq-row">
+        <li>DraftKings</li><li>FanDuel</li><li>BetMGM</li><li>Caesars</li><li>ESPN BET</li><li>Fanatics</li><li>BetRivers</li><li>Hard Rock Bet</li><li>bet365</li>
+        <li aria-hidden="true">DraftKings</li><li aria-hidden="true">FanDuel</li><li aria-hidden="true">BetMGM</li><li aria-hidden="true">Caesars</li><li aria-hidden="true">ESPN BET</li><li aria-hidden="true">Fanatics</li><li aria-hidden="true">BetRivers</li><li aria-hidden="true">Hard Rock Bet</li><li aria-hidden="true">bet365</li>
+      </ul>
+      <ul class="bf2-mq-row bf2-mq-rev">
+        <li>Fliff</li><li>Circa</li><li>Novig</li><li>ProphetX</li><li>PrizePicks</li><li>Underdog</li><li>Kalshi</li><li>Polymarket</li>
+        <li aria-hidden="true">Fliff</li><li aria-hidden="true">Circa</li><li aria-hidden="true">Novig</li><li aria-hidden="true">ProphetX</li><li aria-hidden="true">PrizePicks</li><li aria-hidden="true">Underdog</li><li aria-hidden="true">Kalshi</li><li aria-hidden="true">Polymarket</li>
+      </ul>
+    </div>
+    <p class="bf2-fill">[FILL: confirm logo-use rights before showing marks; plain wordmarks are the fallback]</p>
+  </div>
+</section>
+
+<!-- 3. How it works -->
+<section class="bf2-sec-wrap" id="how" aria-labelledby="how-h2">
+  <div class="bf2-wrap bf2-sec bf2-how">
+    <div class="bf2-how-copy">
+      <span class="bf2-pill bf2-pill-light">How it works</span>
+      <h2 id="how-h2">Place two bets. One wins. You keep the gap.</h2>
+      <p class="bf2-sub">Two sportsbooks priced the same bet differently, so you take one side at each. If the Over hits you make $42. If the Under hits you make $44. You don't need to follow the team, or even the sport. Lock in profit by betting on both sides before the game starts, no promos needed.</p>
+      <ul class="bf2-checks bf2-steps">
+        <li><span><b>We scan every book you use.</b> BetFriend compares every line across your books, exchanges and prediction markets, pre-match and live.</span></li>
+        <li><span><b>We tell you exactly what and how much to bet.</b> The exact bet size for each book, already worked out, with a one-tap link to the bet slip.</span></li>
+        <li><span><b>You place it. You keep the difference.</b> Your money stays in your own accounts. Every bet lands in your bet tracker automatically.</span></li>
+      </ul>
+    </div>
+    <div class="bf2-how-side">
+      <figure class="bf2-slip">
+        <figcaption>NBA · Total points · Over/Under 214.5 · Pre-match <span>Example</span></figcaption>
+        <ul>
+          <li><span class="bf2-leg"><b>Over 214.5</b><small>Book A</small></span><span class="bf2-odds">+137</span><span class="bf2-stake">$217</span></li>
+          <li><span class="bf2-leg"><b>Under 214.5</b><small>Book B</small></span><span class="bf2-odds">−122</span><span class="bf2-stake">$283</span></li>
+        </ul>
+        <p class="bf2-result">+$14 to +$15 on $500, whichever side hits</p>
+        <p class="bf2-math">$217 at +137 pays back $514.29. $283 at −122 pays back $514.97. You put in $500, so you keep $14.29 or $14.97. Do it five times before tip-off and that's $71 to $75.</p>
+      </figure>
+      <div class="bf2-mid">
+        <a class="bf2-cta bf2-cta-green" href="app/#arbitrage">Find my first arb</a>
+        <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3b. Tool chooser (message match for every ad angle) -->
+<section class="bf2-pick-sec" id="tools" aria-labelledby="pick-h2">
+  <div class="bf2-wrap bf2-pick">
+    <div class="bf2-pick-head">
+      <h2 id="pick-h2" class="bf2-h2-sm">Pick your edge.</h2>
+      <p class="bf2-sub">Seven ways to bet with the math on your side. All-Access gets you every one.</p>
+    </div>
+    <ul class="bf2-pick-grid">
+      <li><a href="#arbitrage"><span class="bf2-tag">Arbitrage · Middles · Low holds</span><b>Guaranteed-profit pairs</b><em>+$35 to +$37 on $500, live</em></a></li>
+      <li><a href="#ev"><span class="bf2-tag">Positive EV · Parlays · Screen</span><b>Bets paying more than they should</b><em>+5% edge: +$5 per $100</em></a></li>
+      <li><a href="#promos"><span class="bf2-tag">Promos · Boosts · Deposits</span><b>Bonus bets into cash</b><em>$200 bonus bet → +$110 cash</em></a></li>
+      <li><a href="#sharp"><span class="bf2-tag">Sharp money · Pro bettor signals</span><b>Follow the pros' money</b><em>+8.5% edge at the old price</em></a></li>
+      <li><a href="#ai"><span class="bf2-tag">AI picks · Live AI · Prop research</span><b>Every game priced by AI</b><em>Grade A: +$10.73 per $100</em></a></li>
+      <li><a href="#prediction"><span class="bf2-tag">Prediction markets · Exit alerts</span><b>Copy winning traders</b><em>Buy 54¢, exit at 66¢: +$12</em></a></li>
+      <li class="bf2-pick-all"><a href="#daily"><span class="bf2-tag">Daily Card</span><b>All of it, ranked every morning</b><em>Work it from the top</em></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. Arbitrage, Middles & Low Holds -->
+<section class="bf2-band bf2-tool" id="arbitrage" aria-labelledby="arb-h2">
+  <div class="bf2-wrap bf2-sec">
+    <div class="bf2-tool-grid">
+      <div class="bf2-tool-copy">
+        <span class="bf2-pill">Arbitrage · Middles · Low Holds</span>
+        <h2 id="arb-h2">Pairs of bets that make guaranteed profit.</h2>
+        <p class="bf2-pitch">We give you the exact bet size for each book, so you keep the difference either way. And because books must adjust odds in real time, live arbs are 2 to 3x more profitable, so BetFriend runs them pre-match and live, with industry-leading auto refresh.</p>
+        <ul class="bf2-checks">
+          <li><span><b>Arbitrage, pre-match and live:</b> lock in profit by betting on both sides, before the game or while it's on.</span></li>
+          <li><span><b>Middles:</b> pairs of bets that either cancel out, or both win. Over the low number, Under the high number.</span></li>
+          <li><span><b>Low Holds:</b> bet large sums with low risk to get VIP status, fast. Run your playthrough for pennies on the dollar.</span></li>
+        </ul>
+        <div class="bf2-mid">
+          <a class="bf2-cta bf2-cta-lime" href="app/#arbitrage">See live arbs now</a>
+          <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+        </div>
+        <p class="bf2-links">Also see: <a href="app/#middles">Middles</a> · <a href="app/#low-holds">Low Holds</a></p>
+        <p class="bf2-planline">In Live Arbitrage &amp; EV ($149.99/mo), Pre-Match Arbitrage &amp; EV ($79.99/mo) and All-Access.</p>
+      </div>
+      <div class="bf2-tool-media">
+        <figure class="bf2-shot">
+          <div class="bf2-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Arbitrage</span></div>
+          <picture>
+            <source type="image/webp" srcset="img/app-arbitrage.webp 1x, img/app-arbitrage@2x.webp 2x">
+            <img src="img/app-arbitrage.png" width="1192" height="947" loading="lazy" alt="BetFriend's Arbitrage tool: live and pre-match price gaps ranked by ROI, with both legs, the stake for each book and the locked profit">
+          </picture>
+        </figure>
+        <figure class="bf2-lens bf2-lens-arb">
+          <figcaption><span class="bf2-lens-tag">Zoomed in · top arb on this screen</span></figcaption>
+          <div class="bf2-lens-img" role="img" aria-label="Top arbitrage row: bet365 +137 Over 1.5 with $436.16, FanDuel −120 Under 1.5 with $563.84, profit +$33.70"></div>
+          <p class="bf2-lens-read"><b>$436.16 + $563.84 = $1,000 staked. +$33.70 back whichever side hits.</b> Both stakes worked out to the cent.</p>
+        </figure>
+      </div>
+    </div>
+
+    <div class="bf2-examples">
+      <div class="bf2-example">
+        <h3>Live arb</h3>
+        <figure class="bf2-slip">
+          <figcaption>NBA · Live total · Over/Under 221.5 · 3rd quarter <span>Example</span></figcaption>
+          <ul>
+            <li><span class="bf2-leg"><b>Over 221.5</b><small>Book A</small></span><span class="bf2-odds">+125</span><span class="bf2-stake">$238</span></li>
+            <li><span class="bf2-leg"><b>Under 221.5</b><small>Book B</small></span><span class="bf2-odds">+105</span><span class="bf2-stake">$262</span></li>
+          </ul>
+          <p class="bf2-result">+$35 to +$37 on $500, whichever side hits</p>
+          <p class="bf2-math">$238 at +125 pays back $535.50. $262 at +105 pays back $537.10. You put in $500, so you keep $35.50 or $37.10, about 7%. The pre-match gap above paid 2.9%: this one pays about 2.5x more.</p>
+        </figure>
+      </div>
+      <div class="bf2-example">
+        <h3>Middle</h3>
+        <figure class="bf2-slip">
+          <figcaption>NFL · Total points · Over 44.5 / Under 47.5 <span>Example</span></figcaption>
+          <ul>
+            <li><span class="bf2-leg"><b>Over 44.5</b><small>Book A</small></span><span class="bf2-odds">+100</span><span class="bf2-stake">$100</span></li>
+            <li><span class="bf2-leg"><b>Under 47.5</b><small>Book B</small></span><span class="bf2-odds">−105</span><span class="bf2-stake">$105</span></li>
+          </ul>
+          <p class="bf2-result">Lands on 45, 46 or 47: +$200. Anywhere else: $0 or −$5.</p>
+          <p class="bf2-math">In the middle, both bets win: $200 + $205 back on $205 staked = +$200. Under only: $205 back = $0. Over only: $200 back = −$5.</p>
+        </figure>
+      </div>
+      <div class="bf2-example">
+        <h3>Low hold</h3>
+        <figure class="bf2-slip">
+          <figcaption>MLB · Run line · both sides at −102 <span>Example</span></figcaption>
+          <ul>
+            <li><span class="bf2-leg"><b>Side 1</b><small>Book A</small></span><span class="bf2-odds">−102</span><span class="bf2-stake">$500</span></li>
+            <li><span class="bf2-leg"><b>Side 2</b><small>Book B</small></span><span class="bf2-odds">−102</span><span class="bf2-stake">$500</span></li>
+          </ul>
+          <p class="bf2-result">$1,000 of playthrough for $9.80</p>
+          <p class="bf2-math">$500 at −102 pays back $990.20 whichever side wins. You put in $1,000 and get $990.20 back: $1,000 of action toward your bonus rollover and VIP tier for under a penny per dollar.</p>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Positive EV, Parlay Builder & Screen -->
+<section class="bf2-tool" id="ev" aria-labelledby="ev-h2">
+  <div class="bf2-wrap bf2-sec">
+    <div class="bf2-tool-grid bf2-flip">
+      <div class="bf2-tool-copy">
+        <span class="bf2-pill bf2-pill-light">Positive EV · Parlays · Screen</span>
+        <h2 id="ev-h2">Data-driven bets that pay more than they should.</h2>
+        <p class="bf2-pitch">Positive EV finds the bets a book is paying out higher than they should, priced against sharp no-vig fair odds, and sizes each one for your bankroll. Live +EV bets are 2 to 3x more profitable too: the volume makes this a staple for nearly every pro.</p>
+        <ul class="bf2-checks">
+          <li><span><b>Positive EV, pre-match and live:</b> every +EV bet across your books, with Kelly bet sizing set to your bankroll.</span></li>
+          <li><span><b>Parlay Builder:</b> +EV and Sharp Money legs, pointed to the book paying most for them.</span></li>
+          <li><span><b>Sportsbook Screen + Fair Odds Builder:</b> find bets yourself with real-time data. Build your own fair-odds formula from the sharp books you trust.</span></li>
+        </ul>
+        <div class="bf2-mid">
+          <a class="bf2-cta bf2-cta-green" href="app/#positive-ev">See today's +EV bets</a>
+          <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+        </div>
+        <p class="bf2-links">Also see: <a href="app/#parlay-builder">Parlay Builder</a> · <a href="app/#screen">Sportsbook Screen</a> · <a href="app/#ev-builder">Fair Odds Builder</a></p>
+        <p class="bf2-planline">Pre-Match +EV is a $199-value bonus in Pre-Match Arbitrage &amp; EV. Live +EV ($319 value), Screen and Parlay Builder come with Live Arbitrage &amp; EV. All of it is in All-Access.</p>
+      </div>
+      <div class="bf2-tool-media">
+        <div class="bf2-tabs" role="tablist" aria-label="Positive EV screens">
+          <button type="button" role="tab" aria-selected="true" aria-controls="shot-ev" data-shot="positive-ev" data-label="Positive EV" data-alt="BetFriend's Positive EV tool: bets priced above sharp no-vig fair odds, with the edge, best book and Kelly stake for each">Positive EV</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-ev" tabindex="-1" data-shot="parlay-builder" data-label="Parlay Builder" data-alt="BetFriend's Parlay Builder: +EV and Sharp Money legs combined, priced at the book paying most for the parlay">Parlay Builder</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-ev" tabindex="-1" data-shot="screen" data-label="Sportsbook Screen" data-alt="BetFriend's Sportsbook Screen: every book's price for each market side by side, with the best price highlighted">Sportsbook Screen</button>
+        </div>
+        <figure class="bf2-shot" id="shot-ev" role="tabpanel" aria-label="Positive EV screen">
+          <div class="bf2-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Positive EV</span></div>
+          <picture>
+            <source type="image/webp" srcset="img/app-positive-ev.webp 1x, img/app-positive-ev@2x.webp 2x">
+            <img src="img/app-positive-ev.png" width="1192" height="947" loading="lazy" alt="BetFriend's Positive EV tool: bets priced above sharp no-vig fair odds, with the edge, best book and Kelly stake for each">
+          </picture>
+        </figure>
+        <figure class="bf2-slip bf2-slip-over">
+          <figcaption>NFL · Total points · Over 47.5 <span>Example</span></figcaption>
+          <ul>
+            <li class="bf2-info"><span class="bf2-leg"><b>Fair price</b><small>Sharp books, vig removed</small></span><span class="bf2-odds">+100 <small>(50%)</small></span></li>
+            <li><span class="bf2-leg"><b>Over 47.5</b><small>Book A · best price</small></span><span class="bf2-odds">+110</span><span class="bf2-stake">$23</span></li>
+          </ul>
+          <p class="bf2-result">+5% edge: +$5 per $100, every time you take this price</p>
+          <p class="bf2-math">At +110 you win $110 half the time and lose $100 half the time, so each $100 averages +$5. Full Kelly is 4.5% of bankroll; a quarter of that on $2,000 is $22.73, rounded to $23.</p>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Promos -->
+<section class="bf2-mint bf2-tool" id="promos" aria-labelledby="promo-h2">
+  <div class="bf2-wrap bf2-sec">
+    <div class="bf2-tool-grid">
+      <div class="bf2-tool-copy">
+        <span class="bf2-pill">Promos · Profit Boosts · Deposits</span>
+        <h2 id="promo-h2">Convert bonus bets into withdrawable cash.</h2>
+        <p class="bf2-pitch">We tell you which books have the best promos in your state and link you to the exact two-sided bets that turn each one into dollars. Bonus bets can't be withdrawn. Converted, they can.</p>
+        <ul class="bf2-checks">
+          <li><span><b>Promo Optimizer:</b> every offer in your state ranked by the cash it converts to, with a claim plan that orders them for you.</span></li>
+          <li><span><b>Profit Boosts:</b> every boost posted today, priced against sharp fair odds, with the hedge at another book.</span></li>
+          <li><span><b>Deposit Optimizer:</b> tell us your deposit; we split it so every promo is funded and your money sits where today's arbs are.</span></li>
+        </ul>
+        <div class="bf2-mid">
+          <a class="bf2-cta bf2-cta-green" href="app/#promo-converter">Convert my bonus bets</a>
+          <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+        </div>
+        <p class="bf2-links">Also see: <a href="app/#promo-optimizer">Promo Optimizer</a> · <a href="app/#boosts">Profit Boosts</a> · <a href="app/#deposit-optimizer">Deposit Optimizer</a></p>
+        <p class="bf2-planline">Promo Converter plan, $29.99/mo, with the Low Hold Tool ($69 value) as a bonus. Included in both Arbitrage plans and All-Access.</p>
+      </div>
+      <div class="bf2-tool-media">
+        <figure class="bf2-shot">
+          <div class="bf2-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Promo Converter</span></div>
+          <picture>
+            <source type="image/webp" srcset="img/app-promo-converter.webp 1x, img/app-promo-converter@2x.webp 2x">
+            <img src="img/app-promo-converter.png" width="1192" height="947" loading="lazy" alt="BetFriend's Promo Converter: bonus bets and promos in your state, each with the hedge at a second book and the withdrawable cash it converts to">
+          </picture>
+        </figure>
+        <figure class="bf2-slip bf2-slip-over">
+          <figcaption>NBA · Moneyline · $200 bonus bet <span>Example</span></figcaption>
+          <ul>
+            <li><span class="bf2-leg"><b>Mavericks (bonus bet)</b><small>Book A</small></span><span class="bf2-odds">+275</span><span class="bf2-stake">$200 <small>bonus</small></span></li>
+            <li><span class="bf2-leg"><b>Nuggets (your cash)</b><small>Book B</small></span><span class="bf2-odds">−400</span><span class="bf2-stake">$440</span></li>
+          </ul>
+          <p class="bf2-result">+$110 withdrawable cash, whichever team wins</p>
+          <p class="bf2-math">Mavericks win: the bonus pays $550 (the $200 bonus itself isn't returned), minus the $440 hedge = +$110. Nuggets win: $440 at −400 pays back $550, so +$110. You keep 55% of the bonus as cash.</p>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Sharp Money & Pro Bettor Signals -->
+<section class="bf2-tool" id="sharp" aria-labelledby="sharp-h2">
+  <div class="bf2-wrap bf2-sec">
+    <div class="bf2-tool-grid bf2-flip">
+      <div class="bf2-tool-copy">
+        <span class="bf2-pill bf2-pill-light">Sharp Money · Pro Bettor Signals</span>
+        <h2 id="sharp-h2">Bet where the pros actually put their money.</h2>
+        <p class="bf2-pitch">Sportsbooks limit sharp bettors, so they bet big on Novig and ProphetX, where every bet is public. When a line there suddenly spikes in volume, we find you the best price on the same bet, and tell you exactly what and how much to bet.</p>
+        <ul class="bf2-checks">
+          <li><span><b>Follows whole lines, not individuals:</b> like LeBron over 20 points, on US sportsbooks and fantasy apps (PrizePicks, Underdog).</span></li>
+          <li><span><b>Pro Bettor Signals:</b> follow bettors ranked by profit, ROI and closing-line value. Instant signal when they bet, with the best price available now.</span></li>
+          <li><span><b>Optimal bet sizing</b> based on confidence and history, on every signal.</span></li>
+        </ul>
+        <div class="bf2-mid">
+          <a class="bf2-cta bf2-cta-green" href="app/#sharp-money">Show me the sharp money</a>
+          <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+        </div>
+        <p class="bf2-links">Also see: <a href="app/#bettor-signals">Pro Bettor Signals</a></p>
+        <p class="bf2-planline">Sharp Money $79.99/mo (Parlay Builder bonus, $99 value). Pro Bettor Signals $79.99/mo (Sharp Money lite bonus, $79 value). Both in All-Access.</p>
+      </div>
+      <div class="bf2-tool-media">
+        <div class="bf2-tabs" role="tablist" aria-label="Sharp money screens">
+          <button type="button" role="tab" aria-selected="true" aria-controls="shot-sharp" data-shot="sharp-money" data-label="Sharp Money" data-alt="BetFriend's Sharp Money feed: volume spikes on Novig and ProphetX matched to the best US sportsbook price and a suggested stake">Sharp Money</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-sharp" tabindex="-1" data-shot="bettor-signals" data-label="Pro Bettor Signals" data-alt="BetFriend's Pro Bettor Signals: a leaderboard of bettors ranked by profit, ROI and closing-line value, and their latest bets with the best price now">Pro Bettor Signals</button>
+        </div>
+        <figure class="bf2-shot" id="shot-sharp" role="tabpanel" aria-label="Sharp Money screen">
+          <div class="bf2-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Sharp Money</span></div>
+          <picture>
+            <source type="image/webp" srcset="img/app-sharp-money.webp 1x, img/app-sharp-money@2x.webp 2x">
+            <img src="img/app-sharp-money.png" width="1192" height="947" loading="lazy" alt="BetFriend's Sharp Money feed: volume spikes on Novig and ProphetX matched to the best US sportsbook price and a suggested stake">
+          </picture>
+        </figure>
+        <figure class="bf2-lens bf2-lens-sharp" data-for="sharp-money">
+          <figcaption><span class="bf2-lens-tag">Zoomed in · newest spike on this screen</span></figcaption>
+          <div class="bf2-lens-img" role="img" aria-label="Top sharp money row: $30k on Novig in 5 minutes, 3.9 times normal, price +216 to +206, best price bet365 +199, edge +4.31%, bet $25 to win $50"></div>
+          <p class="bf2-lens-read"><b>$30k hit Novig in 5 minutes, 3.9× normal.</b> bet365 still pays +199: +4.31% edge, bet $25 to win $50.</p>
+        </figure>
+      </div>
+    </div>
+
+    <div class="bf2-examples bf2-examples-2">
+      <div class="bf2-example">
+        <h3>Sharp Money alert</h3>
+        <figure class="bf2-slip">
+          <figcaption>NBA · Player points · Over 24.5 <span>Example</span></figcaption>
+          <ul>
+            <li class="bf2-info"><span class="bf2-leg"><b>Volume spike</b><small>Novig + ProphetX</small></span><span class="bf2-odds">−105 → −125 <small>(55.6%)</small></span></li>
+            <li><span class="bf2-leg"><b>Over 24.5</b><small>Book A · best US price</small></span><span class="bf2-odds">−105</span><span class="bf2-stake">$45</span></li>
+          </ul>
+          <p class="bf2-result">+8.5% edge: about +$8.47 per $100</p>
+          <p class="bf2-math">At −105 a win pays $95.24 per $100. 55.56% × $95.24 − 44.44% × $100 = +$8.47. Bet size is quarter-Kelly on a $2,000 bankroll. You're betting at the old price before Book A catches up.</p>
+        </figure>
+      </div>
+      <div class="bf2-example">
+        <h3>Pro Bettor signal</h3>
+        <figure class="bf2-slip">
+          <figcaption>MLB · Total runs · Over 8.5 <span>Example</span></figcaption>
+          <p class="bf2-fill bf2-fill-row">[FILL: real leaderboard row from the live feed — rank, profit, ROI, CLV, bets tracked]</p>
+          <ul>
+            <li class="bf2-info"><span class="bf2-leg"><b>They took</b><small>Over 8.5 runs</small></span><span class="bf2-odds">−110</span></li>
+            <li><span class="bf2-leg"><b>Over 8.5</b><small>Book B · best price now</small></span><span class="bf2-odds">−105</span><span class="bf2-stake">1 unit</span></li>
+          </ul>
+          <p class="bf2-math">They took Over 8.5 runs at −110. Best price now: Book B −105. Suggested stake: 1 unit.</p>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. AI Picks & Live AI -->
+<section class="bf2-band bf2-tool" id="ai" aria-labelledby="ai-h2">
+  <div class="bf2-wrap bf2-sec">
+    <div class="bf2-tool-grid">
+      <div class="bf2-tool-copy">
+        <span class="bf2-pill">AI Picks · Live AI · Prop Research</span>
+        <h2 id="ai-h2">Every game priced by AI. Graded A+ to C.</h2>
+        <p class="bf2-pitch">Our model prices every game and prop, compares it with every book, and grades the best plays A+ to C. Each one shows the projection, the edge at the best available price and the factors behind it.</p>
+        <ul class="bf2-checks">
+          <li><span><b>AI picks</b> for sides, totals and player props, with confidence grades and a graded record.</span></li>
+          <li><span><b>Live AI Analysis:</b> win probability, momentum, play-by-play reads and the live bets where books are slowest to react.</span></li>
+          <li><span><b>Prop Research + Ask BetFriend AI:</b> hit rates, game logs and splits next to the best Over and Under prices, and an AI analyst that answers with live prices from every book.</span></li>
+        </ul>
+        <div class="bf2-mid">
+          <a class="bf2-cta bf2-cta-lime" href="app/#ai-picks">See today's A-grade plays</a>
+          <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+        </div>
+        <p class="bf2-links">Also see: <a href="app/#live-ai">Live AI</a> · <a href="app/#prop-research">Prop Research</a> · <a href="app/#ai-chat">Ask BetFriend AI</a></p>
+        <p class="bf2-planline">AI Picks &amp; Live Analysis, $39.99/mo, with Prop Research ($59 value). Included in All-Access.</p>
+      </div>
+      <div class="bf2-tool-media">
+        <div class="bf2-tabs" role="tablist" aria-label="AI screens">
+          <button type="button" role="tab" aria-selected="true" aria-controls="shot-ai" data-shot="ai-picks" data-label="AI Picks" data-alt="BetFriend's AI Picks: games and player props with the model projection, the edge at the best price and a grade from A+ to C">AI Picks</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-ai" tabindex="-1" data-shot="live-ai" data-label="Live AI" data-alt="BetFriend's Live AI Analysis: live scores, a win-probability chart and live bets where books are slowest to react">Live AI</button>
+        </div>
+        <figure class="bf2-shot" id="shot-ai" role="tabpanel" aria-label="AI Picks screen">
+          <div class="bf2-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>AI Picks</span></div>
+          <picture>
+            <source type="image/webp" srcset="img/app-ai-picks.webp 1x, img/app-ai-picks@2x.webp 2x">
+            <img src="img/app-ai-picks.png" width="1192" height="947" loading="lazy" alt="BetFriend's AI Picks: games and player props with the model projection, the edge at the best price and a grade from A+ to C">
+          </picture>
+        </figure>
+        <figure class="bf2-slip bf2-slip-over">
+          <figcaption>NBA · Player points · Grade A <span>Example</span></figcaption>
+          <ul>
+            <li class="bf2-info"><span class="bf2-leg"><b>Model projection</b><small>Line: 24.5</small></span><span class="bf2-odds">27.8 pts</span></li>
+            <li><span class="bf2-leg"><b>Over 24.5</b><small>Book A · best price · model win chance 58%</small></span><span class="bf2-odds">−110</span></li>
+          </ul>
+          <p class="bf2-result">+$10.73 per $100 at the best price</p>
+          <p class="bf2-math">At −110 a win pays $90.91 per $100. 58% × $90.91 − 42% × $100 = +$10.73.</p>
+          <p class="bf2-fill bf2-fill-row">[FILL: graded AI record — bets graded, units, ROI, date range — from the live grading feed]</p>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Prediction Markets -->
+<section class="bf2-tool" id="prediction" aria-labelledby="pm-h2">
+  <div class="bf2-wrap bf2-sec">
+    <div class="bf2-tool-grid bf2-flip">
+      <div class="bf2-tool-copy">
+        <span class="bf2-pill bf2-pill-light">Prediction Markets · Exit Alerts</span>
+        <h2 id="pm-h2">Copy the traders who keep winning.</h2>
+        <p class="bf2-pitch">Unlimited pre-match and live recommendations from algorithmically-selected traders on Kalshi, Polymarket, ProphetX and Novig, with optimal bet sizing based on confidence and history. Deep links take you straight to the trade.</p>
+        <ul class="bf2-checks">
+          <li><span><b>Deep links directly to Kalshi, Polymarket, ProphetX &amp; Novig.</b> One tap from signal to order.</span></li>
+          <li><span><b>AI Market Picks + full order book:</b> model fair value vs market price on every contract, plus price history, bids and asks without leaving the tool.</span></li>
+          <li><span><b>Exit alerts: we tell you when to sell early.</b> We watch every position you hold and ping you the moment it's time to take profit.</span></li>
+        </ul>
+        <div class="bf2-mid">
+          <a class="bf2-cta bf2-cta-green" href="app/#prediction-traders">Follow the top traders</a>
+          <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+        </div>
+        <p class="bf2-links">Also see: <a href="app/#pm-picks">AI Market Picks</a> · <a href="app/#pm-markets">Markets &amp; Order Book</a> · <a href="app/#exit-alerts">Exit Alerts</a></p>
+        <p class="bf2-planline">Prediction Markets, $99.99/mo, with AI Prediction-Market Picks ($149 value). Included in All-Access.</p>
+      </div>
+      <div class="bf2-tool-media">
+        <div class="bf2-tabs" role="tablist" aria-label="Prediction market screens">
+          <button type="button" role="tab" aria-selected="true" aria-controls="shot-pm" data-shot="prediction-traders" data-label="Prediction Traders" data-alt="BetFriend's Prediction Traders: algorithmically selected traders on Kalshi, Polymarket, ProphetX and Novig with their latest positions and a deep link to copy each one">Prediction Traders</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-pm" tabindex="-1" data-shot="pm-markets" data-label="Markets &amp; Order Book" data-alt="BetFriend's prediction-market screen: market list, price chart, full order book and a trade ticket">Markets &amp; Order Book</button>
+        </div>
+        <figure class="bf2-shot" id="shot-pm" role="tabpanel" aria-label="Prediction Traders screen">
+          <div class="bf2-shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>Prediction Traders</span></div>
+          <picture>
+            <source type="image/webp" srcset="img/app-prediction-traders.webp 1x, img/app-prediction-traders@2x.webp 2x">
+            <img src="img/app-prediction-traders.png" width="1192" height="947" loading="lazy" alt="BetFriend's Prediction Traders: algorithmically selected traders on Kalshi, Polymarket, ProphetX and Novig with their latest positions and a deep link to copy each one">
+          </picture>
+        </figure>
+        <figure class="bf2-slip bf2-slip-over">
+          <figcaption>NFL · Chiefs to win · YES contract <span>Example</span></figcaption>
+          <ul>
+            <li class="bf2-info"><span class="bf2-leg"><b>Trader signal: buy YES</b><small>AI fair value 60¢</small></span><span class="bf2-odds">54¢</span></li>
+            <li><span class="bf2-leg"><b>Position</b><small>100 contracts</small></span><span class="bf2-odds">54¢</span><span class="bf2-stake">$54</span></li>
+            <li class="bf2-info"><span class="bf2-leg"><b>Exit alert: sell all 100</b><small>3rd quarter</small></span><span class="bf2-odds">66¢</span></li>
+          </ul>
+          <p class="bf2-result">+$12 taken off the table before the final whistle (22% on $54)</p>
+          <p class="bf2-math">100 × 66¢ = $66 back on $54 in. Hold to a YES win instead and it pays $100 (+$46). Figures before venue fees.</p>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Daily Card (mid-page green band) -->
+<section class="bf2-green bf2-daily" id="daily" aria-labelledby="daily-h2">
+  <div class="bf2-wrap bf2-sec bf2-daily-grid">
+    <div class="bf2-daily-copy">
+      <span class="bf2-pill bf2-pill-dark">Daily Card</span>
+      <h2 id="daily-h2">Everything in one ranked list.</h2>
+      <p class="bf2-daily-body">Every arb, +EV bet, promo, sharp move, pro signal, AI pick and prediction-market trade, ranked for your books and your state. Open it with your coffee. Work it from the top. Done.</p>
+      <div class="bf2-mid">
+        <a class="bf2-cta bf2-cta-lime" href="app/#daily">Open today's Daily Card</a>
+        <p class="bf2-terms">Top 3 free on every account. The full card comes with All-Access.</p>
+      </div>
+    </div>
+    <div class="bf2-daily-art">
+      <img class="bf2-daily-mate" src="img/coach-mate.svg" width="200" height="152" loading="lazy" alt="">
+      <div class="bf2-card-list">
+        <p class="bf2-card-head"><b>This morning's card</b><span>Example</span></p>
+        <ul>
+          <li><span class="bf2-tag">Live arb</span><b>NBA total 221.5</b><em>+$35 to +$37 on $500</em></li>
+          <li><span class="bf2-tag">Bonus conversion</span><b>$200 bonus bet</b><em>+$110 cash</em></li>
+          <li><span class="bf2-tag">Sharp Money</span><b>Over 24.5 points at −105</b><em>bet $45</em></li>
+          <li><span class="bf2-tag">AI grade A</span><b>Over 24.5 points</b><em>+$10.73 per $100</em></li>
+          <li><span class="bf2-tag">Prediction trader</span><b>Chiefs YES at 54¢</b><em>AI fair 60¢</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Also inside -->
+<section aria-labelledby="also-h2">
+  <div class="bf2-wrap bf2-sec bf2-also">
+    <h2 id="also-h2" class="bf2-h2-sm">Also inside every plan.</h2>
+    <div class="bf2-also-grid">
+      <a class="bf2-also-tile" href="app/#tracker">
+        <span class="bf2-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z M4 9h16 M9 9v11"/></svg></span>
+        <b>Bet Tracker &amp; Accounts</b>
+        <span>Every bet from every tool in one ledger: P&amp;L, ROI and closing-line value.</span>
+        <em>Open the tracker <span aria-hidden="true">→</span></em>
+      </a>
+      <a class="bf2-also-tile" href="app/#alerts">
+        <span class="bf2-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4z M10 21h4"/></svg></span>
+        <b>Alerts</b>
+        <span>Get pinged the second an opportunity matching your rules appears.</span>
+        <em>Set up alerts <span aria-hidden="true">→</span></em>
+      </a>
+      <a class="bf2-also-tile" href="app/#calculators">
+        <span class="bf2-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h14v18H5z M8 7h8 M8 12h2 M14 12h2 M8 16h2 M14 16h2"/></svg></span>
+        <b>8 calculators</b>
+        <span>Results update as you type, using your bankroll and Kelly settings.</span>
+        <em>Try the calculators <span aria-hidden="true">→</span></em>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 12. Comparison -->
+<section class="bf2-mint" id="compare" aria-labelledby="cmp-h2">
+  <div class="bf2-wrap bf2-sec">
+    <h2 id="cmp-h2">The tools pros stack. One price.</h2>
+    <p class="bf2-sub">What it costs to buy the same tools from the brands most bettors use, each billed monthly.</p>
+    <div class="bf2-table-wrap">
+      <table class="bf2-cmp">
+        <thead>
+          <tr><th scope="col">What you get</th><th scope="col">Bought separately</th><th scope="col" class="bf2-us">In BetFriend</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Pre-match + live arbitrage, +EV, middles, low holds</th><td>OddsJam Live Arbitrage &amp; EV · <b>$499.99</b></td><td class="bf2-us"><i class="bf2-tick" aria-label="Included"></i> <small>or $149.99 standalone</small></td></tr>
+          <tr><th scope="row">Sharp money</th><td>OddsJam Sharp Money · <b>$199.99</b></td><td class="bf2-us"><i class="bf2-tick" aria-label="Included"></i> <small>or $79.99</small></td></tr>
+          <tr><th scope="row">Prediction-market traders</th><td>OddsJam Prediction Traders · <b>$449.99</b></td><td class="bf2-us"><i class="bf2-tick" aria-label="Included"></i> <small>or $99.99</small></td></tr>
+          <tr><th scope="row">AI sports picks</th><td>Rithmm Pro · <b>$49.99</b></td><td class="bf2-us"><i class="bf2-tick" aria-label="Included"></i></td></tr>
+          <tr><th scope="row">Prop research + live tools</th><td>Outlier Pro + React Live · <b>$79.99</b></td><td class="bf2-us"><i class="bf2-tick" aria-label="Included"></i></td></tr>
+          <tr><th scope="row">Game ratings for every matchup</th><td>BetQL All Access · <b>$70.00</b></td><td class="bf2-us"><i class="bf2-tick" aria-label="Included"></i></td></tr>
+          <tr><th scope="row">Pro bettor signals</th><td class="bf2-na">Not sold</td><td class="bf2-us"><i class="bf2-tick" aria-label="Included"></i> <small>or $79.99</small></td></tr>
+          <tr><th scope="row">Daily Card: every tool ranked</th><td class="bf2-na">Not sold</td><td class="bf2-us"><i class="bf2-tick" aria-label="Included"></i></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th scope="row">Monthly total</th><td><s>$1,349.95</s></td><td class="bf2-us"><b>$199.99</b></td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="bf2-save">Save <b>$1,149.96 every month</b>: 85% less than the stack.</p>
+    <p class="bf2-foot-note">Promo conversion is in BetFriend too; OddsJam sells it alone as Promo Arbitrage ($79.99), left out of the total because their Live plan covers it. Prices as listed on each brand's site, <span class="bf2-fill bf2-fill-inline">[FILL: date checked]</span>.</p>
+    <div class="bf2-mid">
+      <a class="bf2-cta bf2-cta-green" href="app/#pricing">Get every tool for $199.99</a>
+      <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13. Plans -->
+<section id="plans" aria-labelledby="plans-h2">
+  <div class="bf2-wrap bf2-sec">
+    <div class="bf2-plans-head">
+      <div>
+        <h2 id="plans-h2">Pick one tool, or get them all.</h2>
+        <p class="bf2-sub">Every paid plan starts with 7 days free. Card required, $0 today, cancel anytime.</p>
+      </div>
+      <div class="bf2-toggle" role="group" aria-label="Billing period">
+        <button type="button" data-period="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" data-period="annual" aria-pressed="false">Annual <span>save up to 33%</span></button>
+      </div>
+    </div>
+
+    <article class="bf2-all" data-monthly="199.99" data-annual="1599.99" aria-labelledby="all-h3">
+      <div class="bf2-all-main">
+        <span class="bf2-ribbon">Best value</span>
+        <h3 id="all-h3">All-Access</h3>
+        <p class="bf2-all-name">BetFriend All-Access</p>
+        <p class="bf2-plan-for">Every tool. One membership. One price.</p>
+        <p class="bf2-price"><span data-price>$199.99</span><small>/mo</small></p>
+        <p class="bf2-billed" data-billed>Billed monthly · or $1,599.99/yr ($133.33/mo, save 33%)</p>
+        <p class="bf2-value" data-value>Every standalone plan below adds up to $559.93/mo. All-Access saves you $359.94 a month.</p>
+      </div>
+      <div class="bf2-all-side">
+        <ul class="bf2-checks">
+          <li><span>All 25 tools, pre-match and live</span></li>
+          <li><span>The full Daily Card, ranked for your books and state</span></li>
+          <li><span>Arbitrage, +EV, middles, low holds, promos, sharp money, pro signals, AI and prediction markets</span></li>
+          <li><span>Alerts, bet tracker and all 8 calculators</span></li>
+        </ul>
+        <a class="bf2-cta bf2-cta-lime" href="app/#pricing">Start All-Access free</a>
+        <p class="bf2-plan-terms" data-terms>7 days free, then $199.99/mo unless you cancel.</p>
+      </div>
+    </article>
+
+    <div class="bf2-plans-bar">
+      <p><b>Or pick one tool family.</b> Every standalone plan comes with bonus tools.</p>
+      <button type="button" class="bf2-plans-more" aria-expanded="false" aria-controls="plan-grid">Show what's in each plan</button>
+    </div>
+    <div class="bf2-plans is-compact" id="plan-grid">
+      <article class="bf2-plan" data-monthly="29.99" data-annual="239.99">
+        <h3>Promo Converter</h3>
+        <p class="bf2-plan-for">Convert bonus bets into withdrawable cash.</p>
+        <p class="bf2-price"><span data-price>$29.99</span><small>/mo</small></p>
+        <p class="bf2-billed" data-billed></p>
+        <ul class="bf2-checks">
+          <li><span>We tell you which books have the best promos in your state</span></li>
+          <li><span>Exact two-sided bets to convert each promo</span></li>
+          <li><span>Profit-boost hedges</span></li>
+          <li><span>Deposit optimizer</span></li>
+        </ul>
+        <div class="bf2-bonus"><p>Bonus tools <b>$69 value</b></p><ul><li>Low Hold Tool <span>$69</span></li></ul></div>
+        <a class="bf2-cta bf2-cta-outline" href="app/#pricing">Start free trial</a>
+        <p class="bf2-plan-terms" data-terms></p>
+        <a class="bf2-nudge" data-nudge href="app/#pricing"></a>
+      </article>
+
+      <article class="bf2-plan" data-monthly="79.99" data-annual="639.99">
+        <h3>Pre-Match Arbitrage &amp; EV</h3>
+        <p class="bf2-plan-for">Lock in profit by betting on both sides before the game starts. No promos needed.</p>
+        <p class="bf2-price"><span data-price>$79.99</span><small>/mo</small></p>
+        <p class="bf2-billed" data-billed></p>
+        <ul class="bf2-checks">
+          <li><span>Pairs of bets that make guaranteed profit</span></li>
+          <li><span>We give you the exact bet size for each book, so you keep the difference either way</span></li>
+        </ul>
+        <div class="bf2-bonus"><p>Bonus tools <b>$545 value</b></p><ul><li>Pre-Match +EV <span>$199</span></li><li>Middles <span>$99</span></li><li>Low Holds <span>$69</span></li><li>Promo Converter <span>$79</span></li><li>Parlay Builder <span>$99</span></li></ul></div>
+        <a class="bf2-cta bf2-cta-outline" href="app/#pricing">Start free trial</a>
+        <p class="bf2-plan-terms" data-terms></p>
+        <a class="bf2-nudge" data-nudge href="app/#pricing"></a>
+      </article>
+
+      <article class="bf2-plan on" data-monthly="149.99" data-annual="1199.99">
+        <span class="bf2-ribbon">Most popular</span>
+        <h3>Live Arbitrage &amp; EV</h3>
+        <p class="bf2-plan-for">Everything in Pre-Match, plus arbs and +EV while games are live.</p>
+        <p class="bf2-price"><span data-price>$149.99</span><small>/mo</small></p>
+        <p class="bf2-billed" data-billed></p>
+        <ul class="bf2-checks">
+          <li><span>Everything in Pre-Match Arbitrage &amp; EV</span></li>
+          <li><span>Lock in profit while games are live</span></li>
+          <li><span>Live arbs are 2 to 3x more profitable because books adjust odds in real time</span></li>
+          <li><span>Industry-leading auto refresh</span></li>
+        </ul>
+        <div class="bf2-bonus"><p>Bonus tools <b>$596 value</b></p><ul><li>Live +EV <span>$319</span></li><li>Sportsbooks Screen <span>$99</span></li><li>Promo Converter <span>$79</span></li><li>Parlay Builder <span>$99</span></li></ul></div>
+        <a class="bf2-cta bf2-cta-green" href="app/#pricing">Start free trial</a>
+        <p class="bf2-plan-terms" data-terms></p>
+        <a class="bf2-nudge" data-nudge href="app/#pricing"></a>
+      </article>
+
+      <article class="bf2-plan" data-monthly="79.99" data-annual="639.99">
+        <h3>Sharp Money</h3>
+        <p class="bf2-plan-for">Bet where the pros actually put their money.</p>
+        <p class="bf2-price"><span data-price>$79.99</span><small>/mo</small></p>
+        <p class="bf2-billed" data-billed></p>
+        <ul class="bf2-checks">
+          <li><span>Novig/ProphetX volume spikes → best US price</span></li>
+          <li><span>Follows whole lines, not bettors</span></li>
+          <li><span>Works on US sportsbooks and fantasy apps</span></li>
+          <li><span>We tell you exactly what and how much to bet</span></li>
+        </ul>
+        <div class="bf2-bonus"><p>Bonus tools <b>$99 value</b></p><ul><li>Parlay Builder <span>$99</span></li></ul></div>
+        <a class="bf2-cta bf2-cta-outline" href="app/#pricing">Start free trial</a>
+        <p class="bf2-plan-terms" data-terms></p>
+        <a class="bf2-nudge" data-nudge href="app/#pricing"></a>
+      </article>
+
+      <article class="bf2-plan" data-monthly="79.99" data-annual="639.99">
+        <h3>Pro Bettor Signals</h3>
+        <p class="bf2-plan-for">Betting signals from profitable sports bettors.</p>
+        <p class="bf2-price"><span data-price>$79.99</span><small>/mo</small></p>
+        <p class="bf2-billed" data-billed></p>
+        <ul class="bf2-checks">
+          <li><span>Follow bettors ranked by profit, ROI and closing-line value</span></li>
+          <li><span>Instant signal when they bet, with the best price available now</span></li>
+          <li><span>Optimal bet sizing based on confidence and history</span></li>
+        </ul>
+        <div class="bf2-bonus"><p>Bonus tools <b>$79 value</b></p><ul><li>Sharp Money feed lite <span>$79</span></li></ul></div>
+        <a class="bf2-cta bf2-cta-outline" href="app/#pricing">Start free trial</a>
+        <p class="bf2-plan-terms" data-terms></p>
+        <a class="bf2-nudge" data-nudge href="app/#pricing"></a>
+      </article>
+
+      <article class="bf2-plan" data-monthly="99.99" data-annual="799.99">
+        <h3>Prediction Markets</h3>
+        <p class="bf2-plan-for">Copy algorithmically selected traders and get AI picks on Kalshi, Polymarket, ProphetX and Novig.</p>
+        <p class="bf2-price"><span data-price>$99.99</span><small>/mo</small></p>
+        <p class="bf2-billed" data-billed></p>
+        <ul class="bf2-checks">
+          <li><span>Unlimited pre-match and live recommendations</span></li>
+          <li><span>Optimal sizing</span></li>
+          <li><span>Deep links to Kalshi, Polymarket, ProphetX &amp; Novig</span></li>
+          <li><span>Full order book</span></li>
+          <li><span>Exit alerts</span></li>
+        </ul>
+        <div class="bf2-bonus"><p>Bonus tools <b>$149 value</b></p><ul><li>AI Prediction-Market Picks <span>$149</span></li></ul></div>
+        <a class="bf2-cta bf2-cta-outline" href="app/#pricing">Start free trial</a>
+        <p class="bf2-plan-terms" data-terms></p>
+        <a class="bf2-nudge" data-nudge href="app/#pricing"></a>
+      </article>
+
+      <article class="bf2-plan" data-monthly="39.99" data-annual="319.99">
+        <h3>AI Picks &amp; Live Analysis</h3>
+        <p class="bf2-plan-for">AI sports picks and live in-game AI analysis.</p>
+        <p class="bf2-price"><span data-price>$39.99</span><small>/mo</small></p>
+        <p class="bf2-billed" data-billed></p>
+        <ul class="bf2-checks">
+          <li><span>AI picks for sides, totals and player props with confidence grades</span></li>
+          <li><span>Live AI game analysis with win probability and momentum</span></li>
+          <li><span>Ask the AI analyst about any bet</span></li>
+        </ul>
+        <div class="bf2-bonus"><p>Bonus tools <b>$59 value</b></p><ul><li>Prop Research <span>$59</span></li></ul></div>
+        <a class="bf2-cta bf2-cta-outline" href="app/#pricing">Start free trial</a>
+        <p class="bf2-plan-terms" data-terms></p>
+        <a class="bf2-nudge" data-nudge href="app/#pricing"></a>
+      </article>
+
+      <article class="bf2-plan bf2-plan-free">
+        <h3>Free</h3>
+        <p class="bf2-plan-for">Not ready? Free forever.</p>
+        <p class="bf2-price">$0<small>forever</small></p>
+        <p class="bf2-billed">No card needed</p>
+        <ul class="bf2-checks">
+          <li><span>Daily Card top 3</span></li>
+          <li><span>Bet tracker with CLV</span></li>
+          <li><span>Every calculator</span></li>
+          <li><span>A delayed Sportsbook Screen</span></li>
+        </ul>
+        <a class="bf2-cta bf2-cta-outline" href="app/#pricing">Create free account</a>
+        <p class="bf2-plan-terms">Upgrade any time from your account.</p>
+      </article>
+    </div>
+
+    <p class="bf2-upgrade">Want two or more? All-Access costs less than Live Arbitrage plus Sharp Money ($229.98). <a href="app/#pricing">Start All-Access free <span aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+
+<!-- 14. Proof (fallback: product proof) -->
+<section class="bf2-band" id="proof" aria-labelledby="proof-h2">
+  <div class="bf2-wrap bf2-sec bf2-proof-sec">
+    <img class="bf2-proof-face" src="img/coach-mate-film.svg" width="120" height="134" loading="lazy" alt="">
+    <div class="bf2-proof-copy">
+      <span class="bf2-pill">Why bettors trust it</span>
+      <h2 id="proof-h2">See it before you pay.</h2>
+      <p class="bf2-sub-strong">Every screen in BetFriend is open for 7 days.</p>
+      <p>Watch today's arbs, sharp moves and trader signals update live, with the stakes already worked out.</p>
+      <ul class="bf2-trust">
+        <li><b>Every number shows its math.</b> Both prices, both stakes and what comes back, before you bet a dollar.</li>
+        <li><b>Your money stays in your accounts.</b> You bet at your own books. BetFriend never holds your money.</li>
+        <li><b>Prices straight from the books.</b> 17 sportsbooks, exchanges and markets, refreshed live.</li>
+        <li><b>$0 today. Cancel in your account.</b> Full access for 7 days, exactly what members see.</li>
+      </ul>
+      <div class="bf2-mid">
+        <a class="bf2-cta bf2-cta-lime" href="app/#pricing">Show me today's edges</a>
+        <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+      </div>
+      <p class="bf2-fill bf2-fill-dark">[FILL: "Real months from real accounts." — one full month of a real member's daily results as a calendar, with handle, tool and month, shown with permission, plus 4–6 member posts or bet-tracker screenshots]</p>
+    </div>
+  </div>
+</section>
+
+<!-- 15. FAQ -->
+<section id="faq" aria-labelledby="faq-h2">
+  <div class="bf2-wrap bf2-sec bf2-faq">
+    <div class="bf2-faq-side">
+      <h2 id="faq-h2">Sound too good to be true? Ask.</h2>
+      <div class="bf2-mid">
+        <a class="bf2-cta bf2-cta-green" href="app/#pricing">Start free trial</a>
+        <p class="bf2-mid-terms">7 days free. Cancel anytime.</p>
+      </div>
+    </div>
+    <div class="bf2-acc">
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="true" aria-controls="faq-1" id="faq-1-b">Do I need to know sports?</button></h3>
+        <div class="bf2-a" id="faq-1" role="region" aria-labelledby="faq-1-b"><p>No. Arbitrage, middles, low holds and promo conversion are math, not opinions: you bet both sides at the stakes we give you. For one-sided bets, the tools tell you what to bet and how much.</p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-2" id="faq-2-b">How much money do I need to start?</button></h3>
+        <div class="bf2-a" id="faq-2" role="region" aria-labelledby="faq-2-b" hidden><p>About $200 and the bonus bets already in your accounts gets you started with Promo Converter. For arbitrage and +EV, about $2,000 spread across 3 or more books. Your money stays in your own sportsbook accounts the whole time.</p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-3" id="faq-3-b">How much time does it take?</button></h3>
+        <div class="bf2-a" id="faq-3" role="region" aria-labelledby="faq-3-b" hidden><p>Open the Daily Card and work it from the top. Promo conversion is a couple of weekend afternoons. Pre-match arbitrage is 30 to 60 minutes a day, best in the hour before games start. Live tools are for when you're watching anyway.</p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-4" id="faq-4-b">Which sportsbooks and apps does BetFriend cover?</button></h3>
+        <div class="bf2-a" id="faq-4" role="region" aria-labelledby="faq-4-b" hidden><p>DraftKings, FanDuel, BetMGM, Caesars, ESPN BET, Fanatics, BetRivers, Hard Rock Bet, bet365, Fliff, Circa, the exchanges Novig and ProphetX, the fantasy apps PrizePicks and Underdog, and the prediction markets Kalshi and Polymarket. Set your state and your books once, and every tool shows only what you can bet. <span class="bf2-fill bf2-fill-inline">[FILL: states BetFriend is available in]</span></p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-5" id="faq-5-b">What's the difference between All-Access and a standalone plan?</button></h3>
+        <div class="bf2-a" id="faq-5" role="region" aria-labelledby="faq-5-b" hidden><p>A standalone plan gives you one tool family plus its bonus tools. All-Access gives you all 25 tools and the full Daily Card for $199.99, less than the $559.93 every standalone plan costs together.</p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-6" id="faq-6-b">Is this a picks service?</button></h3>
+        <div class="bf2-a" id="faq-6" role="region" aria-labelledby="faq-6-b" hidden><p>No. You see both prices, both stakes and what comes back before you bet anything, and the prices come straight from the books. Sharp Money and Pro Bettor Signals follow real money and real records; our AI shows its projection and its graded record.</p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-7" id="faq-7-b">Is BetFriend a sportsbook?</button></h3>
+        <div class="bf2-a" id="faq-7" role="region" aria-labelledby="faq-7-b" hidden><p>No. BetFriend is betting software. You place every bet yourself, at your own books, with your own money. We never take bets or hold your money.</p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-8" id="faq-8-b">Can I use it on my phone?</button></h3>
+        <div class="bf2-a" id="faq-8" role="region" aria-labelledby="faq-8-b" hidden><p>Yes. Every screen works on your phone, alerts ping you the moment an opportunity appears, and deep links open the bet slip or the market directly.</p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-9" id="faq-9-b">Can I switch plans later?</button></h3>
+        <div class="bf2-a" id="faq-9" role="region" aria-labelledby="faq-9-b" hidden><p>Yes. Start with one tool and move up to All-Access any time from your account. <span class="bf2-fill bf2-fill-inline">[FILL: proration rule on upgrade]</span></p></div>
+      </div>
+      <div class="bf2-q">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-10" id="faq-10-b">What if it's not for me?</button></h3>
+        <div class="bf2-a" id="faq-10" role="region" aria-labelledby="faq-10-b" hidden><p>You get full access for 7 days, every edge exactly as a paying member sees it. Cancel from your account any time in those 7 days and you pay nothing. <span class="bf2-fill bf2-fill-inline">[FILL: where cancel lives in the account, and the refund policy]</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16. Final CTA -->
+<section class="bf2-final" id="signup" aria-labelledby="final-h2">
+  <div class="bf2-wrap bf2-sec bf2-final-grid">
+    <div class="bf2-final-copy">
+      <h2 id="final-h2">Stop guessing. Start betting the math.</h2>
+      <p>Open the Daily Card, take the top few edges and watch them settle in your own accounts. Every tool, ranked for your books, for 7 days free. If it's not for you, cancel and keep whatever you made.</p>
+      <a class="bf2-cta bf2-cta-lime" href="app/#pricing">Get every tool free for 7 days</a>
+      <p class="bf2-terms">Then $199.99/mo for All-Access unless you cancel. Card required, $0 today.</p>
+    </div>
+    <div class="bf2-final-art">
+      <img src="img/coach-mate-touchdown.svg" width="220" height="246" loading="lazy" alt="">
+      <p class="bf2-tagline">Every bet gets a second opinion.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- 17. Footer -->
+<footer class="bf2-foot">
+  <div class="bf2-wrap bf2-foot-in">
+    <a class="bf-logo bf-logo-dark" href="#top" aria-label="BetFriend home">
+      <img src="img/mate-face-deep.svg" width="32" height="32" alt="" class="bf2-foot-tile">
+      <span class="bf-word bf-word-sm" aria-hidden="true">Bet<span>Friend</span></span>
+    </a>
+    <nav class="bf2-foot-links" aria-label="Footer">
+      <a href="#plans">Plans</a><a href="app/#daily">Daily Card</a><a href="app/#arbitrage">Arbitrage</a><a href="app/#sharp-money">Sharp Money</a><a href="app/#prediction-traders">Prediction Traders</a>
+      <a href="#" aria-disabled="true">Terms <span class="bf2-fill bf2-fill-inline">[FILL: Terms link]</span></a>
+      <a href="#" aria-disabled="true">Privacy <span class="bf2-fill bf2-fill-inline">[FILL: Privacy link]</span></a>
+    </nav>
+    <p class="bf2-foot-line">21+ only. Gambling problem? Call 1-800-GAMBLER. BetFriend is software, not a sportsbook.</p>
+    <p class="bf2-foot-legal">© 2026 <span class="bf2-fill bf2-fill-inline">[FILL: company legal name]</span></p>
+  </div>
+</footer>
+
+<!-- Sticky CTA -->
+<div class="bf2-sticky" data-show="false" aria-hidden="true">
+  <div class="bf2-wrap bf2-sticky-in">
+    <div class="bf2-sticky-copy">
+      <b>Every tool, 7 days free.</b>
+      <span>Then $199.99/mo for All-Access unless you cancel. $0 today.</span>
+    </div>
+    <a class="bf2-cta bf2-cta-green" href="app/#pricing" tabindex="-1">Get every tool free for 7 days</a>
+  </div>
+</div>
+
+<script src="landing.js" defer></script>
+</body>
+</html>

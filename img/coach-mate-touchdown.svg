@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -12 68 76" width="272" height="304" role="img" aria-label="Coach Mate, the BetFriend mascot">
+  <rect x="3" y="3" width="58" height="46" rx="18" fill="#FFFFFF"/>
+  <path d="M17 46 L12 61 L31 48 Z" fill="#FFFFFF"/>
+  <path d="M6 16 Q8 -4 32 -4 Q56 -4 58 16" stroke="#0B1A12" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <rect x="-1" y="11" width="9" height="16" rx="4.5" fill="#0B1A12"/>
+  <rect x="56" y="11" width="9" height="16" rx="4.5" fill="#0B1A12"/>
+  <path d="M3 26 Q4 38 17 38" stroke="#0B1A12" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="18.5" cy="38" r="2.6" fill="#0B1A12"/>
+  <g>
+    <path d="M16 19 Q21.5 13 27 19" stroke="#0C5C34" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M37 19 Q42.5 13 48 19" stroke="#0C5C34" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M22 29 Q33 44 45 29 Z" fill="#118A4C"/>
+  </g>
+</svg>
