@@ -33,8 +33,9 @@ Same settings in every ad set:
 - Location: United States. People living in or recently in this location.
   (If Meta's gambling authorization lists specific states, target only those states.)
 - Age: 21 to 65+. Gender: all. Languages: English (All).
-- Detailed targeting: none. Custom audiences: none. Lookalikes: none. (Broad. Advantage+ audience ON is fine,
-  but keep the minimum age at 21 under "audience controls".)
+- Advantage+ audience: OFF. Click "Switch to original audience options" so age and location are hard limits.
+- Detailed targeting: none. Custom audiences: none. Lookalikes: none. (Broad: same audience in all 4 ad sets.)
+- If Meta shows "Advantage detailed targeting" or "Advantage age/gender" tick boxes, leave them UNTICKED.
 - Placements: choose MANUAL placements (not Advantage+). Devices: All. Platforms: Facebook + Instagram only.
   Tick ONLY these 4:  Facebook Feed · Instagram Feed · Facebook Reels · Instagram Reels.
   Untick everything else: Stories, Explore, Search, Marketplace, Right column, Video feeds, Notifications,
