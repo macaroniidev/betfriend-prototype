@@ -6,12 +6,12 @@ Preview of every ad:     https://macaroniidev.github.io/betfriend-prototype/ads/
 IMPORTANT: build everything as a DRAFT. Do NOT click Publish. The owner reviews and launches it.
 
 STEP 1 · PREPARE THE IMAGES
-1. Download the .zip and unzip it. Images are in creatives/S1 ... S16, each in 3 sizes:
-   -1x1.jpg (square), -4x5.jpg (feeds), -9x16.jpg (Stories/Reels).
-2. Send all 48 images to yourself in Telegram (Saved Messages) as PHOTOS (not as files),
+1. Download the .zip and unzip it. Images are in creatives/S1 ... S16, each in 2 sizes:
+   -4x5.jpg = Facebook Feed + Instagram Feed · -9x16.jpg = Facebook Reels + Instagram Reels.
+2. Send all 32 images to yourself in Telegram (Saved Messages) as PHOTOS (not as files),
    with the HD option switched ON if Telegram shows it. Then save them back from Telegram.
    This shrinks them and strips any leftover metadata. Keep the file names / ad IDs straight
-   (send one ad at a time: S1 1x1, 4x5, 9x16, then S2 ...).
+   (send one ad at a time: S1 4x5, S1 9x16, then S2 ...).
 3. Check a saved 9x16 image is still sharp. If Telegram made it blurry, use the original from the zip instead.
 
 STEP 2 · CAMPAIGN (one campaign only)
@@ -35,16 +35,20 @@ Same settings in every ad set:
 - Age: 21 to 65+. Gender: all. Languages: English (All).
 - Detailed targeting: none. Custom audiences: none. Lookalikes: none. (Broad. Advantage+ audience ON is fine,
   but keep the minimum age at 21 under "audience controls".)
-- Placements: Advantage+ placements, then click "Edit" and UNTICK: Audience Network and Messenger.
-  Keep Facebook and Instagram Feeds, Stories, Reels, Explore, Search and in-stream ON.
+- Placements: choose MANUAL placements (not Advantage+). Devices: All. Platforms: Facebook + Instagram only.
+  Tick ONLY these 4:  Facebook Feed · Instagram Feed · Facebook Reels · Instagram Reels.
+  Untick everything else: Stories, Explore, Search, Marketplace, Right column, Video feeds, Notifications,
+  Profile feed, In-stream, Ads on Reels / overlay ads, Messenger and Audience Network.
 - Attribution: 7-day click, 1-day view (default).
 
 STEP 4 · ADS (each ad set gets the 4 ads listed above)
 - Identity: BetFriend Facebook page + BetFriend Instagram account.
 - Ad setup: Create ad · Single image. Ad name = the ad ID (e.g. "S1").
-- Media: upload the 3 sizes and use placement asset customization:
-    Feeds = 4x5 image · Stories, Reels = 9x16 image · Right column, Search, Explore, everything else = 1x1 image.
+- Media: upload both sizes and use placement asset customization:
+    Facebook Feed + Instagram Feed = 4x5 image · Facebook Reels + Instagram Reels = 9x16 image.
+  Check the preview for all 4 placements: no text should be hidden behind the Reels buttons or caption.
 - Copy: paste the Primary text, Headline, Description, Call to action and Website URL EXACTLY as below.
+  All links go to https://betfriend.bet. Display link (if asked): betfriend.bet
   Do not rewrite or shorten anything. Keep the {{site_source_name}} part of the URL as it is.
 - Turn OFF ALL creative enhancements (this is very important). In the ad, open "Advantage+ creative" /
   "Creative enhancements" and switch OFF every item, including: text improvements / text generation,
@@ -66,7 +70,7 @@ AD COPY (copy and paste exactly)
 ### AD SET 1 · Bonus to cash
 
 --- S1 · wait… bonus bets can turn into CASH??
-Images: creatives/S1/S1-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S1/S1-4x5.jpg (Feeds), S1-9x16.jpg (Reels)
 Primary text:
 wait… you can turn bonus bets into actual cash?? 💀
 
@@ -76,10 +80,10 @@ Sportsbooks hand out bonus bets you can't withdraw. There's a way to flip them i
 Headline: Turn bonus bets into cash
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S1
+Website URL: https://betfriend.bet/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S1
 
 --- S2 · Meme: bonus bet on a 6-leg parlay vs turning it into cash
-Images: creatives/S2/S2-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S2/S2-4x5.jpg (Feeds), S2-9x16.jpg (Reels)
 Primary text:
 tell me you're not doing this with your bonus bets 😭
 
@@ -89,10 +93,10 @@ There's a way to turn sportsbook bonus bets into withdrawable cash (example: $20
 Headline: Your bonus bet is worth cash
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S2
+Website URL: https://betfriend.bet/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S2
 
 --- S9 · Notes: what to do with a sportsbook bonus bet
-Images: creatives/S9/S9-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S9/S9-4x5.jpg (Feeds), S9-9x16.jpg (Reels)
 Primary text:
 Got a bonus bet from a sportsbook? Read this before you use it 📝
 
@@ -102,10 +106,10 @@ Most people throw it on a parlay and lose it. There's a simple way to turn it in
 Headline: Before you use that bonus bet…
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S9
+Website URL: https://betfriend.bet/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S9
 
 --- S10 · Text thread: "how do I cash out my free bets"
-Images: creatives/S10/S10-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S10/S10-4x5.jpg (Feeds), S10-9x16.jpg (Reels)
 Primary text:
 "you can't cash out free bets"… unless you know this 👀
 
@@ -115,12 +119,12 @@ Bonus bets can't be withdrawn on their own. Bet the other side on a second sport
 Headline: Yes, free bets can become cash
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S10
+Website URL: https://betfriend.bet/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S10
 
 ### AD SET 2 · Sportsbook enemy
 
 --- S3 · POV: your sportsbook after you win 3 weeks in a row
-Images: creatives/S3/S3-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S3/S3-4x5.jpg (Feeds), S3-9x16.jpg (Reels)
 Primary text:
 POV: your sportsbook after you win 3 weeks in a row 🙃 tag whoever this happened to
 
@@ -130,10 +134,10 @@ They can limit winners. They can't stop you seeing which book pays more for the 
 Headline: They limit winners. Shop every price.
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S3#how
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S3#how
 
 --- S4 · Hot take post: Sportsbooks don't ban you for losing.
-Images: creatives/S4/S4-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S4/S4-4x5.jpg (Feeds), S4-9x16.jpg (Reels)
 Primary text:
 Sportsbooks don't ban you for losing. Think about that for a second.
 
@@ -143,10 +147,10 @@ If the books limit people who win, the edge is real. BetFriend shows you where i
 Headline: The edge the books don't want you to see
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S4#how
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S4#how
 
 --- S11 · Meme: your sportsbook when you lose vs when you win
-Images: creatives/S11/S11-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S11/S11-4x5.jpg (Feeds), S11-9x16.jpg (Reels)
 Primary text:
 your sportsbook when you lose vs when you start winning 😭
 
@@ -156,10 +160,10 @@ They can't stop you from checking which app pays more for the same bet. BetFrien
 Headline: Always get the best price
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S11#how
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S11#how
 
 --- S12 · Creator: "nobody tells new bettors this"
-Images: creatives/S12/S12-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S12/S12-4x5.jpg (Feeds), S12-9x16.jpg (Reels)
 Primary text:
 nobody tells new bettors this ☝️ the exact same bet can pay more on a different app.
 
@@ -169,12 +173,12 @@ Every sportsbook sets its own prices, so one might pay back $191 on a $100 bet t
 Headline: Same bet. Bigger payout.
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S12#how
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S12#how
 
 ### AD SET 3 · Curiosity
 
 --- S5 · Notes app: things sportsbooks don't tell you
-Images: creatives/S5/S5-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S5/S5-4x5.jpg (Feeds), S5-9x16.jpg (Reels)
 Primary text:
 things sportsbooks will never tell you 📝
 
@@ -184,10 +188,10 @@ Every line on that list is real. BetFriend is the app that shows you all of it: 
 Headline: What the sportsbooks won't tell you
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S5
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S5
 
 --- S6 · Quiz: how much does the sportsbook keep? (no answer)
-Images: creatives/S6/S6-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S6/S6-4x5.jpg (Feeds), S6-9x16.jpg (Reels)
 Primary text:
 You bet $110 to win $100. How much does the sportsbook keep? 🤔 Comment A, B or C 👇
 
@@ -197,10 +201,10 @@ Most people get this wrong. The answer is on the next page, plus how to pay less
 Headline: Most bettors get this wrong
 Description: See the answer
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S6#how
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S6#how
 
 --- S13 · Prediction market vs sportsbook: which price is wrong?
-Images: creatives/S13/S13-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S13/S13-4x5.jpg (Feeds), S13-9x16.jpg (Reels)
 Primary text:
 Same team. Same game. The prediction market says 52%. The sportsbook says 56.5%. Someone's wrong 🤔
 
@@ -210,10 +214,10 @@ When two apps disagree on the same outcome, one of them is giving you a better d
 Headline: One of these prices is wrong
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S13#prediction
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S13#prediction
 
 --- S14 · Notes: prediction market tips nobody tells beginners
-Images: creatives/S14/S14-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S14/S14-4x5.jpg (Feeds), S14-9x16.jpg (Reels)
 Primary text:
 new to prediction markets? 5 things nobody tells you 📝
 
@@ -223,12 +227,12 @@ The big one: the same outcome is often priced differently on a prediction market
 Headline: Prediction markets, explained
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S14#prediction
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S14#prediction
 
 ### AD SET 4 · Native social
 
 --- S7 · Marked-up bet slip: this is ~$110 cash
-Images: creatives/S7/S7-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S7/S7-4x5.jpg (Feeds), S7-9x16.jpg (Reels)
 Primary text:
 this bonus bet is worth about $110 in cash. here's how 👇
 
@@ -238,10 +242,10 @@ Bonus bets can't be withdrawn. Bet the other side at a second book and you keep 
 Headline: Your bonus bet is worth cash
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S7
+Website URL: https://betfriend.bet/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S7
 
 --- S8 · Group chat cliffhanger: “wait what app is that”
-Images: creatives/S8/S8-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S8/S8-4x5.jpg (Feeds), S8-9x16.jpg (Reels)
 Primary text:
 send this to the friend who's "up this year" 💀
 
@@ -251,10 +255,10 @@ Winning week, worse prices: 8-2 at −125 makes $440, the same bets at −105 ma
 Headline: Same bets. $121.90 more.
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S8#how
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S8#how
 
 --- S15 · Group chat: "gonna parlay my $50 free bet" → "DON'T"
-Images: creatives/S15/S15-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S15/S15-4x5.jpg (Feeds), S15-9x16.jpg (Reels)
 Primary text:
 send this to the friend about to parlay his free bet 💀
 
@@ -264,10 +268,10 @@ A $50 free bet can become about $27.50 in real cash (example) if you bet the oth
 Headline: Don't waste your free bet
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S15
+Website URL: https://betfriend.bet/?h=promo&utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S15
 
 --- S16 · Post: "how some bettors profit without picking winners"
-Images: creatives/S16/S16-1x1.jpg, -4x5.jpg, -9x16.jpg
+Images: creatives/S16/S16-4x5.jpg (Feeds), S16-9x16.jpg (Reels)
 Primary text:
 how some bettors profit without picking a single winner 🧵
 
@@ -277,4 +281,4 @@ When two sportsbooks disagree on a price, you can bet both sides and come out ah
 Headline: Bet both sides. Keep the gap.
 Description: 7 days free · $0 today
 Call to action: Learn More
-Website URL: https://macaroniidev.github.io/betfriend-prototype/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S16#arbitrage
+Website URL: https://betfriend.bet/?utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign=bf_tof_static&utm_content=S16#arbitrage
