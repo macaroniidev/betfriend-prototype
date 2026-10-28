@@ -8,7 +8,7 @@ const hash = (s) => { let h = 2166136261; for (const c of String(s)) { h ^= c.ch
 const CSS = `
 .scr .scr-bar { display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; margin-bottom:14px; }
 .scr .scr-bar .field input[type=search] { min-width:220px; }
-.scr .scr-auto { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; color:var(--muted); background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:5px 11px; }
+.scr .scr-auto { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; color:var(--muted); background:var(--paper); border:2px solid var(--line); border-radius:8px; padding:5px 11px; font-weight:700; }
 .scr .scr-auto i { width:8px; height:8px; border-radius:50%; background:var(--pos); animation:pulse 1.4s infinite; }
 .scr .scr-auto.off i { background:var(--muted); animation:none; }
 .scr .grid-wrap { overflow:auto; max-height:calc(100vh - 260px); min-height:320px; border-radius:var(--r); }

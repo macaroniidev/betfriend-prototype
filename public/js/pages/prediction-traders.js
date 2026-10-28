@@ -10,7 +10,7 @@ const CSS = `
 .pmt .rec.closed { opacity: .62; }
 .pmt .rec .top { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
 .pmt .rec .top .st { margin-left: auto; }
-.pmt .rec h3 { font: 600 16px var(--sans); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.pmt .rec h3 { font: 700 16px/1.3 var(--sans); text-transform: none; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 .pmt .pside { font: 700 11.5px var(--sans); padding: 2px 8px; border-radius: 6px; letter-spacing: .03em; }
 .pmt .pside.YES { background: var(--pos-bg); color: var(--pos); } .pmt .pside.NO { background: var(--neg-bg); color: var(--neg); }
 .pmt .nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }

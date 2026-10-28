@@ -6,7 +6,7 @@ const METHOD_LABEL = { multiplicative: 'Multiplicative', power: 'Power', additiv
 const hash = (s) => { let h = 2166136261; for (const c of String(s)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
 
 const CSS = `
-.pev .pev-auto { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; color:var(--muted); background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:5px 11px; }
+.pev .pev-auto { display:inline-flex; align-items:center; gap:7px; font-size:12.5px; color:var(--muted); background:var(--paper); border:2px solid var(--line); border-radius:8px; padding:5px 11px; font-weight:700; }
 .pev .pev-auto i { width:8px; height:8px; border-radius:50%; background:var(--pos); animation: pulse 1.4s infinite; }
 .pev .pev-auto b { color:var(--text); font-weight:600; }
 .pev .pev-filters { padding:14px 16px; display:grid; gap:12px; margin-bottom:16px; }

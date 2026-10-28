@@ -42,10 +42,10 @@ function shell() {
   const s = store.get();
   document.getElementById('app').innerHTML = `
   <aside class="side" id="side">
-    <a class="brand" href="#daily"><span class="logo">B</span><span>BetFriend</span></a>
+    <a class="brand" href="#daily" aria-label="BetFriend home"><img src="../img/mate-face-deep.svg" width="34" height="34" alt=""><span class="bf-word" aria-hidden="true">Bet<span>Friend</span></span></a>
     <nav>${NAV.map((g) => `<div class="nav-group"><div class="nav-h">${g.group}</div>${g.items.map(([id, label, ic]) =>
       `<a href="#${id}" data-route="${id}"><span class="ic">${ic}</span>${label}</a>`).join('')}</div>`).join('')}</nav>
-    <div class="side-foot"><a href="#pricing" class="btn primary block">All-Access · $${ALL_ACCESS.monthly}/mo</a></div>
+    <div class="side-foot"><a href="#pricing" class="btn lime block">All-Access · $${ALL_ACCESS.monthly}/mo</a></div>
   </aside>
   <div class="side-bg" id="side-bg"></div>
   <div class="main">

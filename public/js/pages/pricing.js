@@ -6,12 +6,12 @@ const CSS = `
 .pricing .hero .price-big small { font:500 15px var(--sans); color:#b9d0c4; }
 .pricing .hero ul { margin:14px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; }
 .pricing .hero li::before { content:"✓ "; color:var(--lime); font-weight:700; }
-.pricing .hero .save { display:inline-block; background:var(--lime); color:var(--ink); font-weight:700; border-radius:999px; padding:4px 12px; margin:10px 0; }
+.pricing .hero .save { display:inline-block; background:var(--lime); color:var(--pitch-deep); font-weight:800; border-radius:8px; padding:4px 12px; margin:10px 0; }
 .pricing .hero .strike { text-decoration:line-through; color:#9db8aa; margin-right:8px; }
 .pricing .plans { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
 .pricing .plan { display:flex; flex-direction:column; padding:18px; position:relative; }
 .pricing .plan.popular { border:2px solid var(--ink); }
-.pricing .plan .badge { position:absolute; top:-11px; right:16px; background:var(--ink); color:var(--lime); font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; }
+.pricing .plan .badge { position:absolute; top:-11px; right:16px; background:var(--ink); color:var(--lime); font-size:11px; font-weight:800; padding:3px 10px; border-radius:6px; }
 .pricing .plan .amt { font:600 32px var(--serif); margin:8px 0 2px; }
 .pricing .plan .amt small { font:500 13px var(--sans); color:var(--muted); }
 .pricing .plan ul { padding-left:18px; margin:10px 0; }
@@ -55,7 +55,7 @@ export default function render(root, { ui, plans, store, params }) {
       <section class="hero">
         <div>
           <span class="tag dark" style="background:var(--lime);color:var(--ink)">Best value</span>
-          <h2 style="margin-top:10px">${ui.esc(ALL_ACCESS.name)}</h2>
+          <h2 style="margin-top:10px">${ui.headText(ALL_ACCESS.name)}</h2>
           <p style="color:#c9dcd2;margin:6px 0 12px">${ui.esc(ALL_ACCESS.tagline)} Arbitrage, +EV, middles, low holds, promos, sharp money, pro bettor signals, AI picks, live AI and prediction markets.</p>
           <ul>
             <li>Pre-match &amp; live arbitrage</li><li>Pre-match &amp; live +EV</li><li>Middles &amp; low holds</li><li>Promo converter &amp; optimizer</li>

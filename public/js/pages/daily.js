@@ -9,7 +9,7 @@ const CSS = `
 .daily .item { display:grid; grid-template-columns:34px minmax(0,1fr) auto; gap:14px; align-items:center; padding:14px 16px; }
 .daily .rank { width:34px; height:34px; border-radius:10px; background:var(--panel); border:1px solid var(--line); display:grid; place-items:center; font-weight:700; }
 .daily .item:nth-child(-n+3) .rank { background:var(--lime); color:var(--ink); border-color:var(--lime-2); }
-.daily .item h3 { font:600 15px var(--sans); margin:3px 0; }
+.daily .item h3 { font:700 15px/1.3 var(--sans); text-transform:none; margin:3px 0; }
 .daily .item .meta { display:flex; gap:6px; align-items:center; flex-wrap:wrap; font-size:12.5px; color:var(--muted); }
 .daily .val { text-align:right; }
 .daily .val strong { display:block; font:600 20px var(--serif); color:var(--pos); }

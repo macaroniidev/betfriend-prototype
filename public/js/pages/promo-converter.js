@@ -25,8 +25,9 @@ const CSS = `
 .pc .bench .n { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
 .callout.lime .book { background: rgba(255,255,255,.55); border-color: transparent; color: var(--ink); }
 .pc-steps { counter-reset: s; list-style: none; padding: 0; margin: 0; }
-.pc-steps li { counter-increment: s; position: relative; padding: 0 0 14px 38px; }
-.pc-steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: var(--lime); display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+.pc-steps { border-top: 4px solid var(--g); padding-top: 14px !important; }
+.pc-steps li { position: relative; padding: 0 0 14px 28px; }
+.pc-steps li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 11px; height: 6px; border-left: 3px solid var(--g); border-bottom: 3px solid var(--g); transform: rotate(-45deg); }
 .pc-steps li strong { display: block; }
 @media (max-width: 860px) {
   .pc .pc-form { grid-template-columns: 1fr 1fr; }

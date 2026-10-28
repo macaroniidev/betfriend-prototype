@@ -18,7 +18,8 @@ const CSS = `
 .po .hero p { margin: 4px 0 0; opacity: .8; }
 .po .plan-step { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--line-2); align-items: start; }
 .po .plan-step:last-child { border-bottom: 0; }
-.po .plan-step .n { width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: var(--lime); display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+.po .plan-step .n { position: relative; width: 20px; height: 20px; font-size: 0; }
+.po .plan-step .n::before { content: ""; position: absolute; left: 3px; top: 4px; width: 11px; height: 6px; border-left: 3px solid var(--g); border-bottom: 3px solid var(--g); transform: rotate(-45deg); }
 .po .plan-step .t1 { font-size: 13px; font-weight: 600; }
 .po .plan-step .t2 { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .po .plan-step .cum { text-align: right; font-size: 12px; color: var(--muted); }

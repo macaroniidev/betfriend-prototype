@@ -7,7 +7,7 @@ const CSS = `
 .pmp .pick .hd { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
 .pmp .grade { margin-left: auto; font: 700 15px var(--serif); width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: var(--lime); color: var(--ink); flex: none; }
 .pmp .grade.B, .pmp .grade.C { background: var(--panel); color: var(--text); border: 1px solid var(--line); }
-.pmp .pick h3 { font: 600 16px var(--sans); }
+.pmp .pick h3 { font: 700 16px/1.3 var(--sans); text-transform: none; }
 .pmp .pside { font: 700 11px var(--sans); padding: 2px 7px; border-radius: 6px; margin-right: 4px; }
 .pmp .pside.YES { background: var(--pos-bg); color: var(--pos); } .pmp .pside.NO { background: var(--neg-bg); color: var(--neg); }
 .pmp .vs { display: grid; gap: 5px; font-size: 12.5px; }

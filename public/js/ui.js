@@ -5,6 +5,8 @@ import { api } from './data/adapter.js';
 import { fmtAmerican, pct, money } from './lib/odds.js';
 import { plansForTool } from './plans.js';
 
+/** Escaped text for an uppercase Barlow heading: keeps the capital F in "BetFriend" (DESIGN.md §0). */
+export const headText = (s) => esc(s).replace(/BetFriend/g, '<span class="bf-name">BetFriend</span>');
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export { fmtAmerican, pct, money };
 
@@ -48,7 +50,7 @@ export function eventCell(eventId) {
 export function header({ title, subtitle = '', tool, actions = '' }) {
   const plans = tool ? plansForTool(tool) : [];
   return `<header class="page-head">
-    <div><h1>${esc(title)}</h1>${subtitle ? `<p class="sub">${subtitle}</p>` : ''}
+    <div><h1>${headText(title)}</h1>${subtitle ? `<p class="sub">${subtitle}</p>` : ''}
     ${plans.length ? `<div class="incl">Included in ${plans.map((p) => `<a href="#/pricing" class="tag plan">${esc(p.name)}</a>`).join(' ')} <a href="#/pricing" class="tag plan aa">All-Access</a></div>` : ''}</div>
     <div class="head-actions">${actions}</div></header>`;
 }

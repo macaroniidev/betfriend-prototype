@@ -18,7 +18,7 @@ const CSS = `
 .pb .pb-meta { font-size:12px; color:var(--muted); margin-top:2px; display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
 .pb .pb-px { text-align:right; white-space:nowrap; }
 .pb .pb-px small { display:block; font-size:11.5px; color:var(--muted); }
-.pb .pb-add { width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:var(--paper); cursor:pointer; font-size:18px; line-height:1; font-weight:700; color:var(--accent); }
+.pb .pb-add { width:34px; height:34px; border-radius:10px; border:2px solid var(--line); background:var(--paper); cursor:pointer; font-size:18px; line-height:1; font-weight:700; color:var(--accent); }
 .pb .pb-add.on { background:var(--ink); color:var(--lime); border-color:var(--ink); }
 .pb .pb-add:disabled { opacity:.35; cursor:not-allowed; }
 .pb .pb-tabs { padding:12px 16px; border-bottom:1px solid var(--line-2); display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
@@ -41,7 +41,7 @@ const CSS = `
 .pb .pb-books td, .pb .pb-books th { padding:7px 10px; font-size:13px; }
 .pb .pb-books tr.best td { background:color-mix(in srgb, var(--lime) 30%, transparent); }
 .pb .sharp-bar { display:inline-flex; gap:4px; align-items:center; font-size:11.5px; }
-.pb .num-badge { display:inline-grid; place-items:center; min-width:22px; height:22px; border-radius:999px; background:var(--lime); color:var(--ink); font-weight:700; font-size:12px; padding:0 6px; }
+.pb .num-badge { display:inline-grid; place-items:center; min-width:22px; height:22px; border-radius:6px; background:var(--lime); color:var(--pitch-deep); font-weight:700; font-size:12px; padding:0 6px; }
 @media (max-width:860px){ .pb .slip { position:static; } .pb .pb-leg { grid-template-columns:minmax(0,1fr) auto; } .pb .pb-leg .pb-px { grid-column:1; grid-row:2; text-align:left; } .pb .pb-leg .pb-px small { display:inline; margin-left:6px; } .pb .pb-leg .pb-add { grid-column:2; grid-row:1 / span 2; } }
 `;
 
