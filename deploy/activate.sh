@@ -13,7 +13,8 @@ if [ -f package-lock.json ]; then
   sudo -u betfriend -H npm ci --omit=dev --no-audit --no-fund --loglevel=error
 fi
 if [ -f server/migrate.mjs ]; then
-  sudo -u betfriend bash -c 'set -a; . /etc/betfriend/betfriend.env; set +a; node server/migrate.mjs'
+  # Pass only DATABASE_URL (read with grep: values like the password hash contain "$", so never source the file).
+  sudo -u betfriend bash -c 'DATABASE_URL=$(grep -E "^DATABASE_URL=" /etc/betfriend/betfriend.env | cut -d= -f2-) node server/migrate.mjs'
 fi
 
 PREV=$(readlink -f "$BASE/current" || true)

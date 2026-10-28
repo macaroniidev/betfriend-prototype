@@ -130,6 +130,7 @@ try {
   const { root } = await b.send('DOM.getDocument', {});
   const { nodeId } = await b.send('DOM.querySelector', { nodeId: root.nodeId, selector: '#file' });
   await b.send('DOM.setFileInputFiles', { nodeId, files: [png] });
+  await until(F(`return /^\/uploads\//.test(d.querySelector('[data-bf-block=hero] .bf2-shot img').getAttribute('src'))`), 15000);
   await waitSaved(); await sleep(600);
   const imgSrc = await b.eval(F(`return d.querySelector('[data-bf-block=hero] .bf2-shot img').getAttribute('src')`));
   ok('7. Upload + replace an image', /^\/uploads\/[a-f0-9]+\.png$/.test(imgSrc), imgSrc);
