@@ -1,0 +1,20 @@
+# BetFriend reverse proxy. Installed to /etc/caddy/Caddyfile by deploy/setup-server.sh.
+# Caddy gets and renews the HTTPS certificate for betfriend.bet automatically
+# as soon as the domain's DNS points at this server.
+
+betfriend.bet, www.betfriend.bet {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:4400
+	request_body {
+		max_size 12MB
+	}
+}
+
+# Until DNS is set: plain HTTP on the server's IP.
+http://178.63.164.227 {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:4400
+	request_body {
+		max_size 12MB
+	}
+}

@@ -1,0 +1,8 @@
+# Secrets and local data (never commit)
+.env
+.env.*
+!.env.example
+node_modules/
+uploads/
+backups/
+*.log

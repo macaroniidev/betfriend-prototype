@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const URL = process.env.LP_URL || 'http://127.0.0.1:4400/landing/';
+const URL = process.env.LP_URL || 'http://127.0.0.1:4400/';
 const SECTIONS = process.argv.includes('--sections');
 const crops = join(here, 'landing-crops');
 if (SECTIONS) mkdirSync(crops, { recursive: true });
