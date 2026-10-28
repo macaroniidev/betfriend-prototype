@@ -1,0 +1,20 @@
+/* Editing aids inside the site preview (only loaded for the owner in edit mode). */
+html:not(.bf-interact) [data-bf-block]:hover, html:not(.bf-interact) [data-bf-hover] { outline: 2px dashed #118A4C; outline-offset: -2px; }
+html:not(.bf-interact) [data-bf-sel] { outline: 3px solid #118A4C !important; outline-offset: -3px; }
+html:not(.bf-interact) #view *, html:not(.bf-interact) main *, html:not(.bf-interact) header *, html:not(.bf-interact) footer * { cursor: default; }
+[contenteditable] { outline: 3px solid #C6F432 !important; outline-offset: 2px; background: rgba(198, 244, 50, .14); cursor: text !important; border-radius: 3px; }
+[data-bf-hidden] { opacity: .35; filter: grayscale(.6); }
+[data-bf-deleted] { display: none !important; }
+.bf-flash { animation: bf-flash .9s ease; }
+@keyframes bf-flash { 0% { box-shadow: 0 0 0 6px #C6F432; } 100% { box-shadow: 0 0 0 0 rgba(198, 244, 50, 0); } }
+.bf-dragging { opacity: .45; }
+#bf-tb { position: absolute; z-index: 2147483000; display: flex; align-items: center; gap: 2px; background: #0C4F2D; color: #FFFFFF; border-radius: 10px; padding: 3px; font: 700 12px/1 Figtree, system-ui, sans-serif; box-shadow: 0 3px 0 #04150C; max-width: calc(100vw - 8px); }
+#bf-tb[hidden] { display: none; }
+#bf-tb .bf-tb-name { padding: 0 8px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #C6F432; }
+#bf-tb .bf-tb-grip { cursor: grab; padding: 5px 7px; border-radius: 7px; letter-spacing: -2px; }
+#bf-tb .bf-tb-grip:hover { background: rgba(255,255,255,.12); }
+#bf-tb button { border: 0; background: transparent; color: #FFFFFF; font: inherit; padding: 6px 8px; border-radius: 7px; cursor: pointer; }
+#bf-tb button:hover { background: #C6F432; color: #0C4F2D; }
+#bf-tb button[hidden] { display: none; }
+#bf-drop { position: absolute; z-index: 2147483000; height: 4px; background: #C6F432; border-radius: 2px; box-shadow: 0 0 0 1px #0C4F2D; pointer-events: none; }
+#bf-drop[hidden] { display: none; }

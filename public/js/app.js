@@ -7,35 +7,13 @@ import { store } from './store.js';
 import * as ui from './ui.js';
 import * as odds from './lib/odds.js';
 import { PLANS, ALL_ACCESS } from './plans.js';
+import * as content from './content.js';
+import { NAV } from './nav.js';
 
-export const NAV = [
-  { group: 'Home', items: [
-    ['daily', 'Daily Card', '◎'], ['pricing', 'Plans & Pricing', '★'],
-  ] },
-  { group: 'Arbitrage & EV', items: [
-    ['arbitrage', 'Arbitrage', '⇄'], ['positive-ev', 'Positive EV', '↗'], ['middles', 'Middles', '⇔'],
-    ['low-holds', 'Low Holds', '≈'], ['screen', 'Sportsbook Screen', '▦'], ['parlay-builder', 'Parlay Builder', '⧉'],
-    ['ev-builder', 'Fair Odds Builder', '⚙'],
-  ] },
-  { group: 'Promos', items: [
-    ['promo-converter', 'Promo Converter', '$'], ['promo-optimizer', 'Promo Optimizer', '✦'], ['boosts', 'Profit Boosts', '⚡'],
-    ['deposit-optimizer', 'Deposit Optimizer', '⊕'],
-  ] },
-  { group: 'Signals', items: [
-    ['sharp-money', 'Sharp Money', '◆'], ['bettor-signals', 'Pro Bettor Signals', '◉'],
-  ] },
-  { group: 'AI', items: [
-    ['ai-picks', 'AI Sports Picks', '✧'], ['live-ai', 'Live AI Analysis', '◐'], ['prop-research', 'Prop Research', '☰'],
-    ['ai-chat', 'Ask BetFriend AI', '✎'],
-  ] },
-  { group: 'Prediction Markets', items: [
-    ['prediction-traders', 'Prediction Traders', '⟁'], ['pm-picks', 'AI Market Picks', '◇'], ['pm-markets', 'Markets & Order Book', '▤'],
-    ['exit-alerts', 'Exit Alerts', '⏏'],
-  ] },
-  { group: 'My Betting', items: [
-    ['tracker', 'Bet Tracker & Accounts', '▣'], ['alerts', 'Alerts', '🔔'], ['calculators', 'Calculators', '∑'], ['account', 'Settings', '☺'],
-  ] },
-];
+// Owner edits from the visual editor: plan names/prices first, so every screen sees them.
+content.applyPlans(PLANS, ALL_ACCESS);
+
+export { NAV };
 const TITLES = Object.fromEntries(NAV.flatMap((g) => g.items.map(([id, label]) => [id, label])));
 
 function shell() {
@@ -92,6 +70,7 @@ async function route() {
     view.appendChild(page);
     const ctx = { api, store, ui, odds, plans: { PLANS, ALL_ACCESS }, params, navigate: (to) => { location.hash = to.includes('?') ? `#/${to}` : `#${to}`; } };
     cleanup = mod.default(page, ctx) || null;
+    content.setRoute(id);
     view.focus({ preventScroll: true });
     window.scrollTo(0, 0);
   } catch (err) {
@@ -106,5 +85,6 @@ try {
   if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
 } catch { /* storage unavailable */ }
 shell();
+content.start();
 window.addEventListener('hashchange', route);
 route();

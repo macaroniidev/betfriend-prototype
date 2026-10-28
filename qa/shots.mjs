@@ -11,7 +11,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const out = join(here, 'shots'); mkdirSync(out, { recursive: true });
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const ORIGIN = process.env.BF_URL || 'http://127.0.0.1:4400';
-const app = readFileSync(join(here, '../public/js/app.js'), 'utf8');
+const app = readFileSync(join(here, '../public/js/nav.js'), 'utf8');
 const all = [...app.matchAll(/\['([a-z-]+)', '[^']+', '[^']*'\]/g)].map((m) => m[1]);
 const routes = process.argv.slice(2).length ? process.argv.slice(2) : ['landing', ...all];
 const themes = (process.env.THEMES || 'light,dark').split(',');

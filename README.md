@@ -6,10 +6,22 @@ A working, clickable prototype of the full BetFriend product for the US market. 
 
 ```
 cd SportsBetting/betfriend-prototype
+npm install
 node server.mjs
 ```
 
-Open http://127.0.0.1:4400/. It needs no installs (Node 24, zero dependencies). Set `PORT` to use another port.
+Open http://127.0.0.1:4400/ for the landing page and http://127.0.0.1:4400/app/ for the app (Node 24).
+Set `PORT` to use another port. With `DATABASE_URL` set (see `.env.example`), the owner editor runs at `/admin`.
+
+Live server, deploys, backups and the admin login: see [DEPLOY.md](DEPLOY.md).
+
+## Editing the site (admin)
+
+Log in at `/admin` to edit the landing page and every app screen visually: click text to change it, drag
+blocks to reorder them, hide/duplicate/delete blocks, add on-brand blocks, replace images and edit plan prices.
+Edits are saved as a draft; **Preview** shows it, **Publish** makes it live, **History** restores any earlier
+version. Code: `server/` (login, drafts, publishing, uploads), `public/admin/` (editor), `public/js/content.js`
+(applies published edits inside the app).
 
 ## Screens (27)
 
@@ -51,7 +63,7 @@ Edit the prices, bullets and bonus tools in `public/js/plans.js`. The pricing pa
 
 ## Structure
 
-- `server.mjs`: static server
+- `server.mjs`: web server (landing at `/`, app at `/app/`, admin at `/admin`)
 - `public/js/app.js`: shell, navigation, router
 - `public/js/ui.js`: shared UI kit
 - `public/css/app.css`: design system (light and dark)

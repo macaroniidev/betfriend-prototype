@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>BetFriend Admin · Log in</title>
+<link rel="icon" href="/img/mate-face.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Figtree:wght@500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="login">
+  <form class="login-card" id="login" novalidate>
+    <div class="login-top"><span class="bf-logo"><img src="/img/mate-face.svg" alt=""><span class="bf-word">Bet<span>Friend</span></span></span></div>
+    <h1>Owner login</h1>
+    <p class="hint" style="margin:-8px 0 0">Log in to edit the website.</p>
+    <label class="field">Username <input name="username" autocomplete="username" required autofocus></label>
+    <label class="field">Password <input name="password" type="password" autocomplete="current-password" required></label>
+    <p class="err" id="err" hidden></p>
+    <button class="btn primary" type="submit">Log in</button>
+  </form>
+  <script src="/admin/assets/login.js" defer></script>
+</body>
+</html>

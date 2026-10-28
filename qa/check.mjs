@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const BASE = 'http://127.0.0.1:4400/app/#/';
-const app = readFileSync(join(here, '../public/js/app.js'), 'utf8');
+const app = readFileSync(join(here, '../public/js/nav.js'), 'utf8');
 const routes = [...app.matchAll(/\['([a-z-]+)', '[^']+', '[^']*'\]/g)].map((m) => m[1]);
 
 const port = 9300 + Math.floor(Math.random() * 500);

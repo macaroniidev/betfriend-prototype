@@ -1,0 +1,45 @@
+/* BetFriend admin: login + editor chrome. Same brand tokens as the site (DESIGN.md). */
+:root {
+  --g: #118A4C; --deep: #0C5C34; --mint: #B9F5D2; --pitch-deep: #0C4F2D; --lime: #C6F432; --lime-shadow: #7FA012;
+  --ink: #0B1A12; --muted: #3E5649; --line: #D5EBDD; --soft: #EAF9F0; --paper: #FFFFFF; --bg: #F2FBF5;
+  --danger: #B42318; --danger-bg: #FDECEA;
+  --f-head: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font: 500 14px/1.45 var(--f-body); color: var(--ink); background: var(--bg); }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--deep); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--f-head); font-weight: 900; text-transform: uppercase; line-height: .95; margin: 0; letter-spacing: .005em; }
+.bf-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; line-height: 1; }
+.bf-logo img { width: 34px; height: 34px; }
+.bf-word { font: 900 24px/1 var(--f-body); letter-spacing: -0.035em; color: #FFFFFF; }
+.bf-word span { color: var(--lime); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: 6px 14px; border-radius: 10px; border: 2px solid var(--line); background: var(--paper); font-weight: 800; cursor: pointer; text-decoration: none; color: var(--ink); white-space: nowrap; }
+.btn:hover { border-color: var(--g); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn.primary { background: var(--g); border-color: var(--g); color: #FFFFFF; box-shadow: 0 3px 0 var(--deep); }
+.btn.lime { background: var(--lime); border-color: var(--lime); color: var(--pitch-deep); box-shadow: 0 3px 0 var(--lime-shadow); }
+.btn.primary:active, .btn.lime:active { transform: translateY(2px); box-shadow: none; }
+.btn.danger { color: var(--danger); }
+.btn.danger:hover { border-color: var(--danger); }
+.btn.sm { min-height: 30px; padding: 3px 10px; font-size: 12.5px; border-radius: 8px; }
+.btn.ghost { background: transparent; border-color: transparent; }
+.btn.ghost:hover { border-color: var(--line); }
+.field { display: grid; gap: 4px; font-size: 12.5px; font-weight: 800; color: var(--muted); }
+.field input, .field textarea, .field select { width: 100%; border: 2px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--paper); color: var(--ink); font-weight: 600; font-size: 14px; }
+.field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--g); }
+.field textarea { resize: vertical; min-height: 70px; }
+.hint { font-size: 12px; color: var(--muted); font-weight: 500; }
+.err { color: var(--danger); background: var(--danger-bg); border-radius: 8px; padding: 8px 10px; font-weight: 700; font-size: 13px; }
+
+/* ---------- login ---------- */
+.login { min-height: 100vh; display: grid; place-items: center; background: var(--g); padding: 24px 16px; }
+.login-card { width: 100%; max-width: 400px; background: var(--paper); border-radius: 16px; padding: 28px 24px; display: grid; gap: 16px; box-shadow: 8px 8px 0 var(--deep); }
+.login-top { display: flex; justify-content: center; margin-bottom: 4px; }
+.login .bf-word { color: var(--ink); }
+.login .bf-word span { color: var(--g); }
+.login h1 { font-size: 38px; }
+.login .btn { width: 100%; min-height: 50px; font: 900 20px/1 var(--f-head); text-transform: uppercase; }

@@ -2,11 +2,16 @@
   "name": "betfriend",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "start": "node server.mjs",
     "tunnel": "ssh -N -L 15432:127.0.0.1:5432 macaroni@178.63.164.227",
     "deploy": "node deploy/deploy.mjs",
     "qa": "node qa/check.mjs && node qa/landing-check.mjs"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
   }
 }

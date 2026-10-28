@@ -26,7 +26,7 @@
 <a class="bf2-skip" href="#main">Skip to content</a>
 
 <!-- 0. Top bar -->
-<header class="bf2-head" id="top">
+<header class="bf2-head" id="top" data-bf-region="header">
   <div class="bf2-wrap bf2-head-in">
     <a class="bf-logo bf-logo-dark" href="#top" aria-label="BetFriend home">
       <img src="img/mate-face-deep.svg" width="36" height="36" alt="">
@@ -54,7 +54,7 @@
 <main id="main">
 
 <!-- 1. Hero -->
-<div class="bf2-hero-band">
+<div class="bf2-hero-band" data-bf-block="hero">
   <section class="bf2-wrap bf2-hero" aria-labelledby="hero-h1">
     <div class="bf2-hero-copy">
       <p class="bf2-source" id="hero-source" hidden>From Instagram: here's the math behind the ad.</p>
@@ -113,7 +113,7 @@
 </div>
 
 <!-- 2. Stats -->
-<section class="bf2-stats-sec" aria-label="BetFriend in numbers">
+<section class="bf2-stats-sec" aria-label="BetFriend in numbers" data-bf-block="stats">
   <div class="bf2-wrap">
     <div class="bf2-facts">
       <div><b>25 tools, one login</b><span>Arbitrage to prediction markets, plus the Daily Card that ranks them all.</span></div>
@@ -136,7 +136,7 @@
 </section>
 
 <!-- 3. How it works -->
-<section class="bf2-sec-wrap" id="how" aria-labelledby="how-h2">
+<section class="bf2-sec-wrap" id="how" aria-labelledby="how-h2" data-bf-block="how">
   <div class="bf2-wrap bf2-sec bf2-how">
     <div class="bf2-how-copy">
       <span class="bf2-pill bf2-pill-light">How it works</span>
@@ -167,7 +167,7 @@
 </section>
 
 <!-- 3b. Tool chooser (message match for every ad angle) -->
-<section class="bf2-pick-sec" id="tools" aria-labelledby="pick-h2">
+<section class="bf2-pick-sec" id="tools" aria-labelledby="pick-h2" data-bf-block="tools">
   <div class="bf2-wrap bf2-pick">
     <div class="bf2-pick-head">
       <h2 id="pick-h2" class="bf2-h2-sm">Pick your edge.</h2>
@@ -186,7 +186,7 @@
 </section>
 
 <!-- 4. Arbitrage, Middles & Low Holds -->
-<section class="bf2-band bf2-tool" id="arbitrage" aria-labelledby="arb-h2">
+<section class="bf2-band bf2-tool" id="arbitrage" aria-labelledby="arb-h2" data-bf-block="arbitrage">
   <div class="bf2-wrap bf2-sec">
     <div class="bf2-tool-grid">
       <div class="bf2-tool-copy">
@@ -263,7 +263,7 @@
 </section>
 
 <!-- 5. Positive EV, Parlay Builder & Screen -->
-<section class="bf2-tool" id="ev" aria-labelledby="ev-h2">
+<section class="bf2-tool" id="ev" aria-labelledby="ev-h2" data-bf-block="ev">
   <div class="bf2-wrap bf2-sec">
     <div class="bf2-tool-grid bf2-flip">
       <div class="bf2-tool-copy">
@@ -310,7 +310,7 @@
 </section>
 
 <!-- 6. Promos -->
-<section class="bf2-mint bf2-tool" id="promos" aria-labelledby="promo-h2">
+<section class="bf2-mint bf2-tool" id="promos" aria-labelledby="promo-h2" data-bf-block="promos">
   <div class="bf2-wrap bf2-sec">
     <div class="bf2-tool-grid">
       <div class="bf2-tool-copy">
@@ -352,7 +352,7 @@
 </section>
 
 <!-- 7. Sharp Money & Pro Bettor Signals -->
-<section class="bf2-tool" id="sharp" aria-labelledby="sharp-h2">
+<section class="bf2-tool" id="sharp" aria-labelledby="sharp-h2" data-bf-block="sharp">
   <div class="bf2-wrap bf2-sec">
     <div class="bf2-tool-grid bf2-flip">
       <div class="bf2-tool-copy">
@@ -421,7 +421,7 @@
 </section>
 
 <!-- 8. AI Picks & Live AI -->
-<section class="bf2-band bf2-tool" id="ai" aria-labelledby="ai-h2">
+<section class="bf2-band bf2-tool" id="ai" aria-labelledby="ai-h2" data-bf-block="ai">
   <div class="bf2-wrap bf2-sec">
     <div class="bf2-tool-grid">
       <div class="bf2-tool-copy">
@@ -468,7 +468,7 @@
 </section>
 
 <!-- 9. Prediction Markets -->
-<section class="bf2-tool" id="prediction" aria-labelledby="pm-h2">
+<section class="bf2-tool" id="prediction" aria-labelledby="pm-h2" data-bf-block="prediction">
   <div class="bf2-wrap bf2-sec">
     <div class="bf2-tool-grid bf2-flip">
       <div class="bf2-tool-copy">
@@ -515,7 +515,7 @@
 </section>
 
 <!-- 10. Daily Card (mid-page green band) -->
-<section class="bf2-green bf2-daily" id="daily" aria-labelledby="daily-h2">
+<section class="bf2-green bf2-daily" id="daily" aria-labelledby="daily-h2" data-bf-block="daily">
   <div class="bf2-wrap bf2-sec bf2-daily-grid">
     <div class="bf2-daily-copy">
       <span class="bf2-pill bf2-pill-dark">Daily Card</span>
@@ -543,7 +543,7 @@
 </section>
 
 <!-- 11. Also inside -->
-<section aria-labelledby="also-h2">
+<section aria-labelledby="also-h2" data-bf-block="also">
   <div class="bf2-wrap bf2-sec bf2-also">
     <h2 id="also-h2" class="bf2-h2-sm">Also inside every plan.</h2>
     <div class="bf2-also-grid">
@@ -570,7 +570,7 @@
 </section>
 
 <!-- 12. Comparison -->
-<section class="bf2-mint" id="compare" aria-labelledby="cmp-h2">
+<section class="bf2-mint" id="compare" aria-labelledby="cmp-h2" data-bf-block="compare">
   <div class="bf2-wrap bf2-sec">
     <h2 id="cmp-h2">The tools pros stack. One price.</h2>
     <p class="bf2-sub">What it costs to buy the same tools from the brands most bettors use, each billed monthly.</p>
@@ -604,7 +604,7 @@
 </section>
 
 <!-- 13. Plans -->
-<section id="plans" aria-labelledby="plans-h2">
+<section id="plans" aria-labelledby="plans-h2" data-bf-block="plans">
   <div class="bf2-wrap bf2-sec">
     <div class="bf2-plans-head">
       <div>
@@ -782,7 +782,7 @@
 </section>
 
 <!-- 14. Proof (fallback: product proof) -->
-<section class="bf2-band" id="proof" aria-labelledby="proof-h2">
+<section class="bf2-band" id="proof" aria-labelledby="proof-h2" data-bf-block="proof">
   <div class="bf2-wrap bf2-sec bf2-proof-sec">
     <img class="bf2-proof-face" src="img/coach-mate-film.svg" width="120" height="134" loading="lazy" alt="">
     <div class="bf2-proof-copy">
@@ -806,7 +806,7 @@
 </section>
 
 <!-- 15. FAQ -->
-<section id="faq" aria-labelledby="faq-h2">
+<section id="faq" aria-labelledby="faq-h2" data-bf-block="faq">
   <div class="bf2-wrap bf2-sec bf2-faq">
     <div class="bf2-faq-side">
       <h2 id="faq-h2">Sound too good to be true? Ask.</h2>
@@ -861,7 +861,7 @@
 </section>
 
 <!-- 16. Final CTA -->
-<section class="bf2-final" id="signup" aria-labelledby="final-h2">
+<section class="bf2-final" id="signup" aria-labelledby="final-h2" data-bf-block="signup">
   <div class="bf2-wrap bf2-sec bf2-final-grid">
     <div class="bf2-final-copy">
       <h2 id="final-h2">Stop guessing. Start betting the math.</h2>
@@ -878,7 +878,7 @@
 </main>
 
 <!-- 17. Footer -->
-<footer class="bf2-foot">
+<footer class="bf2-foot" data-bf-region="footer">
   <div class="bf2-wrap bf2-foot-in">
     <a class="bf-logo bf-logo-dark" href="#top" aria-label="BetFriend home">
       <img src="img/mate-face-deep.svg" width="32" height="32" alt="" class="bf2-foot-tile">
@@ -895,7 +895,7 @@
 </footer>
 
 <!-- Sticky CTA -->
-<div class="bf2-sticky" data-show="false" aria-hidden="true">
+<div class="bf2-sticky" data-bf-region="sticky" data-show="false" aria-hidden="true">
   <div class="bf2-wrap bf2-sticky-in">
     <div class="bf2-sticky-copy">
       <b>Every tool, 7 days free.</b>

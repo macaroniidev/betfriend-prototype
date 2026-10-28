@@ -58,6 +58,8 @@ const server = createServer(async (req, res) => {
     if (path === '/app') { res.writeHead(301, { Location: '/app/' + url.search }); return res.end(); }
 
     if (dynamic && await dynamic.handle(req, res, url)) return;
+    // Admin files are only served through /admin (with login checks), never as plain static files.
+    if (path.startsWith('/app/admin') || path.startsWith('/admin')) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }); return res.end('Not found'); }
     if (req.method !== 'GET' && req.method !== 'HEAD') { res.writeHead(405); return res.end(); }
 
     path = normalize(path).replaceAll('\\', '/');

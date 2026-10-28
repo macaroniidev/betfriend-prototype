@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>BetFriend Editor</title>
+<link rel="icon" href="/img/mate-face.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Figtree:wght@500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="/admin/assets/admin.css">
+<link rel="stylesheet" href="/admin/assets/editor.css">
+</head>
+<body class="ed">
+  <header class="ed-top">
+    <a class="bf-logo" href="/" target="_blank" rel="noopener" title="Open the live site"><img src="/img/mate-face-deep.svg" alt=""><span class="bf-word">Bet<span>Friend</span></span></a>
+    <label class="ed-page" title="Choose the page to edit">
+      <span class="sr">Page</span>
+      <select id="page"></select>
+    </label>
+    <div class="ed-seg" role="group" aria-label="Screen size">
+      <button type="button" data-device="desktop" class="on" title="Desktop width">Desktop</button>
+      <button type="button" data-device="phone" title="Phone width (390px)">Phone</button>
+    </div>
+    <div class="ed-seg" role="group" aria-label="Mode">
+      <button type="button" data-mode="edit" class="on" title="Click text to edit it, hover blocks to move them">Edit</button>
+      <button type="button" data-mode="interact" title="Use the page normally (tabs, buttons, filters) without editing">Use page</button>
+      <button type="button" data-mode="preview" title="See the draft exactly as visitors will, without editing tools">Preview</button>
+    </div>
+    <div class="ed-status" id="status" aria-live="polite">Loading…</div>
+    <div class="ed-actions">
+      <button class="btn sm ghost" id="undo" title="Undo (Ctrl+Z)" disabled>Undo</button>
+      <button class="btn sm ghost" id="redo" title="Redo (Ctrl+Shift+Z)" disabled>Redo</button>
+      <button class="btn sm" id="plans-btn">Plans &amp; prices</button>
+      <button class="btn sm" id="history-btn">History</button>
+      <button class="btn sm lime" id="publish-btn">Publish</button>
+      <button class="btn sm ghost" id="logout" title="Log out">Log out</button>
+    </div>
+  </header>
+
+  <div class="ed-body">
+    <main class="ed-canvas">
+      <div class="ed-frame-wrap" id="frame-wrap"><iframe id="frame" title="Website being edited"></iframe></div>
+    </main>
+    <aside class="ed-panel" aria-label="Editor panel">
+      <div class="ed-tabs" role="tablist">
+        <button role="tab" data-tab="blocks" aria-selected="true">Blocks</button>
+        <button role="tab" data-tab="edit" aria-selected="false">Selected</button>
+        <button role="tab" data-tab="add" aria-selected="false">Add block</button>
+      </div>
+      <section class="ed-tab" id="tab-blocks"></section>
+      <section class="ed-tab" id="tab-edit" hidden></section>
+      <section class="ed-tab" id="tab-add" hidden></section>
+    </aside>
+  </div>
+
+  <dialog id="dlg" class="ed-dlg"><form method="dialog" class="ed-dlg-in" id="dlg-body"></form></dialog>
+  <div class="ed-toast" id="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+  <script type="module" src="/admin/assets/editor.js"></script>
+</body>
+</html>
