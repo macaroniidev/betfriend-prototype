@@ -8,7 +8,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const out = join(here, 'shots'); mkdirSync(out, { recursive: true });
+const out = process.env.OUT ? join(here, process.env.OUT) : join(here, 'shots'); mkdirSync(out, { recursive: true });
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const ORIGIN = process.env.BF_URL || 'http://127.0.0.1:4400';
 const app = readFileSync(join(here, '../public/js/nav.js'), 'utf8');

@@ -1,0 +1,1042 @@
+{
+ "accepted": [
+  {
+   "n": 1,
+   "group": "A",
+   "title": "QA harness hardening and parity inventory",
+   "change": "check.mjs/shots.mjs import NAV (assert 27 routes); shots set bf-theme per theme and deterministic flags (onboarded, plan, explainers); add qa/blocks.mjs, first-row-y measure, 360px no-h-scroll, contrast audit, edit-mode smoke test, qa/parity/<route>.json from ux-before",
+   "files": [
+    "qa/check.mjs",
+    "qa/shots.mjs",
+    "qa/blocks.mjs",
+    "qa/editor-walkthrough.mjs",
+    "qa/parity/"
+   ],
+   "screens": [
+    "all"
+   ],
+   "acceptance": "27 routes found; dark shots render dark; parity files exist for every route"
+  },
+  {
+   "n": 2,
+   "group": "A",
+   "title": "Trust fixes in sample data and labels",
+   "change": "Reject same-book legs in lib/opportunities.js; tracker arb/middle as linked leg groups with P&L = locked profit; low-holds cost/result signs and 'Free'; middles honest copy/columns",
+   "files": [
+    "public/lib/opportunities.js",
+    "public/js/pages/tracker.js",
+    "public/js/pages/low-holds.js",
+    "public/js/pages/middles.js"
+   ],
+   "screens": [
+    "arbitrage",
+    "low-holds",
+    "middles",
+    "tracker",
+    "daily"
+   ],
+   "acceptance": "Node assertion: no duplicate books, arb profit >= 0, tracker arb groups P&L = locked profit; no negative arbitrage in tracker"
+  },
+  {
+   "n": 3,
+   "group": "A",
+   "title": "Shared slips module + Daily two-leg safety + stable ids",
+   "change": "Move openArbCalc/ensureCalcCss into public/js/slips.js; daily.js:123-124 uses 'Bet both' slip for two-sided items; verify stable opportunity ids across ticks",
+   "files": [
+    "public/js/slips.js",
+    "public/js/pages/arbitrage.js",
+    "public/js/pages/daily.js",
+    "public/js/core.js"
+   ],
+   "screens": [
+    "daily",
+    "arbitrage",
+    "middles",
+    "low-holds"
+   ],
+   "acceptance": "No single-leg Bet on two-sided Daily items; ids persist across 3 ticks"
+  },
+  {
+   "n": 4,
+   "group": "A",
+   "title": "content.js/frame.js contract hardening",
+   "change": "applyText/blocks skip [data-bf-nodata]; isGroup skips [data-bf-list]; .sec in GROUPISH; no-edits fast path; ignore nodata-only mutations; exclude toggle/palette/inert drawers from frame.js; static headings and nodata amount spans rule",
+   "files": [
+    "public/js/content.js",
+    "public/admin/frame.js"
+   ],
+   "screens": [
+    "all"
+   ],
+   "acceptance": "blocks.mjs stable on arbitrage/daily/sharp-money; apply() runs 0x per idle tick with no edits; editor walkthrough passes"
+  },
+  {
+   "n": 5,
+   "group": "A",
+   "title": "Theme module and always-visible top-bar toggle",
+   "change": "public/js/theme.js (get/effective/set, bf:theme, meta theme-color); pre-paint head script keeping 'auto'; 40px SVG sun/moon #theme-toggle in .top-right with aria-pressed; default light, System in Settings; account.js Light/Dark/System seg; avatar into sidebar at <=520px",
+   "files": [
+    "public/js/theme.js",
+    "public/index.html",
+    "public/js/app.js",
+    "public/js/pages/account.js",
+    "public/css/app.css",
+    "qa/shots.mjs"
+   ],
+   "screens": [
+    "shell",
+    "account"
+   ],
+   "acceptance": "Toggle visible at 390 and 1440 on every route; no flash; Settings and toggle in sync; dark shots dark"
+  },
+  {
+   "n": 6,
+   "group": "A",
+   "title": "Tokens, dark contrast, aliases, z-index scale",
+   "change": "Alias DESIGN.md names (no renames); add --line-strong, --callout-bg/line, --hl, --on-pos/--on-neg, --on-green-mute, type-scale and z-index tokens; replace inline lime color-mix; dark --side-bg = --pitch-deep; --live #C4261A; darker bettor avatars",
+   "files": [
+    "public/css/app.css",
+    "public/js/pages/calculators.js",
+    "public/js/pages/ev-builder.js",
+    "public/js/pages/middles.js",
+    "public/js/pages/parlay-builder.js",
+    "public/js/pages/positive-ev.js",
+    "public/js/pages/bettor-signals.js"
+   ],
+   "screens": [
+    "global",
+    "calculators",
+    "ev-builder",
+    "middles",
+    "parlay-builder",
+    "positive-ev",
+    "pm-markets",
+    "bettor-signals"
+   ],
+   "acceptance": "Contrast audit >=4.5:1 for callouts, .price.best, Buy YES/NO in both themes"
+  },
+  {
+   "n": 7,
+   "group": "A",
+   "title": "Brand buttons AA, ui.cta, landing components ported",
+   "change": ".btn.primary Barlow 900 uppercase 19px on --g, 10px radius, hard shadow; .btn.sm Barlow 15px on #0E7A42; outline/ghost; lime only on green; never pill or red; ui.cta terms line; port bf2 slip/plan/checks/cta rules into app.css",
+   "files": [
+    "public/css/app.css",
+    "public/js/ui.js"
+   ],
+   "screens": [
+    "global",
+    "pricing",
+    "daily"
+   ],
+   "acceptance": "Audit: no lime-on-white, no pills, no red buttons; all .btn pass AA"
+  },
+  {
+   "n": 8,
+   "group": "A",
+   "title": "Branded controls, focus, coarse-pointer inputs and tap targets",
+   "change": "Custom .range, --line-strong borders, remove outline:none (app.css:179) for 3px focus ring, dark seg on-state lime/pitch-deep, 16px inputs and 44px targets on pointer:coarse",
+   "files": [
+    "public/css/app.css"
+   ],
+   "screens": [
+    "global",
+    "account",
+    "ev-builder",
+    "low-holds",
+    "exit-alerts",
+    "positive-ev",
+    "calculators"
+   ],
+   "acceptance": "No browser-blue sliders; visible focus everywhere; no iOS zoom; coarse targets >=44px"
+  },
+  {
+   "n": 9,
+   "group": "A",
+   "title": "Shell nav: scrolling sidebar, regroup, SVG icons, landmarks",
+   "change": "First .side overflow-y:auto + sticky footer; regroup nav.js keeping [id,label,iconKey] tuples + separate HINTS map; <details> groups expanded by default, remembered; icons.js SVGs; counts for Arbitrage and Exit Alerts only; Recent tools row on mobile; skip link, aria-current, inert closed mobile nav <860px",
+   "files": [
+    "public/js/nav.js",
+    "public/js/icons.js",
+    "public/js/app.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "shell"
+   ],
+   "acceptance": "All nav items reachable at 1440x800 and 390x844; editor page picker works; no emoji; Tab never enters closed mobile nav"
+  },
+  {
+   "n": 10,
+   "group": "A",
+   "title": "Top bar: mobile title, sizing popover, bell, honesty pill, compliance line",
+   "change": "Mark + truncated title under 520px, crumb removed on desktop; bankroll chip opens sizing popover (commit on change); alerts bell; short 'Sample data' pill; 44px hamburger with aria; compliance line (21+ · 1-800-GAMBLER · not a sportsbook · no bet is a sure thing)",
+   "files": [
+    "public/js/app.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "shell",
+    "account",
+    "positive-ev",
+    "arbitrage",
+    "sharp-money",
+    "bettor-signals"
+   ],
+   "acceptance": "At 390 title, bankroll, bell, toggle, menu fit without overflow; compliance line on every route"
+  },
+  {
+   "n": 11,
+   "group": "A",
+   "title": "Core live plumbing",
+   "change": "Central pause, document.hidden skip, api.tickMs in core.onTick; ui.setQuery via replaceState; #sr-live outside #app with throttled ui.announce; reduced-motion block",
+   "files": [
+    "public/js/core.js",
+    "public/js/ui.js",
+    "public/js/app.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "global"
+   ],
+   "acceptance": "Ticks stop in hidden tab; query updates without re-render; no animation under reduced motion"
+  },
+  {
+   "n": 12,
+   "group": "A",
+   "title": "Drawer as accessible slip dialog and bottom sheet",
+   "change": "role=dialog, aria-modal, focus trap, Escape, focus return with #view fallback, inert #app cleared unconditionally and skipped in editor; {footer} sticky action footer; bottom sheet <860px, swipe only from handle; backward-compatible return",
+   "files": [
+    "public/js/ui.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "positive-ev",
+    "arbitrage",
+    "middles",
+    "low-holds",
+    "boosts",
+    "sharp-money",
+    "screen",
+    "tracker",
+    "prediction-traders",
+    "promo-converter",
+    "bettor-signals"
+   ],
+   "acceptance": "Keyboard open/trap/Escape/return works; route change never leaves app inert; primary visible without scroll at 390"
+  },
+  {
+   "n": 13,
+   "group": "A",
+   "title": "UI-kit primitives",
+   "change": "ui.pageHead (header wrapper kept, static H1, 1-line subtitle + details), facts strip keeping .stats/.stat strong, ui.liveStatus with Pause (Feed down in --warn), ui.modeSwitch, ui.betAction (verb span + nodata amount, delegated), ui.risk, ui.term + glossary.js, ui.empty(msgOrOptions), ui.more, ui.cta, odds-format preference",
+   "files": [
+    "public/js/ui.js",
+    "public/js/glossary.js",
+    "public/js/store.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "global"
+   ],
+   "acceptance": "Old signatures still work; all primitives render in both themes"
+  },
+  {
+   "n": 14,
+   "group": "A",
+   "title": "ui.table and ui.filterBar",
+   "change": "Keyed rows (cell textContent, never nodeValue), aria-sort buttons, sticky th via top:var(--topbar-h)+overflow-x:clip (no inner scroller), density toggle, remembered Columns menu (Age never hidden on arb/EV/middles), focusable rows, mobile grid-template-areas rows <=150px with Age on line 1, data-bf-list; filterBar fixed order, active count + Reset, .toolbar kept, Advanced remembered, mobile chips + sheet",
+   "files": [
+    "public/js/ui.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "arbitrage",
+    "positive-ev"
+   ],
+   "acceptance": "Proven on arbitrage then positive-ev before other migrations; parity green"
+  },
+  {
+   "n": 15,
+   "group": "B",
+   "title": "Results-first head",
+   "change": "pageHead + max 3-4 money facts + liveStatus on title row; remove live-bar only once liveStatus exists on that screen; plan chip only when locked",
+   "files": [
+    "public/js/ui.js",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "arbitrage",
+    "positive-ev",
+    "middles",
+    "low-holds",
+    "boosts",
+    "screen",
+    "sharp-money",
+    "bettor-signals",
+    "ai-picks",
+    "pm-picks",
+    "pm-markets",
+    "prediction-traders",
+    "promo-converter",
+    "promo-optimizer",
+    "deposit-optimizer",
+    "prop-research",
+    "exit-alerts",
+    "tracker",
+    "live-ai",
+    "parlay-builder"
+   ],
+   "acceptance": "First row <=300px at 1440 and <=600px at 390 on every tool route"
+  },
+  {
+   "n": 16,
+   "group": "B",
+   "title": "Money-action contract",
+   "change": "One primary per row with verb + nodata amount, hero result figure Barlow 22-26px right-aligned ('+$33.70 if both fill'), labelled ghosts Calc · Log · Alert, no book chip in button, merge Prediction Traders CTAs, Best price -> Bet on Screen",
+   "files": [
+    "public/js/ui.js",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "arbitrage",
+    "middles",
+    "low-holds",
+    "boosts",
+    "positive-ev",
+    "sharp-money",
+    "bettor-signals",
+    "ai-picks",
+    "live-ai",
+    "prediction-traders",
+    "pm-picks",
+    "pm-markets",
+    "promo-converter",
+    "promo-optimizer",
+    "screen",
+    "parlay-builder",
+    "ev-builder",
+    "exit-alerts",
+    "daily"
+   ],
+   "acceptance": "Every opportunity row has exactly one primary; verb text is static and overridable"
+  },
+  {
+   "n": 17,
+   "group": "B",
+   "title": "Legs as slip lines + two-step Bet both",
+   "change": "Legs render book·price·side·stake in rows; Bet both opens slip drawer with per-leg buttons, Leg 1 opened -> now leg 2 state, persistent banner, log only on confirm, cash-needed-per-book line",
+   "files": [
+    "public/js/slips.js",
+    "public/js/pages/arbitrage.js",
+    "public/js/pages/middles.js",
+    "public/js/pages/low-holds.js",
+    "public/js/pages/promo-converter.js",
+    "public/js/pages/boosts.js"
+   ],
+   "screens": [
+    "arbitrage",
+    "middles",
+    "low-holds",
+    "promo-converter",
+    "boosts"
+   ],
+   "acceptance": "No flow calls window.open twice per gesture; abandoned leg 2 keeps banner"
+  },
+  {
+   "n": 18,
+   "group": "B",
+   "title": "Live-safe keyed updates + stale-price guard",
+   "change": "Keyed patching, order frozen on hover/focus with 'N updates · apply', NEW marker, gone rows disabled 'Gone', cell tint + arrows replace row flash, drawer re-reads opp each tick (price moved / arb gone) with max-stake note",
+   "files": [
+    "public/js/ui.js",
+    "public/js/slips.js",
+    "public/js/pages/arbitrage.js",
+    "public/js/pages/positive-ev.js",
+    "public/js/pages/sharp-money.js",
+    "public/js/pages/bettor-signals.js",
+    "public/js/pages/screen.js"
+   ],
+   "screens": [
+    "arbitrage",
+    "positive-ev",
+    "sharp-money",
+    "bettor-signals",
+    "screen",
+    "middles",
+    "low-holds"
+   ],
+   "acceptance": "Hovered row never moves over 60s; focus never lost; long tasks <50ms per tick"
+  },
+  {
+   "n": 19,
+   "group": "B",
+   "title": "Risk labels (Hedged / Low-cost rollover / Long-run edge / Signal)",
+   "change": "ui.risk on rows, Daily, drawer headers; tooltip carries variance note; 'Hedged only' filter on Daily; no 'guaranteed' wording",
+   "files": [
+    "public/js/ui.js",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "daily",
+    "arbitrage",
+    "positive-ev",
+    "middles",
+    "low-holds",
+    "boosts",
+    "promo-converter",
+    "sharp-money",
+    "bettor-signals",
+    "ai-picks",
+    "pm-picks",
+    "prediction-traders"
+   ],
+   "acceptance": "Every opportunity has one label; 'guaranteed' absent from app UI"
+  },
+  {
+   "n": 20,
+   "group": "B",
+   "title": "Surface system",
+   "change": "<section class=sec> with 4px --g top rule and h2 first; flat tables; .card only for clickable objects; asides on --panel; remove card-in-card per screen",
+   "files": [
+    "public/css/app.css",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "global",
+    "ai-picks",
+    "promo-converter",
+    "sharp-money",
+    "prediction-traders",
+    "tracker",
+    "live-ai",
+    "pm-markets",
+    "exit-alerts",
+    "ev-builder",
+    "positive-ev"
+   ],
+   "acceptance": "No nested bordered boxes on migrated screens; blocks.mjs finds every panel"
+  },
+  {
+   "n": 21,
+   "group": "B",
+   "title": "Colour discipline",
+   "change": "--neg only for negative P&L text, symmetric YES/NO, hatched losses, muted middles worst case, non-colour cues (▲ + legend, Ask/Bid, ✓/✗), status tags replace opacity fades, td.na aria-label",
+   "files": [
+    "public/js/pages/*.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "pm-markets",
+    "exit-alerts",
+    "tracker",
+    "middles",
+    "screen",
+    "prediction-traders",
+    "prop-research",
+    "alerts",
+    "ev-builder",
+    "promo-optimizer"
+   ],
+   "acceptance": "No colour-only signals on audited screens; no red fills"
+  },
+  {
+   "n": 22,
+   "group": "B",
+   "title": "Empty, loading and error states",
+   "change": "ui.empty with Reset / Switch to Live / Alert me + nearest matches, hidden stats; skeleton rows; 404 with Daily, search, Retry; static h3",
+   "files": [
+    "public/js/ui.js",
+    "public/js/app.js",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "global",
+    "arbitrage",
+    "positive-ev",
+    "middles",
+    "low-holds",
+    "boosts",
+    "sharp-money",
+    "bettor-signals",
+    "ai-picks",
+    "live-ai",
+    "exit-alerts",
+    "alerts",
+    "tracker",
+    "daily"
+   ],
+   "acceptance": "Every empty state offers >=2 actions"
+  },
+  {
+   "n": 23,
+   "group": "B",
+   "title": "Persisted views + one mode switch",
+   "change": "views[route] in localStorage, key filters via ui.setQuery, ?mode=live everywhere, modeSwitch replaces 5 variants; only after active count + Reset ship; saved views deferred",
+   "files": [
+    "public/js/ui.js",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "arbitrage",
+    "positive-ev",
+    "middles",
+    "low-holds",
+    "ev-builder",
+    "sharp-money",
+    "screen",
+    "prediction-traders",
+    "bettor-signals",
+    "pm-markets",
+    "promo-converter"
+   ],
+   "acceptance": "Reload restores view; link reproduces it; strict filters always show count + Reset"
+  },
+  {
+   "n": 24,
+   "group": "B",
+   "title": "Plan awareness",
+   "change": "Fix plansForTool (plans.js:79); chip only when locked; locked preview rows 1-3 + lock card, no blur; nav lock glyph; sidebar footer from store.plan; default All-Access",
+   "files": [
+    "public/js/plans.js",
+    "public/js/app.js",
+    "public/js/ui.js"
+   ],
+   "screens": [
+    "global",
+    "shell",
+    "daily",
+    "pricing",
+    "account",
+    "calculators",
+    "tracker",
+    "screen"
+   ],
+   "acceptance": "plan=free QA run shows locks; default demo shows every feature without upsell"
+  },
+  {
+   "n": 25,
+   "group": "B",
+   "title": "First-run setup (compact)",
+   "change": "store.onboarded; compact expandable card on Daily (state+books, bankroll, risk preset, goal, bonus-bet deep link); check-mark progress, skippable; 'Using sample settings' line; defaults unchanged",
+   "files": [
+    "public/js/pages/daily.js",
+    "public/js/store.js",
+    "public/js/app.js"
+   ],
+   "screens": [
+    "daily",
+    "account",
+    "shell",
+    "promo-converter"
+   ],
+   "acceptance": "Collapsed card <=120px in first-run shot; other shots unaffected"
+  },
+  {
+   "n": 26,
+   "group": "B",
+   "title": "How-this-makes-money, glossary, dollarised EV line",
+   "change": "Collapsed <details class=how> in an h2 section on 20 tools (check bullets, worked example), expanded only for beginner goal; ui.term in drawers/facts/copy, title in table heads; Glossary page under ME; muted 'wins ~45% · pays $96 · worth +$5.40' line and '(¼ Kelly)' stake label",
+   "files": [
+    "public/js/ui.js",
+    "public/js/glossary.js",
+    "public/js/pages/glossary.js",
+    "public/js/nav.js",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "arbitrage",
+    "positive-ev",
+    "middles",
+    "low-holds",
+    "boosts",
+    "promo-converter",
+    "promo-optimizer",
+    "deposit-optimizer",
+    "screen",
+    "parlay-builder",
+    "ev-builder",
+    "sharp-money",
+    "bettor-signals",
+    "ai-picks",
+    "live-ai",
+    "prop-research",
+    "prediction-traders",
+    "pm-picks",
+    "pm-markets",
+    "exit-alerts"
+   ],
+   "acceptance": "Every jargon term defined within 1 interaction; explainers never push first row past target"
+  },
+  {
+   "n": 27,
+   "group": "B",
+   "title": "Odds format preference + state legality",
+   "change": "Global odds format (American/decimal/implied/¢) on all prices; 'You risk $X to win $Y' on tickets; books illegal in selected state flagged and Bet disabled",
+   "files": [
+    "public/js/store.js",
+    "public/js/ui.js",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "pm-markets",
+    "prediction-traders",
+    "pm-picks",
+    "exit-alerts",
+    "arbitrage",
+    "positive-ev",
+    "screen"
+   ],
+   "acceptance": "Format switch updates every price; state without a book disables its Bet buttons"
+  },
+  {
+   "n": 28,
+   "group": "B",
+   "title": "Paging on static lists + no scroll traps",
+   "change": "ui.more on prop-research, pm-picks, ai-picks (state survives ticks); back-to-top; remove inner scroll <860px on pm-markets .mlist, alerts .feed, live-ai feeds",
+   "files": [
+    "public/js/ui.js",
+    "public/js/pages/prop-research.js",
+    "public/js/pages/pm-picks.js",
+    "public/js/pages/ai-picks.js",
+    "public/js/pages/pm-markets.js",
+    "public/js/pages/alerts.js",
+    "public/js/pages/live-ai.js"
+   ],
+   "screens": [
+    "prop-research",
+    "pm-picks",
+    "ai-picks",
+    "pm-markets",
+    "alerts",
+    "live-ai"
+   ],
+   "acceptance": "prop-research at 390 <6000px; no nested scroll under 860px"
+  },
+  {
+   "n": 29,
+   "group": "B",
+   "title": "Sticky action bar on decision screens only",
+   "change": "Drawer footer + .actionbar in parlay-builder, pm-markets ticket, pricing (hidden while in-page CTA visible), deposit-optimizer; never on opportunity lists",
+   "files": [
+    "public/js/ui.js",
+    "public/css/app.css",
+    "public/js/pages/parlay-builder.js",
+    "public/js/pages/pm-markets.js",
+    "public/js/pages/pricing.js",
+    "public/js/pages/deposit-optimizer.js"
+   ],
+   "screens": [
+    "parlay-builder",
+    "pm-markets",
+    "pricing",
+    "deposit-optimizer",
+    "arbitrage",
+    "middles",
+    "promo-converter",
+    "ev-builder"
+   ],
+   "acceptance": "Never two CTAs visible on pricing; parlay CTA visible at 390"
+  },
+  {
+   "n": 30,
+   "group": "B",
+   "title": "Coach Mate, slips and check lists",
+   "change": "Max one Mate per screen on green tile (Daily hero, Pricing, AI Chat empty, scanner empty states); calculator results as slips; bullets as checks",
+   "files": [
+    "public/js/pages/*.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "ai-chat",
+    "calculators",
+    "pricing",
+    "daily",
+    "global"
+   ],
+   "acceptance": "No Mate on scanners except empty states"
+  },
+  {
+   "n": 31,
+   "group": "B",
+   "title": "Cross-tool paths",
+   "change": "Tracker breakdown links, plain CLV/limit copy -> Deposit Optimizer, related-tool links in drawers/empties, Open in calculator (?tab&a&b&stake) from every drawer, Promo -> Low Holds next step",
+   "files": [
+    "public/js/pages/*.js",
+    "public/js/slips.js"
+   ],
+   "screens": [
+    "tracker",
+    "calculators",
+    "promo-converter",
+    "low-holds",
+    "sharp-money",
+    "bettor-signals",
+    "ai-picks",
+    "prop-research",
+    "ai-chat",
+    "deposit-optimizer"
+   ],
+   "acceptance": "Every drawer has a prefilled Open in calculator link"
+  },
+  {
+   "n": 32,
+   "group": "C",
+   "title": "Arbitrage reference migration",
+   "change": "ui.table, filterBar (Books popover), pageHead/facts/liveStatus, slip-line legs, betAction, two-step drawer, keyed updates, risk label, Age as 'seen 12s', mobile grid rows",
+   "files": [
+    "public/js/pages/arbitrage.js"
+   ],
+   "screens": [
+    "arbitrage"
+   ],
+   "acceptance": "First row <=300px at 1440; >=3 opportunities per 390 viewport; parity green"
+  },
+  {
+   "n": 33,
+   "group": "C",
+   "title": "Positive EV migration",
+   "change": "Same pattern; Bet/Log from positive-ev.js:228 into drawer footer following Kelly; chip wall -> Books popover; dollarised line",
+   "files": [
+    "public/js/pages/positive-ev.js"
+   ],
+   "screens": [
+    "positive-ev"
+   ],
+   "acceptance": "As arbitrage"
+  },
+  {
+   "n": 34,
+   "group": "C",
+   "title": "Sportsbook Screen",
+   "change": "Clickable price cells (delegated), history on event cell, 180/110px sticky column, CIR/NVG/PX beside Fair, Columns menu, optional Best-only toggle (off), legend, +EV link, mobile per-market cards + Grid toggle",
+   "files": [
+    "public/js/pages/screen.js"
+   ],
+   "screens": [
+    "screen",
+    "ev-builder"
+   ],
+   "acceptance": "Every price clickable; best and fair visible at 1440 without horizontal scroll"
+  },
+  {
+   "n": 35,
+   "group": "C",
+   "title": "Sharp Money rows",
+   "change": "Edge · Bet · Best @ book · Stake · Bet, then trailing spike/volume/move; feed header to facts; segs merged",
+   "files": [
+    "public/js/pages/sharp-money.js"
+   ],
+   "screens": [
+    "sharp-money"
+   ],
+   "acceptance": "Rows 44-52px; >=8 spikes visible at 1440"
+  },
+  {
+   "n": 36,
+   "group": "C",
+   "title": "Promo Converter guided (+ Optimizer, Deposit Optimizer)",
+   "change": "'What do you have?' cards until first choice then remembered seg; plain renames + balance warning; inline best conversion with checks; 'Show me the 2 bets · keep $672'; bold bonus/hedge; distinct subtitles",
+   "files": [
+    "public/js/pages/promo-converter.js",
+    "public/js/pages/promo-optimizer.js",
+    "public/js/pages/deposit-optimizer.js"
+   ],
+   "screens": [
+    "promo-converter",
+    "promo-optimizer",
+    "deposit-optimizer",
+    "daily",
+    "low-holds"
+   ],
+   "acceptance": "First-time user reaches the 2 bets in <=2 clicks"
+  },
+  {
+   "n": 37,
+   "group": "C",
+   "title": "Daily Card game plan (staged)",
+   "change": "(1) separate units, exit alerts as $ to protect, no numbered circles, data-bf-list; (2) green hero + lanes by risk with all items listed, sticky chips, inline expand; (3) #/tool?id deep links with 'gone' fallback; (4) Done/Skip 'Marked done' by date",
+   "files": [
+    "public/js/pages/daily.js",
+    "public/js/pages/*.js"
+   ],
+   "screens": [
+    "daily",
+    "arbitrage",
+    "positive-ev",
+    "middles",
+    "promo-converter",
+    "boosts",
+    "sharp-money",
+    "bettor-signals",
+    "ai-picks",
+    "prediction-traders",
+    "exit-alerts"
+   ],
+   "acceptance": "No mixed-unit total; all 45 items reachable; deep links open the right drawer"
+  },
+  {
+   "n": 38,
+   "group": "C",
+   "title": "Middles, Low Holds, Profit Boosts migration",
+   "change": "Arbitrage pattern plus honest copy, consistent hedge cost sign, boost 'Hedge' CTA",
+   "files": [
+    "public/js/pages/middles.js",
+    "public/js/pages/low-holds.js",
+    "public/js/pages/boosts.js"
+   ],
+   "screens": [
+    "middles",
+    "low-holds",
+    "boosts"
+   ],
+   "acceptance": "Parity green; copy matches numbers"
+  },
+  {
+   "n": 39,
+   "group": "C",
+   "title": "Pro Bettor Signals table + leaderboard rail",
+   "change": "ui.table feed; leaderboard right rail >=1280, tabs below",
+   "files": [
+    "public/js/pages/bettor-signals.js"
+   ],
+   "screens": [
+    "bettor-signals"
+   ],
+   "acceptance": "Leaderboard visible at 1440 without scrolling"
+  },
+  {
+   "n": 40,
+   "group": "C",
+   "title": "Prediction markets screens",
+   "change": "Order book + ticket side by side above chart; mobile sheet; symmetric YES/NO; risk/win; one CTA on Traders; exit levels in meta line",
+   "files": [
+    "public/js/pages/pm-markets.js",
+    "public/js/pages/prediction-traders.js",
+    "public/js/pages/pm-picks.js",
+    "public/js/pages/exit-alerts.js"
+   ],
+   "screens": [
+    "pm-markets",
+    "prediction-traders",
+    "pm-picks",
+    "exit-alerts"
+   ],
+   "acceptance": "Ticket above fold at 1440, one tap at 390"
+  },
+  {
+   "n": 41,
+   "group": "C",
+   "title": "Pricing rebuild",
+   "change": "Green hero with touchdown + lime CTA + terms; class='plan bf2-plan' keeping .hero/.price-big; .on recommended + tag; checks; Barlow 48 price; sticky-column compare; mobile price/CTA first, carousel, plan picker, §6.16 sticky bar; .strike contrast",
+   "files": [
+    "public/js/pages/pricing.js",
+    "public/css/app.css"
+   ],
+   "screens": [
+    "pricing"
+   ],
+   "acceptance": "Editor walkthrough opens plan panel; CTA <=700px at 390"
+  },
+  {
+   "n": 42,
+   "group": "C",
+   "title": "AI Chat",
+   "change": "Suggestions only in empty state (remove ai-chat.js:141-142 duplicate), Coach Mate empty state, checks, mobile 100dvh column with sticky 16px composer",
+   "files": [
+    "public/js/pages/ai-chat.js"
+   ],
+   "screens": [
+    "ai-chat"
+   ],
+   "acceptance": "Composer fully visible at 390, no zoom"
+  },
+  {
+   "n": 43,
+   "group": "C",
+   "title": "Calculators and Settings",
+   "change": "Calculator tab list >=980, 60/40 form/slip, examples, Find live ones, Kelly explained, renamed margin, ?tab prefill; Settings as .sec column with Theme seg and Odds format, synced without self re-render",
+   "files": [
+    "public/js/pages/calculators.js",
+    "public/js/pages/account.js"
+   ],
+   "screens": [
+    "calculators",
+    "account"
+   ],
+   "acceptance": "Deep-link prefill works; Settings synced with popover and toggle"
+  },
+  {
+   "n": 44,
+   "group": "C",
+   "title": "Remaining screens sweep",
+   "change": "ai-picks, live-ai, prop-research, tracker (leg groups, sortable, links), alerts, ev-builder (overflow fix), parlay-builder, deposit-optimizer get B patterns and type-scale convergence",
+   "files": [
+    "public/js/pages/ai-picks.js",
+    "public/js/pages/live-ai.js",
+    "public/js/pages/prop-research.js",
+    "public/js/pages/tracker.js",
+    "public/js/pages/alerts.js",
+    "public/js/pages/ev-builder.js",
+    "public/js/pages/parlay-builder.js",
+    "public/js/pages/deposit-optimizer.js"
+   ],
+   "screens": [
+    "ai-picks",
+    "live-ai",
+    "prop-research",
+    "tracker",
+    "alerts",
+    "ev-builder",
+    "parlay-builder",
+    "deposit-optimizer"
+   ],
+   "acceptance": "Parity green; first-row target met; no inline-style increase"
+  },
+  {
+   "n": 45,
+   "group": "C",
+   "title": "Late: palette, keyboard scan layer, PM scanner",
+   "change": "⌘K / '/' palette; j/k, /, ? cheat sheet ignoring inputs/contentEditable/editor, never single-key Bet; PM cross-venue Scanner tab via lib helper + ui.table",
+   "files": [
+    "public/js/palette.js",
+    "public/js/app.js",
+    "public/js/pages/pm-markets.js",
+    "public/lib/"
+   ],
+   "screens": [
+    "shell",
+    "pm-markets",
+    "arbitrage",
+    "positive-ev"
+   ],
+   "acceptance": "No money action on a single key; palette excluded from frame.js selection"
+  }
+ ],
+ "rejected": [
+  {
+   "title": "Bottom tab bar on phones",
+   "reason": "About 230px of stacked chrome at 390, picks 4 favourites out of 27 tools, clashes with the one-visible-CTA rule; replaced by Recent tools in the mobile sidebar plus the mobile title"
+  },
+  {
+   "title": "'Guaranteed profit' / 'lock $X' / 'Risk-free only' wording",
+   "reason": "Compliance and trust risk, false on voids, limits and line moves, contradicts 'no bet is a sure thing'; use 'Hedged · both sides' and '+$X if both fill'"
+  },
+  {
+   "title": "Bet both opens two deep links in sequence",
+   "reason": "Popup blockers kill leg 2, creating a silent half-arb; two-step slip instead"
+  },
+  {
+   "title": "Per-leg Bet buttons in desktop table rows",
+   "reason": "Doubles targets in a table that re-renders every tick; per-leg buttons go in the drawer"
+  },
+  {
+   "title": "Calculator as an unlabeled icon",
+   "reason": "Demotes a researched feature; kept as a labelled 'Calc' ghost"
+  },
+  {
+   "title": "Global darkening of the button green to #0E7A42",
+   "reason": "Diverges from the landing page; large Barlow CTAs pass AA on #118A4C, so only .btn.sm uses the darker green"
+  },
+  {
+   "title": "Token renames and mass inline-style migration",
+   "reason": "Silent colour regressions and churn; aliases plus a per-screen ratchet"
+  },
+  {
+   "title": "Inner vertical scroller for sticky table heads",
+   "reason": "Nested scroll trap, breaks find"
+  },
+  {
+   "title": "Auto-hiding priority columns under 1280px",
+   "reason": "Hides freshness and fair odds on sharp laptops; Columns menu instead"
+  },
+  {
+   "title": "Separate card DOM alongside the table on mobile",
+   "reason": "Doubles content.js work, breaks keyed rows and block keys; one table restyled with CSS grid"
+  },
+  {
+   "title": "Accordion nav showing only the active group",
+   "reason": "Hides 20 of 27 tools; groups expanded by default"
+  },
+  {
+   "title": "Default blur and locks in the demo",
+   "reason": "Hides researched features; locks only when the plan is switched, no blur"
+  },
+  {
+   "title": "Demo pill shrunk to a 6px dot",
+   "reason": "Hides the sample-data honesty disclosure"
+  },
+  {
+   "title": "'Start here' nav group and second-line nav hints",
+   "reason": "Duplicates links and doubles nav height; tooltips plus Daily pins instead"
+  },
+  {
+   "title": "Persistent variance banner on 5 screens",
+   "reason": "Clutter for sharps; moved into the risk tooltip and the how panel"
+  },
+  {
+   "title": "Explainers expanded on first visit of every tool",
+   "reason": "Undoes results-first; collapsed by default, expanded only for the beginner goal"
+  },
+  {
+   "title": "Numbered step labels (1/3, 1-2-3 steps, '4 steps')",
+   "reason": "Banned by DESIGN.md; check marks instead"
+  },
+  {
+   "title": "Single-key Bet shortcuts from lists",
+   "reason": "Risk of a wrong bet on reordering rows; Bet stays a two-step drawer action"
+  },
+  {
+   "title": "Paging live scanners",
+   "reason": "The best new row could land on page 2; paging only on static lists"
+  },
+  {
+   "title": "Red 'Feed down' state and red fills",
+   "reason": "Flag red is reserved for Coach Mate"
+  },
+  {
+   "title": "Asymmetric YES/NO styling (grey NO)",
+   "reason": "Nudges toward one side on a trading screen"
+  },
+  {
+   "title": "Screen shift-click compare tray",
+   "reason": "New-feature scope outside the UI rebuild; revisit later"
+  },
+  {
+   "title": "Sticky action bar on opportunity lists",
+   "reason": "Duplicates per-row CTA (DESIGN.md §6.16)"
+  },
+  {
+   "title": "Per-book balance tracking",
+   "reason": "No balance data source; only 'cash needed at each book' from stakes is shown"
+  },
+  {
+   "title": "Glossary popovers inside sortable table headers",
+   "reason": "Nested interactive controls; title attribute in heads instead"
+  }
+ ],
+ "overturned": [
+  "'Guaranteed/lock' wording replaced with 'Hedged · both sides' and '+$X if both fill' (compliance and truthfulness)",
+  "'Bet both' changed from opening two windows to a two-step slip drawer with a persistent leg-2 banner and logging only on confirm",
+  "Bottom tab bar rejected in favour of a Recent tools row plus the mobile title and bankroll chip",
+  "Collapse-all-but-active nav replaced by expanded-by-default collapsible groups, with a sidebar scroll fix shipped first; Screen moved into EDGES",
+  "Global darker button green dropped: large Barlow CTA keeps #118A4C, only .btn.sm uses #0E7A42",
+  "Table cells stay 14px compact (15px comfortable) instead of 15px everywhere",
+  "Sticky headers via th top + overflow-x:clip, no inner vertical scroller; auto-hide columns replaced by a Columns menu, Age never hidden on arb/EV/middles",
+  "Mobile cards built as one table restyled with CSS grid areas (not a second DOM), Age on line 1",
+  "Demo pill kept as short 'Sample data' text instead of a 6px dot",
+  "Plan locks only when plan is switched (default All-Access), first 3 rows plus lock card, no blur",
+  "How-it-makes-money collapsed by default with check bullets, not numbered steps",
+  "First-run setup compact and skippable with check marks; defaults unchanged",
+  "Keyboard: focusable rows now, scan shortcuts deferred, single-key Bet rejected",
+  "Gone rows disabled; drawer re-validates the price each tick; patch cells, never nodeValue",
+  "Token rename and mass inline-style move dropped in favour of aliases and per-screen ratchet",
+  "Paging limited to static lists; live scanners stay complete",
+  "YES/NO made symmetric; Feed down uses --warn not red",
+  "Daily game plan staged in 4 steps, all items still listed, 'Marked done' not 'Captured'",
+  "PM ¢ bridge replaced by a global odds-format preference; scanner moved to a late item",
+  "⌘K palette deferred to a late item; Screen compare tray rejected",
+  "Theme toggle: default light kept per owner, but shots.mjs updated in the same commit and avatar moved to sidebar at <=520px",
+  "Added from missing lists: QA hardening, content.js hardening, slips.js, stable ids, compliance line, state legality, stale-price guard, cash-needed lines, z-index scale, performance budget, parity gate"
+ ]
+}
