@@ -1,0 +1,153 @@
+{
+  "route": "low-holds",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: Pre-match",
+      "mode: Live"
+    ],
+    "drawerVia": "row",
+    "reviewed": "sample-data text removed by hand (team, player and market names)"
+  },
+  "title": "Low Holds",
+  "sections": [
+    "VIP / rollover planner"
+  ],
+  "columns": [
+    "Hold",
+    "Event",
+    "Legs",
+    {
+      "text": "Cost to run",
+      "aka": [
+        "Result"
+      ]
+    },
+    "Bet on",
+    "Hedge",
+    {
+      "text": "Cost",
+      "aka": [
+        "Result"
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "label": "Max hold",
+      "kind": "slider"
+    },
+    {
+      "label": "Sport",
+      "kind": "select",
+      "options": [
+        "All",
+        "NFL",
+        "NBA",
+        "NHL",
+        "NCAAF",
+        "MLB",
+        "EPL"
+      ]
+    },
+    {
+      "label": "Playthrough to run",
+      "kind": "input"
+    },
+    {
+      "label": "Playthrough required",
+      "kind": "input"
+    },
+    {
+      "label": "On book",
+      "kind": "select",
+      "options": [
+        "DraftKings",
+        "FanDuel",
+        "BetMGM",
+        "Caesars",
+        "ESPN BET",
+        "Fanatics",
+        "BetRivers",
+        "bet365"
+      ]
+    },
+    {
+      "label": "Max bet per line",
+      "kind": "input"
+    },
+    {
+      "label": "Pre-match / Live",
+      "kind": "switch",
+      "options": [
+        "Pre-match",
+        "Live"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Promo Converter",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Pre-Match Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Log first bet pair"
+  ],
+  "rowActions": [
+    {
+      "text": "Calculator",
+      "aka": [
+        "calc"
+      ]
+    }
+  ],
+  "fields": [
+    "Low-hold lines",
+    "Lowest hold",
+    {
+      "text": "Cheapest cost per",
+      "aka": [
+        "Best result per"
+      ]
+    },
+    "Avg hold"
+  ],
+  "drawer": {
+    "sections": [
+      "Payout by outcome"
+    ],
+    "columns": [
+      "Outcome",
+      "Odds",
+      "Stake",
+      "Payout",
+      "If this wins",
+      "Profit"
+    ],
+    "fields": [
+      "Total stake",
+      "Round stakes"
+    ],
+    "actions": [
+      "Exact",
+      "Bet",
+      "Log both bets",
+      "Balance stakes"
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "route": "sharp-money",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: How it works"
+    ],
+    "drawerVia": "row"
+  },
+  "title": "Sharp Money",
+  "sections": [
+    "Live spike feed",
+    "Follow the money, not the touts",
+    "Graded record · last 90 days",
+    "Recently graded"
+  ],
+  "columns": [
+    "Bet",
+    "Exchange volume",
+    "Exchange price",
+    "Best price",
+    "Edge",
+    "Bet this",
+    "Sport",
+    "Signals",
+    "Win %",
+    "ROI",
+    "CLV",
+    "Market"
+  ],
+  "controls": [
+    {
+      "label": "Sport",
+      "kind": "select",
+      "options": [
+        "All sports",
+        "NFL",
+        "NBA",
+        "NHL",
+        "NCAAF",
+        "MLB",
+        "EPL"
+      ]
+    },
+    {
+      "label": "Market",
+      "kind": "select",
+      "options": [
+        "All markets",
+        "Player props",
+        "Moneyline",
+        "Spread",
+        "Total"
+      ]
+    },
+    {
+      "label": "Exchange",
+      "kind": "choice",
+      "options": [
+        "Both",
+        "Novig",
+        "ProphetX"
+      ]
+    },
+    {
+      "label": "Min spike",
+      "kind": "choice",
+      "options": [
+        "2×",
+        "3×",
+        "5×",
+        "8×"
+      ]
+    },
+    {
+      "label": "Timing",
+      "kind": "choice",
+      "options": [
+        "All",
+        "Pre-game",
+        "Live"
+      ]
+    },
+    {
+      "label": "Include fantasy apps (PrizePicks, Underdog)",
+      "kind": "checkbox"
+    }
+  ],
+  "actions": [
+    {
+      "text": "Sharp Money",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Pro Bettor Signals",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "How it works"
+  ],
+  "rowActions": [
+    "Bet"
+  ],
+  "fields": [
+    "Spikes in the last hour",
+    "Biggest spike",
+    "Avg edge at best price",
+    "Signal record (90d)",
+    "Signals graded",
+    "Record",
+    "Profit",
+    "Avg closing line value"
+  ],
+  "drawer": {
+    "sections": [
+      "Volume traded (5-min buckets, last 2h)",
+      "ProphetX price",
+      "Every price on this bet"
+    ],
+    "columns": [],
+    "fields": [
+      "ProphetX volume",
+      "vs normal",
+      "Exchange move",
+      "Stake"
+    ],
+    "actions": [
+      "Log bet",
+      "Bet now at"
+    ]
+  }
+}

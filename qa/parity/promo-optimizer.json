@@ -1,0 +1,94 @@
+{
+  "route": "promo-optimizer",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": null
+  },
+  "title": "Promo Optimizer",
+  "sections": [
+    "41 promos ranked by cash value",
+    "Claim plan",
+    "Value by sportsbook"
+  ],
+  "columns": [
+    "Claimed",
+    "Promo",
+    "Amount",
+    "Expires",
+    "Cash value"
+  ],
+  "controls": [
+    {
+      "label": "Type",
+      "kind": "select",
+      "options": [
+        "All types",
+        "Bonus bet",
+        "Deposit match",
+        "No-sweat",
+        "Profit boost",
+        "Odds boost",
+        "Second chance",
+        "Referral",
+        "Casino credit"
+      ]
+    },
+    {
+      "label": "Sportsbook",
+      "kind": "select",
+      "options": [
+        "All books",
+        "DraftKings",
+        "FanDuel",
+        "BetMGM",
+        "Caesars",
+        "ESPN BET",
+        "Fanatics",
+        "BetRivers",
+        "Hard Rock Bet",
+        "bet365"
+      ]
+    },
+    {
+      "label": "Hide claimed",
+      "kind": "checkbox"
+    },
+    {
+      "label": "All / New user / Existing user",
+      "kind": "switch",
+      "options": [
+        "All",
+        "New user",
+        "Existing user"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Promo Converter",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "$ Promo Converter",
+    "Start claim plan"
+  ],
+  "rowActions": [
+    "Convert",
+    "✓ Done"
+  ],
+  "fields": [
+    "Welcome offers",
+    "Existing-user promos",
+    "Claimed so far",
+    "Avg conversion"
+  ]
+}

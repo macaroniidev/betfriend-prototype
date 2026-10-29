@@ -1,0 +1,77 @@
+{
+  "route": "pm-markets",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": null,
+    "reviewed": "sample-data text removed by hand (team, player and market names)"
+  },
+  "title": "Markets & Order Book",
+  "sections": [
+    "Order book",
+    "Trade ticket",
+    "Same outcome on other venues"
+  ],
+  "columns": [],
+  "controls": [
+    {
+      "label": "Contracts",
+      "kind": "input"
+    },
+    {
+      "label": "Search markets or tickers",
+      "kind": "input"
+    },
+    {
+      "label": "1H / 1D / 1W / All",
+      "kind": "switch",
+      "options": [
+        "1H",
+        "1D",
+        "1W",
+        "All"
+      ]
+    },
+    {
+      "label": "Buy YES / Buy NO",
+      "kind": "switch",
+      "options": [
+        "Buy YES",
+        "Buy NO"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Prediction Markets",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "50",
+    "100",
+    "250",
+    "500",
+    "1000",
+    "Open in Polymarket",
+    "Log to Bet Tracker",
+    "Cheapest YES"
+  ],
+  "rowActions": [],
+  "fields": [
+    "Avg price",
+    "Implied probability",
+    "Model fair",
+    "Cost",
+    "Payout if YES",
+    "Profit",
+    "Of bankroll"
+  ]
+}

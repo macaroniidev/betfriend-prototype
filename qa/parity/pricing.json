@@ -1,0 +1,93 @@
+{
+ "route": "pricing",
+ "captured": {
+  "from": "ux-before (app as it was before the UX rebuild)",
+  "origin": "http://127.0.0.1:4411",
+  "width": 1440,
+  "date": "2026-10-28",
+  "states": [
+   "default",
+   "mode: Monthly",
+   "mode: Annual · save up to 33%"
+  ],
+  "drawerVia": null
+ },
+ "title": "Plans & Pricing",
+ "sections": [
+  "BetFriend All-Access",
+  "Standalone plans",
+  "Live Arbitrage & EV",
+  "Earn even more with these bonus tools",
+  "Compare plans",
+  "What the same tools cost elsewhere",
+  "One membership instead of seven subscriptions"
+ ],
+ "columns": [
+  "Tool",
+  "Free",
+  "Promo Converter",
+  "Pre-Match Arbitrage & EV",
+  "Live Arbitrage & EV",
+  "Sharp Money",
+  "Pro Bettor Signals",
+  "Prediction Markets",
+  "AI Picks & Live Analysis",
+  "All-Access",
+  "Competitor plan",
+  "Monthly"
+ ],
+ "controls": [
+  {
+   "label": "Monthly / Annual · save up to 33%",
+   "kind": "switch",
+   "options": [
+    "Monthly",
+    "Annual · save up to 33%"
+   ]
+  }
+ ],
+ "actions": [
+  "Start 7-day free trial",
+  "Set as my plan in this prototype",
+  "Live +EV Tool",
+  "Sportsbooks Screen",
+  "Promo Converter",
+  "Parlay Builder",
+  "Start free trial"
+ ],
+ "rowActions": [
+  "Create free account",
+  "Low Hold Tool",
+  "Start free trial",
+  "Middles Tool",
+  "Promo Converter",
+  "Parlay Builder",
+  "Sharp Money feed (lite)",
+  "Prediction-Market Picks",
+  "Prop Research",
+  "Daily Card",
+  "Promo Optimizer",
+  "Deposit Optimizer",
+  "Profit Boosts",
+  "Low Holds",
+  "Arbitrage",
+  "Calculators",
+  "Positive",
+  "Middles",
+  "Sportsbook Screen",
+  "Fair Odds Builder",
+  "Sharp Money",
+  "Pro Bettor Signals",
+  "Prediction Traders",
+  "Market Picks",
+  "Markets & Order Book",
+  "Exit Alerts",
+  "Sports Picks",
+  "Live Analysis",
+  "Ask BetFriend"
+ ],
+ "fields": [
+  "You save vs competitors",
+  "Bonus tool value included"
+ ]
+}

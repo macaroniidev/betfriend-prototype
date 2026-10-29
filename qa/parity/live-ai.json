@@ -1,0 +1,51 @@
+{
+  "route": "live-ai",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: NFLQ3 1:21 Lions22 Bengals18",
+      "mode: MLBBot 6 2:46 Dodgers14 Yankees2",
+      "mode: NHLP3 9:11 Leafs14 Oilers11",
+      "mode: NHLP2 5:40 Avalanche2 Knights14",
+      "mode: NBAQ2 8:27 Thunder7 Knicks23",
+      "mode: NBAQ2 7:45 Celtics0 Cavaliers7",
+      "mode: EPL25' 0:30 City9 United21"
+    ],
+    "drawerVia": null,
+    "reviewed": "sample-data text removed by hand (team, player and market names)"
+  },
+  "title": "Live AI Analysis",
+  "sections": [
+    "Win probability",
+    "AI commentary",
+    "Key moments",
+    "Projected final",
+    "Live bet suggestions"
+  ],
+  "columns": [],
+  "controls": [],
+  "actions": [
+    {
+      "text": "AI Picks & Live Analysis",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Ask AI about this game"
+  ],
+  "rowActions": [
+    "Bet",
+    "Log"
+  ],
+  "fields": [
+    "Projected total",
+    "Projected margin",
+    "win prob"
+  ]
+}

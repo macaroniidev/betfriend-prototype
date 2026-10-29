@@ -1,0 +1,115 @@
+{
+ "route": "account",
+ "captured": {
+  "from": "ux-before (app as it was before the UX rebuild)",
+  "origin": "http://127.0.0.1:4411",
+  "width": 1440,
+  "date": "2026-10-28",
+  "states": [
+   "default"
+  ],
+  "drawerVia": null
+ },
+ "title": "Settings",
+ "sections": [
+  "Location & plan",
+  "Bankroll & sizing",
+  "My books"
+ ],
+ "columns": [],
+ "controls": [
+  {
+   "label": "State",
+   "kind": "select",
+   "options": [
+    "Arizona (AZ)",
+    "Colorado (CO)",
+    "Connecticut (CT)",
+    "Illinois (IL)",
+    "Indiana (IN)",
+    "Iowa (IA)",
+    "Kansas (KS)",
+    "Kentucky (KY)",
+    "Louisiana (LA)",
+    "Maryland (MD)",
+    "Massachusetts (MA)",
+    "Michigan (MI)",
+    "New Jersey (NJ)",
+    "New York (NY)",
+    "North Carolina (NC)",
+    "Ohio (OH)",
+    "Pennsylvania (PA)",
+    "Tennessee (TN)",
+    "Virginia (VA)",
+    "Wyoming (WY)",
+    "Washington DC (DC)"
+   ]
+  },
+  {
+   "label": "Plan",
+   "kind": "select",
+   "options": [
+    "Free",
+    "Promo Converter",
+    "Pre-Match Arbitrage & EV",
+    "Live Arbitrage & EV",
+    "Sharp Money",
+    "Pro Bettor Signals",
+    "Prediction Markets",
+    "AI Picks & Live Analysis",
+    "All-Access"
+   ]
+  },
+  {
+   "label": "Theme",
+   "kind": "select",
+   "options": [
+    {
+     "text": "Match system",
+     "aka": [
+      "System"
+     ]
+    },
+    "Light",
+    "Dark"
+   ]
+  },
+  {
+   "label": "Bankroll",
+   "kind": "input"
+  },
+  {
+   "label": "Default arb total stake",
+   "kind": "input"
+  },
+  {
+   "label": "Unit size",
+   "kind": "input"
+  },
+  {
+   "label": "Kelly multiplier",
+   "kind": "slider"
+  }
+ ],
+ "actions": [
+  "Reset all settings",
+  "DraftKings",
+  "FanDuel",
+  "BetMGM",
+  "Caesars",
+  "ESPN BET",
+  "Fanatics",
+  "BetRivers",
+  "Hard Rock Bet",
+  "bet365",
+  "Fliff",
+  "PrizePicks",
+  "Underdog",
+  "Novig",
+  "ProphetX",
+  "Kalshi",
+  "Polymarket"
+ ],
+ "rowActions": [],
+ "fields": []
+}

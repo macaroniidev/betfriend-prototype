@@ -1,0 +1,105 @@
+{
+  "route": "promo-converter",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": "row"
+  },
+  "title": "Promo Converter",
+  "sections": [
+    "Best conversions right now",
+    "My open promos",
+    "Conversion benchmarks"
+  ],
+  "columns": [
+    "Event",
+    "Promo bet",
+    "Hedge bet",
+    "Cash kept",
+    "Conversion"
+  ],
+  "controls": [
+    {
+      "label": "Promo sportsbook",
+      "kind": "select",
+      "options": [
+        "DraftKings",
+        "FanDuel",
+        "BetMGM",
+        "Caesars",
+        "ESPN BET",
+        "Fanatics",
+        "BetRivers",
+        "Hard Rock Bet",
+        "bet365"
+      ]
+    },
+    {
+      "label": "No-sweat stake",
+      "kind": "input"
+    },
+    {
+      "label": "Bonus bet / No-sweat / Deposit match / Profit boost",
+      "kind": "switch",
+      "options": [
+        "Bonus bet",
+        "No-sweat",
+        "Deposit match",
+        "Profit boost"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Promo Converter",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Pre-Match Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "✦ All promos in your state",
+    "Find conversions",
+    "Selected",
+    "See every promo in NJ"
+  ],
+  "rowActions": [
+    "Convert",
+    "Use"
+  ],
+  "fields": [],
+  "drawer": {
+    "sections": [
+      "Outcomes"
+    ],
+    "columns": [
+      "If this wins",
+      "Promo leg",
+      "Hedge leg",
+      "Net"
+    ],
+    "fields": [
+      "Cash kept",
+      "Conversion",
+      "Total cash out"
+    ],
+    "actions": [
+      "Open bet slip",
+      "Log both bets",
+      "Mark promo claimed"
+    ]
+  }
+}

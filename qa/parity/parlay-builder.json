@@ -1,0 +1,71 @@
+{
+  "route": "parlay-builder",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": null,
+    "reviewed": "sample-data text removed by hand (team, player and market names)"
+  },
+  "title": "Parlay Builder",
+  "sections": [
+    "Your parlay",
+    "Parlay odds at every book"
+  ],
+  "columns": [
+    "Book",
+    "Odds",
+    "Payout",
+    "EV"
+  ],
+  "controls": [
+    {
+      "label": "Stake",
+      "kind": "input"
+    },
+    {
+      "label": "Search any team, player or market (e.g. Celtics, Mahomes, Total)",
+      "kind": "input"
+    },
+    {
+      "label": "+EV legs / Sharp Money legs / Check my parlay",
+      "kind": "switch",
+      "options": [
+        "+EV legs",
+        "Sharp Money legs",
+        "Check my parlay"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Pre-Match Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Sharp Money",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Bet at",
+    "Log parlay"
+  ],
+  "rowActions": [],
+  "fields": [
+    "Fair parlay odds",
+    "Payout on",
+    "Parlay EV",
+    "vs worst book"
+  ]
+}

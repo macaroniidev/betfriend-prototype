@@ -1,0 +1,95 @@
+{
+ "route": "alerts",
+ "captured": {
+  "from": "ux-before (app as it was before the UX rebuild)",
+  "origin": "http://127.0.0.1:4411",
+  "width": 1440,
+  "date": "2026-10-28",
+  "states": [
+   "default"
+  ],
+  "drawerVia": null
+ },
+ "title": "Alerts",
+ "sections": [
+  "New alert rule",
+  "Your rules",
+  "Live notifications"
+ ],
+ "columns": [],
+ "controls": [
+  {
+   "label": "Tool",
+   "kind": "select",
+   "options": [
+    "Arbitrage",
+    "+EV",
+    "Middles",
+    "Low holds",
+    "Sharp money",
+    "Pro bettor signals",
+    "AI picks",
+    "Prediction traders",
+    "Exit alerts",
+    "Profit boosts"
+   ]
+  },
+  {
+   "label": "Min ROI %",
+   "kind": "input"
+  },
+  {
+   "label": "Rule name",
+   "kind": "input"
+  },
+  {
+   "label": "Deliver via",
+   "kind": "checkbox"
+  },
+  {
+   "label": "Push",
+   "kind": "checkbox"
+  },
+  {
+   "label": "SMS",
+   "kind": "checkbox"
+  },
+  {
+   "label": "Email",
+   "kind": "checkbox"
+  },
+  {
+   "label": "Discord",
+   "kind": "checkbox"
+  }
+ ],
+ "actions": [
+  "NFL",
+  "NBA",
+  "NHL",
+  "NCAAF",
+  "MLB",
+  "EPL",
+  "DK",
+  "FD",
+  "MGM",
+  "CZR",
+  "ESPN",
+  "FAN",
+  "BR",
+  "HR",
+  "365",
+  "FLF",
+  "Create alert",
+  "Delete"
+ ],
+ "rowActions": [
+  "Delete"
+ ],
+ "fields": [
+  "Active rules",
+  "Alerts this session",
+  "Channels in use",
+  "Median delivery"
+ ]
+}

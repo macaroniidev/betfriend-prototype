@@ -1,0 +1,207 @@
+{
+ "360": {},
+ "390": {
+  "daily": {
+   "y": 560,
+   "sel": "[data-bf-list] > *"
+  },
+  "alerts": {
+   "y": 470,
+   "sel": "[data-bf-list] > *"
+  },
+  "arbitrage": {
+   "y": 470,
+   "sel": "[data-bf-list] > *"
+  },
+  "middles": {
+   "y": 440,
+   "sel": "[data-bf-list] > *"
+  },
+  "low-holds": {
+   "y": 481,
+   "sel": "[data-bf-list] > *"
+  },
+  "promo-converter": {
+   "y": 764,
+   "sel": "[data-bf-list] > *"
+  },
+  "promo-optimizer": {
+   "y": 539,
+   "sel": "[data-bf-list] > *"
+  },
+  "boosts": {
+   "y": 481,
+   "sel": "[data-bf-list] > *"
+  },
+  "deposit-optimizer": {
+   "y": 549,
+   "sel": "[data-bf-list] > *"
+  },
+  "positive-ev": {
+   "y": 470,
+   "sel": "[data-bf-list] > *"
+  },
+  "screen": {
+   "y": 522,
+   "sel": "[data-bf-list] > *"
+  },
+  "sharp-money": {
+   "y": 584,
+   "sel": "[data-bf-list] > *"
+  },
+  "bettor-signals": {
+   "y": 537,
+   "sel": "[data-bf-list] > *"
+  },
+  "ai-picks": {
+   "y": 405,
+   "sel": "[data-bf-list] > *"
+  },
+  "live-ai": {
+   "y": 552,
+   "sel": "[data-bf-list] > *"
+  },
+  "prediction-traders": {
+   "y": 544,
+   "sel": "[data-bf-list] > *"
+  },
+  "pm-picks": {
+   "y": 448,
+   "sel": "[data-bf-list] > *"
+  },
+  "pm-markets": {
+   "y": 412,
+   "sel": "[data-bf-list] > *"
+  },
+  "exit-alerts": {
+   "y": 438,
+   "sel": "[data-bf-list] > *"
+  },
+  "prop-research": {
+   "y": 398,
+   "sel": "[data-bf-list] > *"
+  },
+  "ai-chat": null,
+  "parlay-builder": {
+   "y": 488,
+   "sel": "[data-bf-list] > *"
+  },
+  "ev-builder": {
+   "y": 639,
+   "sel": "[data-bf-list] > *"
+  },
+  "calculators": null,
+  "tracker": {
+   "y": 525,
+   "sel": "[data-bf-list] > *"
+  },
+  "pricing": {
+   "y": 2386,
+   "sel": "table row"
+  },
+  "account": null,
+  "glossary": null
+ },
+ "1440": {
+  "daily": {
+   "y": 413,
+   "sel": "[data-bf-list] > *"
+  },
+  "alerts": {
+   "y": 318,
+   "sel": "[data-bf-list] > *"
+  },
+  "arbitrage": {
+   "y": 284,
+   "sel": "[data-bf-list] > *"
+  },
+  "middles": {
+   "y": 298,
+   "sel": "[data-bf-list] > *"
+  },
+  "low-holds": {
+   "y": 290,
+   "sel": "[data-bf-list] > *"
+  },
+  "promo-converter": {
+   "y": 312,
+   "sel": "[data-bf-list] > *"
+  },
+  "promo-optimizer": {
+   "y": 424,
+   "sel": "[data-bf-list] > *"
+  },
+  "boosts": {
+   "y": 290,
+   "sel": "[data-bf-list] > *"
+  },
+  "deposit-optimizer": {
+   "y": 321,
+   "sel": "[data-bf-list] > *"
+  },
+  "positive-ev": {
+   "y": 284,
+   "sel": "[data-bf-list] > *"
+  },
+  "screen": {
+   "y": 362,
+   "sel": "[data-bf-list] > *"
+  },
+  "sharp-money": {
+   "y": 397,
+   "sel": "[data-bf-list] > *"
+  },
+  "bettor-signals": {
+   "y": 397,
+   "sel": "[data-bf-list] > *"
+  },
+  "ai-picks": {
+   "y": 259,
+   "sel": "[data-bf-list] > *"
+  },
+  "live-ai": {
+   "y": 248,
+   "sel": "[data-bf-list] > *"
+  },
+  "prediction-traders": {
+   "y": 300,
+   "sel": "[data-bf-list] > *"
+  },
+  "pm-picks": {
+   "y": 291,
+   "sel": "[data-bf-list] > *"
+  },
+  "pm-markets": {
+   "y": 335,
+   "sel": "[data-bf-list] > *"
+  },
+  "exit-alerts": {
+   "y": 227,
+   "sel": "[data-bf-list] > *"
+  },
+  "prop-research": {
+   "y": 243,
+   "sel": "[data-bf-list] > *"
+  },
+  "ai-chat": null,
+  "parlay-builder": {
+   "y": 283,
+   "sel": "[data-bf-list] > *"
+  },
+  "ev-builder": {
+   "y": 451,
+   "sel": "[data-bf-list] > *"
+  },
+  "calculators": null,
+  "tracker": {
+   "y": 373,
+   "sel": "[data-bf-list] > *"
+  },
+  "pricing": {
+   "y": 3246,
+   "sel": "table row"
+  },
+  "account": null,
+  "glossary": null
+ }
+}

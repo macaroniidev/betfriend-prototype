@@ -1,0 +1,51 @@
+{
+  "route": "ai-chat",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: New chat"
+    ],
+    "drawerVia": null
+  },
+  "title": "Ask BetFriend AI",
+  "sections": [
+    "What are we betting on?",
+    "What I can do",
+    "Try asking"
+  ],
+  "columns": [],
+  "controls": [
+    {
+      "label": "Ask about a bet, team, player or strategy…",
+      "kind": "input"
+    }
+  ],
+  "actions": [
+    {
+      "text": "AI Picks & Live Analysis",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "New chat",
+    "Best arb right now",
+    "Best +EV bet",
+    "Top AI picks today",
+    "What are the sharps on?",
+    "Best promo in NJ",
+    "Lakers tonight",
+    "Parlay ideas",
+    "Prediction market picks",
+    "Explain CLV",
+    "Explain middles",
+    "Send"
+  ],
+  "rowActions": [],
+  "fields": []
+}

@@ -1,0 +1,117 @@
+{
+  "route": "screen",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: Auto refresh on"
+    ],
+    "drawerVia": "row",
+    "reviewed": "sample-data text removed by hand (team, player and market names)"
+  },
+  "title": "Sportsbook Screen",
+  "sections": [],
+  "columns": [
+    "Event / selection",
+    "Fair",
+    "Hold",
+    "DK",
+    "FD",
+    "MGM",
+    "CZR",
+    "ESPN",
+    "FAN",
+    "BR",
+    "HR",
+    "365",
+    "FLF",
+    "CIR",
+    "NVG",
+    "PX"
+  ],
+  "controls": [
+    {
+      "label": "Sport",
+      "kind": "select",
+      "options": [
+        "All",
+        "NFL",
+        "NBA",
+        "NHL",
+        "NCAAF",
+        "MLB",
+        "EPL"
+      ]
+    },
+    {
+      "label": "Market",
+      "kind": "choice",
+      "options": [
+        "Moneyline",
+        "Spread",
+        "Total",
+        "Player Prop"
+      ]
+    },
+    {
+      "label": "Search",
+      "kind": "input"
+    },
+    {
+      "label": "Live only",
+      "kind": "checkbox"
+    },
+    {
+      "label": "My books only",
+      "kind": "checkbox"
+    }
+  ],
+  "actions": [
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Auto refresh on",
+      "aka": [
+        "Live updated"
+      ]
+    },
+    {
+      "text": "Auto refresh paused",
+      "aka": [
+        "Pause"
+      ]
+    }
+  ],
+  "rowActions": [],
+  "fields": [
+    "Markets on screen",
+    "Live markets",
+    "Markets with a +EV price",
+    "Low-hold markets"
+  ],
+  "drawer": {
+    "sections": [
+      "Line movement by book",
+      "Hold history",
+      "Current prices"
+    ],
+    "columns": [
+      "Book",
+      "Hold"
+    ],
+    "fields": [
+      "Best-price hold",
+      "Fair"
+    ],
+    "actions": []
+  }
+}

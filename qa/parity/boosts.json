@@ -1,0 +1,135 @@
+{
+  "route": "boosts",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": "row"
+  },
+  "title": "Profit Boosts",
+  "sections": [],
+  "columns": [
+    "Boost",
+    {
+      "text": "Book",
+      "aka": [
+        "Boost and hedge"
+      ]
+    },
+    "Odds",
+    "Fair",
+    "Boost EV",
+    {
+      "text": "Max stake",
+      "aka": [
+        "max"
+      ]
+    },
+    {
+      "text": "Hedge",
+      "aka": [
+        "Boost and hedge"
+      ]
+    },
+    {
+      "text": "Locked profit",
+      "aka": [
+        "Hedged profit"
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "label": "Sportsbook",
+      "kind": "select",
+      "options": [
+        "All books",
+        "DraftKings",
+        "Caesars",
+        "bet365",
+        "BetRivers",
+        "BetMGM",
+        "ESPN BET",
+        "Hard Rock Bet",
+        "Fanatics"
+      ]
+    },
+    {
+      "label": "Sport",
+      "kind": "select",
+      "options": [
+        "All",
+        "NBA",
+        "NFL",
+        "NCAAF",
+        "NHL"
+      ]
+    },
+    {
+      "label": "All boosts / +EV only / Lockable profit",
+      "kind": "switch",
+      "options": [
+        "All boosts",
+        "+EV only",
+        {
+          "text": "Lockable profit",
+          "aka": [
+            "Hedged profit"
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Promo Converter",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    }
+  ],
+  "rowActions": [
+    {
+      "text": "Calculator",
+      "aka": [
+        "calc"
+      ]
+    }
+  ],
+  "fields": [
+    "Boosts today",
+    "Positive EV",
+    {
+      "text": "Profit you can lock",
+      "aka": [
+        "Hedged profit today"
+      ]
+    },
+    "Best boost EV"
+  ],
+  "drawer": {
+    "sections": [],
+    "columns": [],
+    "fields": [
+      "Stake (max )",
+      "Boosted odds",
+      "Hedge odds",
+      "Boost wins",
+      "Hedge wins",
+      "Fair odds (sharp)",
+      "Boost EV"
+    ],
+    "actions": [
+      "Boost at",
+      "Hedge at",
+      "Log both bets",
+      "Log boost only"
+    ]
+  }
+}

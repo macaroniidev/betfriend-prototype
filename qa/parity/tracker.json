@@ -1,0 +1,115 @@
+{
+ "route": "tracker",
+ "captured": {
+  "from": "ux-before (app as it was before the UX rebuild)",
+  "origin": "http://127.0.0.1:4411",
+  "width": 1440,
+  "date": "2026-10-28",
+  "states": [
+   "default",
+   "mode: Copy as CSV",
+   "mode: + Add bet"
+  ],
+  "drawerVia": null
+ },
+ "title": "Bet Tracker & Accounts",
+ "sections": [
+  "P&L over time",
+  "Breakdown by tool",
+  "Bets",
+  "Account health"
+ ],
+ "columns": [
+  "Placed",
+  "Bet",
+  "Tool",
+  "Book",
+  "Odds",
+  "Stake",
+  "CLV",
+  "Status",
+  "P&L",
+  "Sportsbook",
+  "Max stake",
+  "Balance",
+  "Open opps",
+  "Since"
+ ],
+ "controls": [
+  {
+   "label": "Tool",
+   "kind": "select",
+   "options": [
+    "All tools",
+    "Arbitrage",
+    "+EV",
+    "Middles",
+    "Promos",
+    "Sharp money",
+    "Bettor signals",
+    "AI picks",
+    "Prediction mkts"
+   ]
+  },
+  {
+   "label": "Book",
+   "kind": "select",
+   "options": [
+    "All books",
+    "Fanatics",
+    "FanDuel",
+    "DraftKings",
+    "ESPN BET",
+    "BetRivers",
+    "Fliff",
+    "bet365",
+    "Caesars",
+    "Hard Rock Bet",
+    "BetMGM"
+   ]
+  },
+  {
+   "label": "Sport",
+   "kind": "select",
+   "options": [
+    "All",
+    "NBA",
+    "NHL",
+    "MLB",
+    "NCAAF",
+    "NFL"
+   ]
+  },
+  {
+   "label": "All / Open / Won / Lost / Push",
+   "kind": "switch",
+   "options": [
+    "All",
+    "Open",
+    "Won",
+    "Lost",
+    "Push"
+   ]
+  }
+ ],
+ "actions": [
+  "Copy as CSV",
+  "+ Add bet",
+  "Show 20 more"
+ ],
+ "rowActions": [
+  "Won",
+  "Lost",
+  "Push",
+  "Mark limited",
+  "Restricted",
+  "Mark healthy"
+ ],
+ "fields": [
+  "Profit / loss",
+  "ROI",
+  "Avg CLV",
+  "Win rate",
+  "Open bets"
+ ]
+}

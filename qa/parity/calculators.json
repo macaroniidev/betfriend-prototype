@@ -1,0 +1,212 @@
+{
+  "route": "calculators",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: Arbitrage",
+      "mode: +EV & No-vig",
+      "mode: Kelly",
+      "mode: Parlay",
+      "mode: Hold",
+      "mode: Odds converter",
+      "mode: Bonus bet",
+      "mode: Middle"
+    ],
+    "drawerVia": null
+  },
+  "title": "Calculators",
+  "sections": [],
+  "columns": [
+    "Side",
+    "Odds",
+    "Stake",
+    "Payout",
+    "Price",
+    "Implied",
+    "No-vig prob",
+    "Fair odds",
+    "Kelly",
+    "% bankroll",
+    "No-vig",
+    "If this wins",
+    "Bonus bet",
+    "Hedge",
+    "Net",
+    "Result",
+    "Chance",
+    "Profit"
+  ],
+  "controls": [
+    {
+      "label": "Side 1 odds",
+      "kind": "input"
+    },
+    {
+      "label": "Side 2 odds",
+      "kind": "input"
+    },
+    {
+      "label": "Total stake",
+      "kind": "input"
+    },
+    {
+      "label": "Arbitrage / +EV & No-vig / Kelly / Parlay / Hold / Odds converter / Bonus bet / ",
+      "kind": "switch",
+      "options": [
+        "Arbitrage",
+        "+EV & No-vig",
+        "Kelly",
+        "Parlay",
+        "Hold",
+        "Odds converter",
+        "Bonus bet",
+        "Middle"
+      ]
+    },
+    {
+      "label": "2-way / 3-way",
+      "kind": "switch",
+      "options": [
+        "2-way",
+        "3-way"
+      ]
+    },
+    {
+      "label": "Sharp price · Side A",
+      "kind": "input"
+    },
+    {
+      "label": "Sharp price · Side B",
+      "kind": "input"
+    },
+    {
+      "label": "Your price on Side A",
+      "kind": "input"
+    },
+    {
+      "label": "No-vig method",
+      "kind": "choice",
+      "options": [
+        "Multiplicative",
+        "Additive",
+        "Power"
+      ]
+    },
+    {
+      "label": "Win probability %",
+      "kind": "input"
+    },
+    {
+      "label": "Odds (American)",
+      "kind": "input"
+    },
+    {
+      "label": "Bankroll",
+      "kind": "input"
+    },
+    {
+      "label": "Kelly multiplier",
+      "kind": "input"
+    },
+    {
+      "label": "Leg 1 odds",
+      "kind": "input"
+    },
+    {
+      "label": "Leg 2 odds",
+      "kind": "input"
+    },
+    {
+      "label": "Leg 3 odds",
+      "kind": "input"
+    },
+    {
+      "label": "Stake",
+      "kind": "input"
+    },
+    {
+      "label": "American",
+      "kind": "input"
+    },
+    {
+      "label": "Decimal",
+      "kind": "input"
+    },
+    {
+      "label": "Fractional",
+      "kind": "input"
+    },
+    {
+      "label": "Implied %",
+      "kind": "input"
+    },
+    {
+      "label": "Bonus bet amount",
+      "kind": "input"
+    },
+    {
+      "label": "Bonus bet odds",
+      "kind": "input"
+    },
+    {
+      "label": "Hedge odds",
+      "kind": "input"
+    },
+    {
+      "label": "Over line",
+      "kind": "input"
+    },
+    {
+      "label": "Over odds",
+      "kind": "input"
+    },
+    {
+      "label": "Under line",
+      "kind": "input"
+    },
+    {
+      "label": "Under odds",
+      "kind": "input"
+    },
+    {
+      "label": "Middle hit %",
+      "kind": "input"
+    }
+  ],
+  "actions": [
+    {
+      "text": "Pre-Match Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "+ Add leg"
+  ],
+  "rowActions": [],
+  "fields": [
+    "Market vig",
+    "Expected profit per",
+    "Full Kelly",
+    "Bankroll (Settings)",
+    "Break-even probability",
+    "Fair odds at",
+    "Decimal odds",
+    "Implied probability",
+    "Legs",
+    "Profit on",
+    "Stake to win",
+    "Over stake",
+    "Under stake",
+    "Width"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "route": "prediction-traders",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: Pre-match",
+      "mode: Live"
+    ],
+    "drawerVia": null
+  },
+  "title": "Prediction Traders",
+  "sections": [
+    "Pre-match recommendations",
+    "Trader leaderboard",
+    "Live recommendations"
+  ],
+  "columns": [],
+  "controls": [
+    {
+      "label": "Pre-match / Live",
+      "kind": "switch",
+      "options": [
+        "Pre-match",
+        "Live"
+      ]
+    },
+    {
+      "label": "All selected traders / Following",
+      "kind": "switch",
+      "options": [
+        "All selected traders",
+        "Following"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Prediction Markets",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Open Exit Alerts"
+  ],
+  "rowActions": [
+    "Bet",
+    "Open in Novig",
+    "Order book",
+    "Log",
+    "Open in Kalshi",
+    "Open in Polymarket",
+    "Sell on ProphetX",
+    "Open in ProphetX",
+    "Follow",
+    "Following",
+    "Sell on Kalshi"
+  ],
+  "fields": [
+    "Pre-match recommendations",
+    "Avg confidence",
+    "Suggested exposure",
+    "Exit signals",
+    "Live recommendations"
+  ]
+}

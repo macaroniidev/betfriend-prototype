@@ -1,0 +1,100 @@
+{
+  "route": "pm-picks",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": null
+  },
+  "title": "AI Market Picks",
+  "sections": [
+    "All AI picks",
+    "Cross-venue price comparison"
+  ],
+  "columns": [
+    "Contract",
+    "Pick",
+    "Model",
+    "Price",
+    "Edge",
+    "Grade",
+    "Why",
+    "Stake",
+    "Contract (YES)",
+    "Kalshi",
+    "Polymarket",
+    "ProphetX",
+    "Novig",
+    "Sportsbook",
+    "Model fair",
+    "Save"
+  ],
+  "controls": [
+    {
+      "label": "Venue",
+      "kind": "select",
+      "options": [
+        "All venues",
+        "Kalshi",
+        "Polymarket",
+        "ProphetX",
+        "Novig"
+      ]
+    },
+    {
+      "label": "Grade",
+      "kind": "select",
+      "options": [
+        "All grades",
+        "A and up",
+        "B+ and up"
+      ]
+    },
+    {
+      "label": "Category",
+      "kind": "choice",
+      "options": [
+        "All",
+        "Sports",
+        "Economics",
+        "Politics",
+        "Culture"
+      ]
+    },
+    {
+      "label": "YES price / NO price",
+      "kind": "switch",
+      "options": [
+        "YES price",
+        "NO price"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Prediction Markets",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    }
+  ],
+  "rowActions": [
+    "Open in Polymarket",
+    "Log",
+    "Open in Kalshi",
+    "Open in ProphetX",
+    "Open in Novig"
+  ],
+  "fields": [
+    "Live AI picks",
+    "Average edge",
+    "Stake on top 10",
+    "Cheapest venue most often"
+  ]
+}

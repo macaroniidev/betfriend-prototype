@@ -1,0 +1,87 @@
+{
+  "route": "ev-builder",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: Reset",
+      "mode: Save as my default"
+    ],
+    "drawerVia": null,
+    "reviewed": "sample-data text removed by hand (team, player and market names)"
+  },
+  "title": "Fair Odds Builder",
+  "sections": [
+    "How your formula prices a line",
+    "Live preview · bets your formula finds"
+  ],
+  "columns": [
+    "Book",
+    "Wt",
+    "Your EV",
+    "Default EV",
+    "Bet",
+    "Book · price",
+    "Your fair"
+  ],
+  "controls": [
+    {
+      "label": "Min EV %",
+      "kind": "input"
+    },
+    {
+      "label": "Market",
+      "kind": "select",
+      "options": [
+        "All",
+        "Moneyline",
+        "Spread",
+        "Total",
+        "Player Prop"
+      ]
+    },
+    {
+      "label": "Board",
+      "kind": "choice",
+      "options": [
+        "Pre-match",
+        "Live"
+      ]
+    },
+    {
+      "label": "Multiplicative / Power / Additive",
+      "kind": "switch",
+      "options": [
+        "Multiplicative",
+        "Power",
+        "Additive"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Reset",
+    "Save as my default",
+    "Show more"
+  ],
+  "rowActions": [
+    "Bet"
+  ],
+  "fields": [
+    "Your formula finds",
+    "Default formula finds",
+    "Only your formula finds",
+    "Top edge",
+    "Games covered"
+  ]
+}

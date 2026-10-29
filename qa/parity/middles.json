@@ -1,0 +1,151 @@
+{
+  "route": "middles",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: Pre-match",
+      "mode: Live"
+    ],
+    "drawerVia": "row"
+  },
+  "title": "Middles",
+  "sections": [],
+  "columns": [
+    "Width",
+    "Event",
+    "Legs",
+    {
+      "text": "Worst case",
+      "aka": [
+        "If it misses (likely)"
+      ]
+    },
+    {
+      "text": "Middle hit",
+      "aka": [
+        "Chance it hits"
+      ]
+    },
+    {
+      "text": "EV",
+      "aka": [
+        "Average"
+      ]
+    },
+    {
+      "text": "If middle hits",
+      "aka": [
+        "If it hits"
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "label": "Sport",
+      "kind": "select",
+      "options": [
+        "All",
+        "NFL",
+        "NBA",
+        "NHL",
+        "NCAAF",
+        "MLB",
+        "EPL"
+      ]
+    },
+    {
+      "label": "Total stake",
+      "kind": "input"
+    },
+    {
+      "label": "Sort by",
+      "kind": "choice",
+      "options": [
+        {
+          "text": "Best EV",
+          "aka": [
+            "Best average"
+          ]
+        },
+        "Widest",
+        "Lowest cost"
+      ]
+    },
+    {
+      "label": "Pre-match / Live",
+      "kind": "switch",
+      "options": [
+        "Pre-match",
+        "Live"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Pre-Match Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    }
+  ],
+  "rowActions": [
+    {
+      "text": "Calculator",
+      "aka": [
+        "calc"
+      ]
+    }
+  ],
+  "fields": [
+    "Pre-match middles",
+    "Widest middle",
+    {
+      "text": "Biggest middle payout",
+      "aka": [
+        "Biggest if it hits"
+      ]
+    },
+    {
+      "text": "Best EV",
+      "aka": [
+        "Best average"
+      ]
+    },
+    "Live middles"
+  ],
+  "drawer": {
+    "sections": [
+      "Scenarios"
+    ],
+    "columns": [
+      "Final result",
+      "Chance",
+      "Profit"
+    ],
+    "fields": [
+      "Total stake",
+      "Round stakes",
+      {
+        "text": "Middle hit %",
+        "aka": [
+          "Chance it hits %"
+        ]
+      }
+    ],
+    "actions": [
+      "Exact",
+      "Bet",
+      "Log both bets"
+    ]
+  }
+}

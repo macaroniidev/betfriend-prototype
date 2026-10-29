@@ -1,0 +1,103 @@
+{
+  "route": "ai-picks",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": null
+  },
+  "title": "AI Sports Picks",
+  "sections": [],
+  "columns": [
+    "Grade",
+    "Record",
+    "ROI"
+  ],
+  "controls": [
+    {
+      "label": "Sport",
+      "kind": "select",
+      "options": [
+        "All sports",
+        "NFL",
+        "NBA",
+        "NHL",
+        "NCAAF",
+        "MLB",
+        "EPL"
+      ]
+    },
+    {
+      "label": "Market",
+      "kind": "select",
+      "options": [
+        "All markets",
+        "Moneyline",
+        "Spread",
+        "Total",
+        "Player props"
+      ]
+    },
+    {
+      "label": "Min grade",
+      "kind": "select",
+      "options": [
+        "Any grade",
+        "A+ only",
+        "A- or better",
+        "B or better",
+        "C+ or better"
+      ]
+    },
+    {
+      "label": "Sort by",
+      "kind": "choice",
+      "options": [
+        "Best",
+        "Confidence",
+        "Start time"
+      ]
+    },
+    {
+      "label": "Today’s picks / Results & record",
+      "kind": "switch",
+      "options": [
+        "Today’s picks",
+        "Results & record"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "AI Picks & Live Analysis",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Ask BetFriend AI",
+    "Full results"
+  ],
+  "rowActions": [
+    "▸ Why the model likes it",
+    "Bet",
+    {
+      "text": "Log bet",
+      "aka": [
+        "Log"
+      ]
+    },
+    "Ask"
+  ],
+  "fields": [
+    "Picks on the board",
+    "A-grade plays",
+    "Average edge",
+    "Model ROI (60d)"
+  ]
+}

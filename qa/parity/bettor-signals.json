@@ -1,0 +1,94 @@
+{
+  "route": "bettor-signals",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": "row"
+  },
+  "title": "Pro Bettor Signals",
+  "sections": [
+    "Live signals",
+    "Leaderboard"
+  ],
+  "columns": [
+    "Bettor",
+    "Bets",
+    "Record",
+    "Win %",
+    "ROI",
+    "Profit",
+    "CLV",
+    "12-mo ROI"
+  ],
+  "controls": [
+    {
+      "label": "Following / All pros",
+      "kind": "switch",
+      "options": [
+        "Following",
+        "All pros"
+      ]
+    },
+    {
+      "label": "Profit / ROI / CLV / Win rate",
+      "kind": "switch",
+      "options": [
+        "Profit",
+        "ROI",
+        "CLV",
+        "Win rate"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Pro Bettor Signals",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Show all 22"
+  ],
+  "rowActions": [
+    "Set price alert",
+    "Log",
+    "Bet",
+    "✓ Following",
+    "Follow"
+  ],
+  "fields": [
+    "Following",
+    "Signals today",
+    "Avg ROI of who you follow",
+    "Top bettor"
+  ],
+  "drawer": {
+    "sections": [
+      "Monthly ROI",
+      "By sport",
+      "Recent bets Last 25"
+    ],
+    "columns": [],
+    "fields": [
+      "ROI",
+      "Profit",
+      "Win rate",
+      "Avg CLV",
+      "Bets tracked",
+      "Avg odds",
+      "Avg stake",
+      "Current streak",
+      "Favorite markets"
+    ],
+    "actions": [
+      "✓ Following"
+    ]
+  }
+}

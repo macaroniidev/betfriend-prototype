@@ -1,0 +1,122 @@
+{
+  "route": "arbitrage",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default",
+      "mode: Pre-match",
+      "mode: Live"
+    ],
+    "drawerVia": "row"
+  },
+  "title": "Arbitrage",
+  "sections": [],
+  "columns": [
+    "ROI",
+    "Event",
+    "Market",
+    "Legs",
+    "Stake per book",
+    "Profit",
+    "Age"
+  ],
+  "controls": [
+    {
+      "label": "Sport",
+      "kind": "select",
+      "options": [
+        "All",
+        "NFL",
+        "NBA",
+        "NHL",
+        "NCAAF",
+        "MLB",
+        "EPL"
+      ]
+    },
+    {
+      "label": "Market",
+      "kind": "select",
+      "options": [
+        "All",
+        "Moneyline",
+        "Spread",
+        "Total",
+        "Player Prop"
+      ]
+    },
+    {
+      "label": "Min ROI %",
+      "kind": "input"
+    },
+    {
+      "label": "Total stake",
+      "kind": "input"
+    },
+    {
+      "label": "Pre-match / Live",
+      "kind": "switch",
+      "options": [
+        "Pre-match",
+        "Live"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Pre-Match Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Pause",
+    "Books"
+  ],
+  "rowActions": [
+    {
+      "text": "Calculator",
+      "aka": [
+        "calc"
+      ]
+    }
+  ],
+  "fields": [
+    "Pre-match arbs",
+    "Best ROI",
+    "Profit available at",
+    "Avg ROI",
+    "Live arbs now"
+  ],
+  "drawer": {
+    "sections": [
+      "Payout by outcome"
+    ],
+    "columns": [
+      "Outcome",
+      "Odds",
+      "Stake",
+      "Payout",
+      "If this wins",
+      "Profit"
+    ],
+    "fields": [
+      "Total stake",
+      "Round stakes"
+    ],
+    "actions": [
+      "Exact",
+      "Bet",
+      "Log both bets",
+      "Balance stakes"
+    ]
+  }
+}

@@ -1,61 +1,73 @@
-// QA: open every route in headless Chrome at desktop and phone size (true 390px via DevTools emulation),
-// report console errors, horizontal overflow and load failures, and save phone screenshots.
-// Usage: node qa/check.mjs  (server must be running on :4400)
-import { spawn } from 'node:child_process';
-import { writeFileSync, readFileSync, mkdtempSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+// QA: open every route (from NAV in public/js/nav.js) in headless Chrome at desktop (1440), phone (390) and
+// small phone (360) width, with true mobile emulation. Reports console errors, horizontal overflow, load failures
+// and broken values, measures where the first result row starts, and saves phone screenshots.
+// Usage: node qa/check.mjs        (server must be running; BF_URL=http://127.0.0.1:44xx to target another one)
+//   env THEME=light|dark (default light)   SHOTS=0 to skip the 390px screenshots
+// Writes qa/first-row.json: { "<width>": { "<route>": { y, sel } } }  (y = document px of the first result row).
+import { writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { browser, routes as navRoutes, appUrl, sleep, CORE_ROUTES } from './cdp.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const BASE = 'http://127.0.0.1:4400/app/#/';
-const app = readFileSync(join(here, '../public/js/nav.js'), 'utf8');
-const routes = [...app.matchAll(/\['([a-z-]+)', '[^']+', '[^']*'\]/g)].map((m) => m[1]);
+const routes = await navRoutes();
+console.log(`${routes.length} routes found in nav.js (${CORE_ROUTES.length} core routes present)`);
 
-const port = 9300 + Math.floor(Math.random() * 500);
-const chrome = spawn(CHROME, ['--headless=new', '--disable-gpu', `--remote-debugging-port=${port}`, `--user-data-dir=${mkdtempSync(join(tmpdir(), 'bfqa-'))}`, 'about:blank'], { stdio: 'ignore' });
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-let wsUrl;
-for (let i = 0; i < 50 && !wsUrl; i++) {
-  await sleep(200);
-  try { wsUrl = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find((t) => t.type === 'page')?.webSocketDebuggerUrl; } catch { /* not up yet */ }
+// Runs in the page. The first result row: the first visible item of the page's primary list ([data-bf-list] is
+// the rebuild contract: mark the main results container with it). Before that contract existed, the topmost
+// row of a full data table, feed item or result card is used. Hidden elements are ignored.
+function firstRow() {
+  const vis = (el) => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+  const y = (el) => Math.round(el.getBoundingClientRect().top + scrollY);
+  const listed = [...document.querySelectorAll('#view [data-bf-list] > *')].find(vis);
+  if (listed) return { y: y(listed), sel: '[data-bf-list] > *' };
+  const cands = [...document.querySelectorAll('#view table:not(.mini) tbody tr, #view .feed > *, #view .list > *, #view article.card')].filter(vis);
+  if (!cands.length) return null;
+  const top = cands.reduce((a, b) => (y(b) < y(a) ? b : a));
+  return { y: y(top), sel: top.matches('tr') ? 'table row' : top.matches('article') ? 'card' : 'feed item' };
 }
-const ws = new WebSocket(wsUrl);
-await new Promise((r) => ws.addEventListener('open', r));
-let id = 0; const pending = new Map(); const errors = [];
-ws.addEventListener('message', (e) => {
-  const m = JSON.parse(e.data);
-  if (m.id && pending.has(m.id)) { pending.get(m.id)(m.result); pending.delete(m.id); }
-  if (m.method === 'Runtime.exceptionThrown') errors.push(m.params.exceptionDetails.exception?.description || m.params.exceptionDetails.text);
-  if (m.method === 'Runtime.consoleAPICalled' && m.params.type === 'error') errors.push(m.params.args.map((a) => a.value || a.description).join(' '));
-});
-const send = (method, params = {}) => new Promise((r) => { const i = ++id; pending.set(i, r); ws.send(JSON.stringify({ id: i, method, params })); });
-await send('Runtime.enable'); await send('Page.enable');
+
+function probe() {
+  const doc = document.documentElement;
+  const view = document.getElementById('view');
+  const wide = [...document.querySelectorAll('#view *')].filter((el) => el.getBoundingClientRect().right > innerWidth + 1 && !el.closest('.table-wrap,[style*="overflow"],.scroll-x') && getComputedStyle(el).position !== 'fixed').slice(0, 3).map((el) => el.tagName + '.' + [...el.classList].join('.'));
+  return { overflow: doc.scrollWidth - innerWidth, failed: !view || (document.body?.innerText || '').includes('could not load'), nan: /\$NaN|NaN%|undefined|\[object Object\]/.test(view?.innerText || ''), wide };
+}
+
+// Poll until the screen has rendered (a #view with content and no loading skeleton), up to 15s, then let
+// one tick pass. A fixed wait gave blank loads (and a null document.body) when the machine was busy.
+async function ready() {
+  for (let i = 0; i < 75; i++) {
+    const ok = await b.eval(`(() => { const v = document.getElementById('view'); return !!(v && v.children.length && !v.querySelector('.skel,[aria-busy=true]')); })()`).catch(() => false);
+    if (ok) break;
+    await sleep(200);
+  }
+  await sleep(1200);
+}
 
 const results = [];
-for (const [w, h, mobile] of [[1440, 1000, false], [390, 844, true]]) {
-  await send('Emulation.setDeviceMetricsOverride', { width: w, height: h, deviceScaleFactor: 1, mobile });
+const first = {};
+const b = await browser({ theme: process.env.THEME || 'light' });
+for (const [w, h, mobile] of [[1440, 1000, false], [390, 844, true], [360, 780, true]]) {
+  await b.size(w, h, mobile);
+  first[w] = {};
   for (const r of routes) {
-    errors.length = 0;
-    await send('Page.navigate', { url: `${BASE}${r}` });
-    await sleep(1800);
-    const ev = await send('Runtime.evaluate', { returnByValue: true, expression: `(() => {
-      const doc = document.documentElement;
-      const wide = [...document.querySelectorAll('#view *')].filter((el) => el.getBoundingClientRect().right > innerWidth + 1 && !el.closest('.table-wrap,[style*="overflow"],.scroll-x') && getComputedStyle(el).position !== 'fixed').slice(0, 3).map((el) => el.tagName + '.' + [...el.classList].join('.'));
-      return { overflow: doc.scrollWidth - innerWidth, failed: document.body.innerText.includes('could not load'), nan: /\\$NaN|NaN%|undefined/.test(document.getElementById('view').innerText), wide };
-    })()` });
-    const v = ev.result.value;
-    results.push({ size: w, route: r, ...v, errors: [...errors] });
-    if (mobile) {
-      const shot = await send('Page.captureScreenshot', { format: 'png' });
-      writeFileSync(join(here, `${r}-390.png`), Buffer.from(shot.data, 'base64'));
-    }
+    b.errors.length = 0;
+    await b.go(appUrl(r), 600);
+    await ready();
+    const v = await b.run(probe);
+    if (w !== 360) first[w][r] = await b.run(firstRow);
+    results.push({ size: w, route: r, ...v, errors: [...b.errors] });
+    if (w === 390 && process.env.SHOTS !== '0') await b.shot(join(here, `${r}-390.png`));
   }
 }
-ws.close(); chrome.kill();
+b.close();
+writeFileSync(join(here, 'first-row.json'), JSON.stringify(first, null, 1) + '\n');
+
 const bad = results.filter((x) => x.overflow > 0 || x.failed || x.nan || x.errors.length);
 for (const x of bad) console.log(`${x.size} ${x.route}: overflow=${x.overflow} failed=${x.failed} nan=${x.nan} wide=${x.wide.join(',')} errors=${x.errors.slice(0, 2).join(' | ')}`);
-console.log(`${results.length} checks, ${bad.length} with problems`);
-process.exit(0);
+console.log('\nfirst result row (document y px)   1440 | 390');
+for (const r of routes) { const a = first[1440][r], m = first[390][r]; if (a || m) console.log(`  ${r.padEnd(20)} ${String(a?.y ?? '-').padStart(6)} | ${String(m?.y ?? '-').padStart(6)}   ${a?.sel || m?.sel || ''}`); }
+console.log(`\n${results.length} checks (${routes.length} routes × 1440/390/360), ${bad.length} with problems`);
+await sleep(10);
+process.exit(bad.length ? 1 : 0);

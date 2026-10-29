@@ -1,0 +1,60 @@
+{
+  "route": "exit-alerts",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": null
+  },
+  "title": "Exit Alerts",
+  "sections": [
+    "Alerts",
+    "Open positions",
+    "Alert settings"
+  ],
+  "columns": [
+    "Position",
+    "Contracts",
+    "Entry",
+    "Now",
+    "P&L",
+    "1D",
+    "Exit levels"
+  ],
+  "controls": [],
+  "actions": [
+    {
+      "text": "Prediction Markets",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Dismiss all",
+    "Browse markets",
+    "Push",
+    "SMS",
+    "Email",
+    "Discord"
+  ],
+  "rowActions": [
+    "Sell on Polymarket",
+    "Dismiss",
+    "Sell on Kalshi",
+    "Trim on Kalshi",
+    "Trim on Polymarket",
+    "Sell on Novig",
+    "Sell on ProphetX"
+  ],
+  "fields": [
+    "Open positions",
+    "Market value",
+    "Unrealized P&L",
+    "Active alerts"
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "route": "positive-ev",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": "row",
+    "reviewed": "sample-data text removed by hand (team, player and market names)"
+  },
+  "title": "Positive EV",
+  "sections": [],
+  "columns": [
+    "EV",
+    "Event",
+    "Bet",
+    "Book · price",
+    "Fair odds",
+    "Win prob",
+    "Stake"
+  ],
+  "controls": [
+    {
+      "label": "Sport",
+      "kind": "select",
+      "options": [
+        "All",
+        "NFL",
+        "NBA",
+        "NHL",
+        "NCAAF",
+        "MLB",
+        "EPL"
+      ]
+    },
+    {
+      "label": "Market",
+      "kind": "select",
+      "options": [
+        "All",
+        "Moneyline",
+        "Spread",
+        "Total",
+        "Player Prop"
+      ]
+    },
+    {
+      "label": "Min EV %",
+      "kind": "input"
+    },
+    {
+      "label": "Pre-match / Live +EV",
+      "kind": "switch",
+      "options": [
+        "Pre-match",
+        "Live +EV"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Pre-Match Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "Live Arbitrage & EV",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Circa Sports",
+    "Novig",
+    "ProphetX",
+    "DK",
+    "FD",
+    "MGM",
+    "CZR",
+    "ESPN",
+    "FAN",
+    "BR",
+    "HR",
+    "365",
+    "FLF",
+    "Show 4 more of 4"
+  ],
+  "rowActions": [
+    "Bet"
+  ],
+  "fields": [
+    "+EV bets found",
+    "Top edge",
+    "Average edge",
+    "Expected profit"
+  ],
+  "drawer": {
+    "sections": [
+      "Line history",
+      "Price at every book",
+      "Fair odds by sharp reference",
+      "Devig breakdown",
+      "Kelly sizing"
+    ],
+    "columns": [
+      "Book",
+      "Other side",
+      "EV",
+      "Source",
+      "Prices",
+      "Vig",
+      "Fair",
+      "Method",
+      "Fair prob",
+      "Fair odds"
+    ],
+    "fields": [
+      "Fair odds",
+      "Book",
+      "Expected value per",
+      "Full Kelly",
+      "Recommended stake",
+      "Expected profit",
+      "Bankroll"
+    ],
+    "actions": [
+      "Bet at",
+      "Log bet"
+    ]
+  }
+}

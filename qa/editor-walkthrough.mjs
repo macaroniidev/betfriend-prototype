@@ -96,23 +96,34 @@ try {
   await waitSaved();
   const priceOk = await until(F(`return /179\\.99/.test(d.querySelector('.pricing .price-big')?.textContent || '')`), 12000);
   ok('5. Change a price (All-Access → $179.99)', dlgOpen && priceOk, await b.eval(F(`return d.querySelector('.pricing .price-big')?.textContent`)));
-  ok('   sidebar button follows the new price', await b.eval(F(`return /179\\.99/.test(d.querySelector('.side-foot .btn')?.textContent || '')`)));
+  // The shell's upgrade button shows the All-Access price (wherever the rebuilt shell puts it).
+  ok('   sidebar button follows the new price', await b.eval(F(`return /179\\.99/.test([...d.querySelectorAll('.side-foot .btn, .side a.btn, .side button, .topbar a.btn')].map((x) => x.textContent).join(' '))`)));
   await shot('5-price');
 
-  // 6. Hide a panel on an app screen (Daily Card → "Account health")
+  // 6. Hide a panel on an app screen (Daily Card → "Account health", or the first top-level panel if the
+  // rebuilt Daily Card names it differently). The panel is tracked by its editor block key.
   await b.eval(`(() => { const s = document.getElementById('page'); s.value = 'app:daily'; s.dispatchEvent(new Event('change')); })()`);
-  await until(F(`return !!d.querySelector('.health')`), 12000);
+  await until(F(`return !!d.querySelector('#view h1') && !!w.BFContent`), 12000);
   await until(`[...document.querySelectorAll('#tab-blocks li')].some(li => /Account health/.test(li.textContent))`, 8000);
-  await b.eval(`[...document.querySelectorAll('#tab-blocks li')].find(li => /Account health/.test(li.textContent)).querySelector('[data-act=hide]').click()`);
+  const panelKey = await b.eval(`(() => {
+    const lis = [...document.querySelectorAll('#tab-blocks li[data-key]')];
+    const li = lis.find((x) => /Account health/.test(x.textContent)) || lis.find((x) => !x.classList.contains('bl-sub') && !/Page title|Group of/.test(x.textContent));
+    if (!li) return null;
+    li.querySelector('[data-act=hide]').click();
+    return li.dataset.key;
+  })()`);
   await sleep(500); await waitSaved();
-  ok('6. Hide an app panel (Account health)', await b.eval(F(`return d.querySelector('.health')?.hasAttribute('data-bf-hidden')`)));
-  // also edit a heading text on the app
-  await clickFrameEl(`[...d.querySelectorAll('.card h2, .card h3')].find(h => /Unlock every tool/i.test(h.textContent))`);
+  const panelSel = `[data-bf-key=${JSON.stringify(panelKey || '-')}]`;
+  ok('6. Hide an app panel (Account health)', !!panelKey && await b.eval(F(`return !!d.querySelector(${JSON.stringify(panelSel)})?.hasAttribute('data-bf-hidden')`)), panelKey || 'no panel found');
+  // also edit a heading text on the app: "Unlock every tool", else the first static panel heading
+  const HEAD = `[...d.querySelectorAll('#view h2, #view h3')].filter((h) => !h.closest('[data-bf-nodata], tbody, [data-bf-hidden]') && h.textContent.trim()).sort((a, b) => /Unlock every tool/i.test(b.textContent) - /Unlock every tool/i.test(a.textContent))[0]`;
+  const headFrom = await b.eval(F(`return (${HEAD})?.textContent.trim() || ''`));
+  await clickFrameEl(HEAD);
   await b.eval(F(`const el = [...d.querySelectorAll('[contenteditable]')][0]; const s = w.getSelection(); s.selectAllChildren(el);`));
   await b.send('Input.insertText', { text: 'QA unlock heading' });
   await b.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 });
   await waitSaved();
-  ok('   edit app text (card heading)', await until(F(`return [...d.querySelectorAll('h2,h3')].some(h => h.textContent.trim() === 'QA unlock heading')`), 4000));
+  ok('   edit app text (card heading)', await until(F(`return [...d.querySelectorAll('h2,h3')].some(h => h.textContent.trim() === 'QA unlock heading')`), 4000), headFrom);
   await shot('6-hidden');
 
   // 7. Upload an image (replace the landing hero art image)
@@ -162,7 +173,8 @@ try {
   await v.go(`${BASE}/app/#/pricing`, 2500);
   const vPrice = await v.eval(`document.querySelector('.pricing .price-big')?.textContent || ''`);
   await v.go(`${BASE}/app/#/daily`, 2500);
-  const vHealth = await v.eval(`(() => { const h = document.querySelector('.health'); return h ? getComputedStyle(h).display : 'missing'; })()`);
+  await v.eval(`window.BFContent?.blocks()`); // assigns block keys, so the hidden panel can be found by key
+  const vHealth = await v.eval(`(() => { const h = document.querySelector(${JSON.stringify(panelSel)}); return h ? getComputedStyle(h).display : 'missing'; })()`);
   const vText = await v.eval(`[...document.querySelectorAll('h2,h3')].some(h => h.textContent.trim() === 'QA unlock heading')`);
   await v.shot(join(shots, 'walk-10-visitor-daily.png'));
   const vEdit = await (await fetch(`${BASE}/?bf_edit=1`, { redirect: 'manual' })).status;

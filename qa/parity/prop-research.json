@@ -1,0 +1,77 @@
+{
+  "route": "prop-research",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": null,
+    "reviewed": "sample-data text removed by hand (team, player and market names)"
+  },
+  "title": "Prop Research",
+  "sections": [
+    "Last 20 games",
+    "Splits",
+    "Matchup notes",
+    "All props today"
+  ],
+  "columns": [
+    "Split",
+    "Games",
+    "Avg",
+    "Hit",
+    "Player",
+    "Stat",
+    "Line",
+    "Best Over",
+    "Best Under",
+    "L5",
+    "L10",
+    "L20",
+    "Avg L10",
+    "Best edge"
+  ],
+  "controls": [
+    {
+      "label": "Player",
+      "kind": "input"
+    },
+    {
+      "label": "Stat",
+      "kind": "choice",
+      "options": [
+        "Points",
+        "Rebounds",
+        "Assists",
+        "Threes",
+        "Pts+Reb+Ast"
+      ]
+    },
+    {
+      "label": "Line",
+      "kind": "input"
+    }
+  ],
+  "actions": [
+    {
+      "text": "AI Picks & Live Analysis",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Bet"
+  ],
+  "rowActions": [],
+  "fields": [
+    "Hit rate · Last 5",
+    "Hit rate · Last 10",
+    "Hit rate · Last 20",
+    "Average (L10 / L20)",
+    "Range (L20)"
+  ]
+}

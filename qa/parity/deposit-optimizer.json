@@ -1,0 +1,68 @@
+{
+  "route": "deposit-optimizer",
+  "captured": {
+    "from": "ux-before (app as it was before the UX rebuild)",
+    "origin": "http://127.0.0.1:4411",
+    "width": 1440,
+    "date": "2026-10-28",
+    "states": [
+      "default"
+    ],
+    "drawerVia": null
+  },
+  "title": "Deposit Optimizer",
+  "sections": [
+    "Recommended allocation",
+    "Reasoning by book",
+    "Open a new account",
+    "How we weigh it"
+  ],
+  "columns": [
+    "Book",
+    "Status",
+    "Promo value",
+    "Opps",
+    "Deposit",
+    "Why"
+  ],
+  "controls": [
+    {
+      "label": "Deposit amount",
+      "kind": "input"
+    },
+    {
+      "label": "Promos first / Balanced / Opportunities first",
+      "kind": "switch",
+      "options": [
+        "Promos first",
+        "Balanced",
+        "Opportunities first"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "text": "Promo Converter",
+      "onlyWhenLocked": true
+    },
+    {
+      "text": "All-Access",
+      "onlyWhenLocked": true
+    },
+    "Log deposits to my balances",
+    "Add book"
+  ],
+  "rowActions": [],
+  "fields": [
+    "Deposit",
+    "Promo value unlocked",
+    "Opportunities covered",
+    "Total bankroll after",
+    "Promo value",
+    "Opportunity flow",
+    "Healthy account",
+    "Limited account",
+    "Restricted account",
+    "Existing balance"
+  ]
+}

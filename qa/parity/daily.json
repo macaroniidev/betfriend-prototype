@@ -1,0 +1,46 @@
+{
+ "route": "daily",
+ "captured": {
+  "from": "ux-before (app as it was before the UX rebuild)",
+  "origin": "http://127.0.0.1:4411",
+  "width": 1440,
+  "date": "2026-10-28",
+  "states": [
+   "default"
+  ],
+  "drawerVia": null
+ },
+ "title": "Today's Daily Card",
+ "sections": [
+  "Your betting",
+  "Account health",
+  "Unlock every tool"
+ ],
+ "columns": [],
+ "controls": [],
+ "actions": [
+  "All",
+  "Arbitrage",
+  "Positive EV",
+  "Middle",
+  "Promo",
+  "Profit Boost",
+  "Sharp Money",
+  "Pro Bettor",
+  "AI Pick",
+  "Prediction Market",
+  "Exit Alert",
+  "Open Bet Tracker",
+  "See plans"
+ ],
+ "rowActions": [
+  "Open",
+  "Bet"
+ ],
+ "fields": [
+  "Profit",
+  "ROI",
+  "Avg CLV",
+  "Open bets"
+ ]
+}
