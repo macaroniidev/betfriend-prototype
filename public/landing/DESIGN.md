@@ -12,7 +12,7 @@ Everything below uses the `bf2-` class prefix from BF097, so the CSS can be lift
 
 From Max's brief (`oddsjam-lp/docs/bf/design-notes.md`). Never ship any of these:
 
-- Cream or off-white **page** grounds. The page is `#FFFFFF`. (The product screenshots have a warm off-white app ground
+- Cream or off-white **page** grounds. The page is `#FFFFFF`. (The product screenshots have their own app ground
   inside them; that's fine inside a framed screenshot. Never let that colour bleed into a section.)
 - Italic accent words in headlines. No italics in Barlow at all.
 - Numbered "01 / 02 / 03" section or step labels. Steps use green check-mark bullets.
@@ -553,15 +553,16 @@ Mate always sits on a green ground or a green tile so the white bubble reads. On
 
 ## 8. Product screenshots
 
-Captured 2026-10-27 from the prototype at `http://127.0.0.1:4400/` (light mode, 1440×1000 at 2x), cropped to the main
-content area (sidebar 248px and top bar 53px removed). Each is 1192×947 CSS px.
+Recaptured 2026-10-28 after the app UX rebuild with `node qa/landing-shots.mjs` (light theme, 1440 wide at 2x), cropped to
+the main content area (sidebar 248px and top bar 58px removed). Each is 1192×947 CSS px. The lens crops in landing.css
+(`--x/--y/--w/--h`) point at the top row of arbitrage and sharp-money; re-measure them if those layouts change.
 
 Per route: `img/app-<route>.png` (1x, 235 to 365 KB), `img/app-<route>.webp` (1x, 65 to 96 KB),
 `img/app-<route>@2x.webp` (2x, 135 to 205 KB). Use the `<picture>` in 6.7: webp 1x/2x with the PNG as fallback.
 
 | Route | Shows | Good for |
 |---|---|---|
-| `daily` | Today's Daily Card: dark hero with "$2,092", ranked moves, Your betting, Account health | Hero / "everything in one card" |
+| `daily` | Today's Daily Card: green hero with "$1,973 hedged today", ranked moves with Bet both, Your betting, Account health | Hero / "everything in one card" |
 | `arbitrage` | Stat tiles + arb table (ROI, legs, stake per book, profit, Calculator) | Arbitrage section |
 | `positive-ev` | +EV bet list | +EV section |
 | `sharp-money` | Sharp money moves | Signals |
@@ -575,7 +576,7 @@ Per route: `img/app-<route>.png` (1x, 235 to 365 KB), `img/app-<route>.webp` (1x
 | `screen` | Odds screen: books × markets, best price highlighted | "Every book on one screen" |
 
 Notes for the builder:
-- The app uses its own serif page titles and a warm off-white app ground. That's the real product, so leave the
+- The app now uses the landing brand (Barlow titles, light ground, brand greens). That's the real product, so leave the
   screenshots as they are, but always frame them (6.7) so the off-white reads as "inside the app", never as page ground.
 - Wide tables (`screen`, `arbitrage`) are cut on the right edge in the source; that's fine inside a frame. On phones
   crop from the top-left (`object-position: top left`) rather than shrinking the whole image.
