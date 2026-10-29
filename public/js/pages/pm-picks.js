@@ -1,44 +1,57 @@
-// AI Market Picks: model fair probability vs market price on Kalshi, Polymarket, ProphetX and Novig,
-// graded with reasons and sized from your bankroll, plus a cross-venue price comparison per contract.
+// AI Market Picks: model fair probability vs market price on Kalshi, Polymarket, ProphetX and Novig, graded
+// with reasons and sized from your bankroll, plus a cross-venue price comparison per contract.
+// Results-first (B1): live status, filters and 4 facts in the head, the top 3 picks right under it.
+// Every pick has ONE primary (B2: "Buy YES · $86 · Polymarket ↗") and a Log ghost; the full list is a
+// ui.table paged with "Show 20 more" (static list, B14). Prices follow the odds-format preference (B13).
 
 const CSS = `
-.pmp .top3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
-.pmp .pick { padding: 16px; display: grid; gap: 10px; align-content: start; }
-.pmp .pick .hd { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
-.pmp .grade { margin-left: auto; font: 700 15px var(--serif); width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: var(--lime); color: var(--ink); flex: none; }
-.pmp .grade.B, .pmp .grade.C { background: var(--panel); color: var(--text); border: 1px solid var(--line); }
-.pmp .pick h3 { font: 700 16px/1.3 var(--sans); text-transform: none; }
-.pmp .pside { font: 700 11px var(--sans); padding: 2px 7px; border-radius: 6px; margin-right: 4px; }
-.pmp .pside.YES { background: var(--pos-bg); color: var(--pos); } .pmp .pside.NO { background: var(--neg-bg); color: var(--neg); }
-.pmp .vs { display: grid; gap: 5px; font-size: 12.5px; }
-.pmp .vs .ln { display: grid; grid-template-columns: 74px minmax(0, 1fr) 40px; gap: 8px; align-items: center; }
+.pmp .top-sec { margin: 4px 0 0; }
+/* Section headings use the shared .sec scale (app.css .sec-head h2), like every other screen. */
+.pmp .kick { font-size: var(--t-fig); margin: 0 0 10px; }
+.pmp .top3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+/* Top picks: flat tiles on --panel with the green top rule (no card-in-card, B6). */
+.pmp .pick { padding: 14px 16px 14px; display: grid; gap: 9px; align-content: start; background: var(--panel); border-top: 4px solid var(--g); border-radius: 0 0 var(--r) var(--r); }
+.pmp .pick .hd { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-size: var(--t-xs); color: var(--muted); font-weight: 600; }
+.pmp .grade { margin-left: auto; font: 900 var(--t-lg)/1 var(--f-head); min-width: 40px; height: 36px; padding: 0 6px; border-radius: 8px; display: grid; place-items: center; flex: none;
+  background: var(--g); color: #fff; }
+.pmp .grade.B, .pmp .grade.C { background: var(--paper); color: var(--text); border: 2px solid var(--line-strong); }
+.pmp .pick .ttl { margin: 0; font: 700 var(--t-md)/1.3 var(--f-body); }
+/* YES / NO side tags: identical styling (symmetric, B7). */
+.pmp .pside { display: inline-block; font: 900 12px/1 var(--f-head); letter-spacing: .06em; padding: 4px 7px 3px; border-radius: 6px; border: 2px solid var(--line-strong); color: var(--text); background: var(--paper); margin-right: 6px; vertical-align: 1px; }
+.pmp .vs { display: grid; gap: 5px; font-size: var(--t-xs); font-weight: 700; }
+.pmp .vs .ln { display: grid; grid-template-columns: 58px minmax(0, 1fr) 52px; gap: 8px; align-items: center; }
 .pmp .vs .ln b { text-align: right; font-variant-numeric: tabular-nums; }
-.pmp .vs .track { height: 8px; border-radius: 4px; background: var(--line-2); overflow: hidden; }
+.pmp .vs .track { height: 8px; border-radius: 4px; background: var(--paper); overflow: hidden; }
 .pmp .vs .track i { display: block; height: 100%; border-radius: 4px; }
-.pmp .vs .mdl i { background: var(--accent); } .pmp .vs .mkt i { background: var(--muted); opacity: .6; }
-.pmp ul.why { margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--muted); display: grid; gap: 3px; }
-.pmp .foot { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--line-2); padding-top: 10px; }
-.pmp .foot .stake { margin-right: auto; font-size: 11.5px; color: var(--muted); }
-.pmp .foot .stake strong { display: block; color: var(--text); font: 600 18px var(--serif); }
-.pmp .r { text-align: right; font-variant-numeric: tabular-nums; }
-.pmp .ttl { font-weight: 600; } .pmp .sub { font-size: 12px; color: var(--muted); margin-top: 3px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-.pmp td.why2 { font-size: 12px; color: var(--muted); max-width: 300px; }
-.pmp .acts { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
-.pmp .cmp td.vc { text-align: center; font-family: var(--mono); font-weight: 600; white-space: nowrap; }
-.pmp .cmp td.vc.best span { background: var(--lime); color: var(--ink); border-radius: 6px; padding: 2px 7px; }
-.pmp .cmp td.vc .na { color: var(--muted); font-weight: 400; }
-.pmp .cmp td.vc button { border: 0; background: none; font: inherit; color: inherit; cursor: pointer; padding: 0; }
-.pmp .cmp td.vc small { display: block; font: 500 11px var(--sans); color: var(--muted); }
+.pmp .vs .mdl i { background: var(--g); } .pmp .vs .mkt i { background: var(--line-strong); }
+.pmp .edge-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.pmp .edge-row .ev-line { margin: 0; }
+.pmp ul.why { margin: 0; padding-left: 18px; font-size: var(--t-sm); color: var(--muted); display: grid; gap: 3px; }
+.pmp .foot { display: flex; gap: 8px; align-items: flex-end; flex-wrap: wrap; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 10px; }
+.pmp .foot .stake { font-size: var(--t-xs); color: var(--muted); font-weight: 700; }
+.pmp .foot .stake b { display: block; color: var(--text); font: 900 var(--t-fig)/1 var(--f-head); margin: 2px 0; font-variant-numeric: tabular-nums; }
+.pmp .foot .row-acts { flex-wrap: wrap; }
+.pmp .sub { font-size: var(--t-xs); color: var(--muted); margin-top: 3px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.pmp .cttl { font-weight: 700; }
+.pmp .why2 { font-size: var(--t-xs); color: var(--muted); max-width: 300px; display: block; }
+.pmp .stk b { display: block; } .pmp .stk small { color: var(--muted); font-size: var(--t-xs); }
+.pmp .cmp-wrap { overflow-x: auto; }
+.pmp .cmp td.vc { text-align: center; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.pmp .cmp td.vc button { border: 0; background: none; font: inherit; color: inherit; cursor: pointer; padding: 2px; border-radius: 6px; }
+.pmp .cmp td.vc button:hover { text-decoration: underline; }
+.pmp .cmp td.vc small { display: block; font: 600 11px var(--f-body); color: var(--muted); }
 .pmp .cmp th.vc { text-align: center; }
-.pmp .save { font-size: 12px; color: var(--pos); font-weight: 600; }
-.pmp section.card > header h2 { font-size: 18px; }
-.pmp section.card > header p { margin: 3px 0 0; color: var(--muted); font-size: 12.5px; }
+.pmp .save { font-size: var(--t-xs); color: var(--pos); font-weight: 800; white-space: nowrap; }
+.pmp .sec-note { margin: -6px 0 6px; font-size: var(--t-sm); color: var(--muted); }
+.pmp .legend { margin: 8px 0 0; font-size: var(--t-xs); color: var(--muted); }
+.pmp .head-actions .toolbar.fb { margin-bottom: 0; }
+.pmp .how-sec { margin-top: 28px; }
 @media (max-width: 1100px) { .pmp .top3 { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 860px) {
-  .pmp td.why2 { max-width: none; }
-  .pmp .acts { justify-content: flex-end; }
+  .pmp .why2 { max-width: none; }
   .pmp .cmp td.vc { text-align: right; }
-  .pmp section.card > header { flex-wrap: wrap; }
+  .pmp .foot .row-acts { width: 100%; justify-content: flex-start; }
+  .pmp .foot .bet-action { flex: 1 1 auto; justify-content: center; }
 }`;
 
 export default function render(root, ctx) {
@@ -47,117 +60,188 @@ export default function render(root, ctx) {
   if (!document.getElementById('css-pm-picks')) {
     const s = document.createElement('style'); s.id = 'css-pm-picks'; s.textContent = CSS; document.head.appendChild(s);
   }
-  const st = { venue: 'All', category: 'All', side: 'YES', minGrade: 'All' };
+  const v = ui.view('pm-picks');
+  const st = { side: v.get('side', 'YES') === 'NO' ? 'NO' : 'YES' };
   const GR = { 'A+': 5, A: 4, 'B+': 3, B: 2, 'C+': 1 };
+  const c$ = (c) => ui.fmtCents(c);
+  const venueName = (id) => pm.VENUE_NAMES[id];
 
   root.innerHTML = `<div class="pmp">
-    ${ui.header({ title: 'AI Market Picks', tool: 'pm-picks',
+    ${ui.pageHead({ title: 'AI Market Picks', tool: 'pm-picks', live: { label: 'Re-priced live' },
       subtitle: 'AI prediction market picks. Our model prices every contract on Kalshi, Polymarket, ProphetX and Novig, compares it with the live market price and the sportsbook board, and tells you what to buy, where it is cheapest and how much to stake.',
-      actions: `<span class="tag pos">${ui.liveDot()} Re-priced every tick</span>` })}
-    <div class="toolbar">
-      ${ui.select('venue', [['All', 'All venues'], ...pm.VENUES.map((v) => [v, pm.VENUE_NAMES[v]])], st.venue, 'Venue')}
-      ${ui.select('grade', [['All', 'All grades'], ['A', 'A and up'], ['B+', 'B+ and up']], st.minGrade, 'Grade')}
-      <div class="field"><span>Category</span>${ui.seg('cat', ['All', ...pm.CATEGORIES], st.category)}</div>
-    </div>
-    <div data-stats></div>
-    <div class="top3" data-top></div>
-    <section class="card" style="margin-bottom:16px">
-      <header><div><h2>All AI picks</h2><p>Model probability vs market price, edge, grade and optimal stake from your bankroll.</p></div></header>
-      <div class="table-wrap"><table class="t stack-sm" data-table></table></div>
+      actions: '<div data-fb></div>', facts: [] })}
+    <section class="top-sec"><h2 class="kick">Top picks right now</h2><div class="top3" data-top data-bf-list></div></section>
+    <section class="sec">
+      <div class="sec-head"><h2>All AI picks</h2></div>
+      <p class="sec-note">Model probability vs market price, edge, grade and suggested stake from your bankroll.</p>
+      <div data-table></div><div data-more></div>
     </section>
-    <section class="card cmp">
-      <header><div><h2>Cross-venue price comparison</h2><p>The same outcome priced on every venue and the best sportsbook. Cheapest venue highlighted.</p></div>${ui.seg('side', [['YES', 'YES price'], ['NO', 'NO price']], st.side)}</header>
-      <div class="table-wrap"><table class="t stack-sm" data-cmp></table></div>
+    <section class="sec cmp">
+      <div class="sec-head"><h2>Cross-venue price comparison</h2><div class="sec-actions">${ui.seg('side', [['YES', 'YES price'], ['NO', 'NO price']], st.side)}</div></div>
+      <p class="sec-note">The same outcome priced on every venue and the best sportsbook. The cheapest venue is highlighted.</p>
+      <div class="cmp-wrap"><table class="t stack-sm" data-cmp></table></div>
+      <p class="legend"><span class="price best">Best</span> cheapest venue for this side · — not listed there</p>
     </section>
+    ${ui.how({ summary: 'Our model prices each contract; when the market is cheaper than the model, that gap is the edge.',
+      checks: ['Edge is model fair minus price, per contract', 'Grades run from C+ to A+ by the size of the edge',
+        `Stakes use ${ui.term('kelly_fraction', 'your Kelly fraction')} and are capped at 5% of your ${ui.term('bankroll')}`,
+        'We show where each pick is cheapest; you place the order on the venue'] })}
   </div>`;
 
+  // ---------- filters (in the head, so the first pick sits high) ----------
+  const fb = ui.filterBar({
+    id: 'pm-picks',
+    fields: [
+      { key: 'venue', type: 'select', label: 'Venue', default: 'All', options: [['All', 'All venues'], ...pm.VENUES.map((x) => [x, venueName(x)])], query: true },
+      { key: 'grade', type: 'select', label: 'Grade', default: 'All', options: [['All', 'All grades'], ['A', 'A and up'], ['B+', 'B+ and up']] },
+      { key: 'category', type: 'select', label: 'Category', default: 'All', options: ['All', ...pm.CATEGORIES], query: true },
+    ],
+    onChange: () => { pg.reset(); compute(); paintFacts(); paintTop(); mountTable(); renderCompare(); },
+  });
+  root.querySelector('[data-fb]').append(fb.el);
+
   let picks = [];
-  const gradeOk = (g) => st.minGrade === 'All' || GR[g] >= GR[st.minGrade];
-  const compute = () => { picks = pm.aiPicks({ venue: st.venue, category: st.category }).filter((p) => gradeOk(p.grade)); };
+  const gradeOk = (g) => fb.values.grade === 'All' || GR[g] >= GR[fb.values.grade];
+  const compute = () => { picks = pm.aiPicks({ venue: fb.values.venue, category: fb.values.category }).filter((p) => gradeOk(p.grade)); };
+  const evOf = (p) => (p.edge / (p.marketPrice / 100)) * p.stake;    // expected profit on the suggested stake
 
-  function vsBars(p) {
-    return `<div class="vs"><div class="ln mdl"><span>Model</span><span class="track"><i style="width:${(p.modelProb * 100).toFixed(1)}%"></i></span><b>${Math.round(p.modelProb * 100)}%</b></div>
-      <div class="ln mkt"><span>Market</span><span class="track"><i style="width:${p.marketPrice}%"></i></span><b>${p.marketPrice}¢</b></div></div>`;
-  }
+  const vsBars = (p) => `<div class="vs" role="img" aria-label="Model ${Math.round(p.modelProb * 100)}% vs market ${p.marketPrice}%">
+      <div class="ln mdl"><span>Model</span><span class="track"><i style="width:${(p.modelProb * 100).toFixed(1)}%"></i></span><b>${Math.round(p.modelProb * 100)}%</b></div>
+      <div class="ln mkt"><span>Market</span><span class="track"><i style="width:${p.marketPrice}%"></i></span><b>${c$(p.marketPrice)}</b></div></div>`;
   const sub = (m) => `${ui.book(m.venue)} ${m.sport ? ui.sport(m.sport) : ui.tag(m.category)} <span>${ui.esc(m.kind)}</span> ${m.live ? ui.liveDot() : ''}`;
-  const openBtn = (p, cls = 'primary') => `<button class="btn sm ${cls}" data-open="${p.marketId}" data-side="${p.side}" data-stake="${p.stake}">Open in ${pm.VENUE_NAMES[p.market.venue]} ↗</button>`;
+  // The one primary per pick: buy that side at the venue, sized from your bankroll.
+  const buy = (p, size = 'sm') => ui.betAction({ verb: `Buy ${p.side}`, amount: `${ui.money(p.stake, 0)} · ${venueName(p.market.venue)} ↗`, act: 'buy', size,
+    attrs: { 'data-pick': p.id }, title: `Open in ${venueName(p.market.venue)}` });
 
-  function renderAll() {
-    compute();
+  function paintFacts() {
     const bank = store.get().bankroll;
     const totStake = picks.slice(0, 10).reduce((a, p) => a + p.stake, 0);
     const venues = {};
     picks.forEach((p) => { venues[p.market.venue] = (venues[p.market.venue] || 0) + 1; });
     const topV = Object.entries(venues).sort((a, b) => b[1] - a[1])[0];
-    root.querySelector('[data-stats]').innerHTML = ui.stats([
+    const html = ui.facts([
       { label: 'Live AI picks', value: picks.length, note: `${picks.filter((p) => GR[p.grade] >= 4).length} graded A or better` },
-      { label: 'Average edge', value: picks.length ? `+${(picks.reduce((a, p) => a + p.edge, 0) / picks.length * 100).toFixed(1)}¢` : '—', note: 'model fair minus price, per contract', tone: 'pos' },
+      { label: 'Average edge', term: 'edge', value: picks.length ? `+${(picks.reduce((a, p) => a + p.edge, 0) / picks.length * 100).toFixed(1)}¢` : ui.na('No picks'), note: 'model fair minus price, per contract', tone: 'pos' },
       { label: 'Stake on top 10', value: ui.money(totStake, 0), note: `${ui.pct(totStake / bank, 0)} of ${ui.money(bank, 0)} · Kelly-sized` },
-      { label: 'Cheapest venue most often', value: topV ? pm.VENUE_NAMES[topV[0]] : '—', note: topV ? `${topV[1]} of ${picks.length} picks` : '' },
+      { label: 'Cheapest venue most often', value: topV ? venueName(topV[0]) : ui.na('No picks'), note: topV ? `${topV[1]} of ${picks.length} picks` : '' },
     ]);
-    root.querySelector('[data-top]').innerHTML = picks.slice(0, 3).map((p) => `<article class="card pick">
-      <div class="hd">${sub(p.market)}<span class="grade ${p.grade[0]}">${p.grade}</span></div>
-      <h3><span class="pside ${p.side}">${p.side}</span>${ui.esc(p.market.title)}</h3>
-      ${vsBars(p)}
-      <div class="row">${ui.edge(p.edge, { label: 'Edge' })} <span class="muted" style="font-size:12px">EV ${ui.money((p.edge / (p.marketPrice / 100)) * p.stake, 2)} on the stake</span></div>
-      <ul class="why">${p.reasons.map((r) => `<li>${ui.esc(r)}</li>`).join('')}</ul>
-      <div class="foot"><div class="stake">Stake<strong>${ui.money(p.stake, 0)}</strong>${p.contracts.toLocaleString()} contracts @ ${p.marketPrice}¢</div>
-        ${openBtn(p)}<button class="btn sm ghost" data-log="${p.id}">Log</button></div></article>`).join('') || ui.empty('No picks for these filters.');
-    root.querySelector('[data-table]').innerHTML = `<thead><tr><th>Contract</th><th>Pick</th><th class="r">Model</th><th class="r">Price</th><th class="r">Edge</th><th>Grade</th><th>Why</th><th class="r">Stake</th><th></th></tr></thead><tbody>
-      ${picks.map((p) => `<tr><td data-label="Contract"><div class="ttl">${ui.esc(p.market.title)}</div><div class="sub">${sub(p.market)}</div></td>
-        <td data-label="Pick"><span class="pside ${p.side}">${p.side}</span></td>
-        <td class="r" data-label="Model">${(p.modelProb * 100).toFixed(1)}%</td>
-        <td class="r mono" data-label="Price">${p.marketPrice}¢</td>
-        <td class="r" data-label="Edge">${ui.edge(p.edge)}</td>
-        <td data-label="Grade"><b>${p.grade}</b> ${ui.meter(p.confidence)}</td>
-        <td class="why2" data-label="Why">${ui.esc(p.reasons[0])}</td>
-        <td class="r" data-label="Stake"><b>${ui.money(p.stake, 0)}</b><div class="muted" style="font-size:11.5px">${p.contracts.toLocaleString()} ct</div></td>
-        <td data-label=""><div class="acts">${openBtn(p, '')}<button class="btn sm ghost" data-log="${p.id}">Log</button></div></td></tr>`).join('')}</tbody>`;
-    renderCompare();
+    const head = root.querySelector('.page-head');
+    const el = head.querySelector('.facts');
+    if (el) { if (el.outerHTML !== html) el.outerHTML = html; } else head.insertAdjacentHTML('beforeend', html);
   }
 
+  let topHtml = '';
+  function paintTop() {
+    const top = picks.slice(0, 3);
+    const html = top.map((p) => `<article class="pick" data-key="${p.id}">
+      <div class="hd">${ui.risk('pm', { short: true })} ${sub(p.market)}<span class="grade ${p.grade[0]}" title="Grade ${p.grade}: by size of edge">${p.grade}</span></div>
+      <p class="ttl"><span class="pside">${p.side}</span>${ui.esc(p.market.title)}</p>
+      ${vsBars(p)}
+      <div class="edge-row">${ui.edge(p.edge, { label: 'Edge' })} ${ui.evLine({ prob: p.modelProb, payout: p.contracts, ev: evOf(p) })}</div>
+      <ul class="why">${p.reasons.map((r) => `<li>${ui.esc(r)}</li>`).join('')}</ul>
+      <div class="foot"><div class="stake">${ui.esc(ui.kellyLabel())}<b>${ui.money(p.stake, 0)}</b>${p.contracts.toLocaleString()} contracts @ ${c$(p.marketPrice)}</div>
+        ${ui.actions(buy(p), [['log', 'Log']])}</div></article>`).join('')
+      || ui.empty({ title: 'No picks for these filters', msg: 'The model has no edge at this grade, venue and category right now.',
+        actions: [{ label: 'Reset filters', act: 'reset' }, { label: 'Prediction Traders', href: '#/prediction-traders' }, { label: 'Browse markets', href: '#/pm-markets' }] });
+    // Repaint only when something changed, so hover and focus on the buttons survive quiet ticks.
+    if (html !== topHtml) { topHtml = html; root.querySelector('[data-top]').innerHTML = html; }
+  }
+
+  // ---------- all picks: a keyed, sortable table, paged (static list) ----------
+  const pg = ui.pager('pm-picks', { step: 20 });
+  const COLS = [
+    { key: 'contract', label: 'Contract', render: (p) => `<div class="cttl">${ui.esc(p.market.title)}</div><div class="sub">${ui.risk('pm', { short: true })} ${sub(p.market)}</div>` },
+    { key: 'pick', label: 'Pick', render: (p) => `<span class="pside">${p.side}</span>` },
+    { key: 'model', label: 'Model', align: 'r', sort: (p) => p.modelProb, title: 'Model win chance', render: (p) => `${(p.modelProb * 100).toFixed(1)}%` },
+    { key: 'price', label: 'Price', align: 'r', sort: (p) => p.marketPrice, title: ui.termTitle('cents'), trend: (p) => p.marketPrice, render: (p) => ui.cents(p.marketPrice) },
+    { key: 'edge', label: 'Edge', align: 'r', sort: (p) => p.edge, title: ui.termTitle('ev'), render: (p) => ui.edge(p.edge) },
+    { key: 'grade', label: 'Grade', sort: (p) => GR[p.grade], render: (p) => `<b>${p.grade}</b> ${ui.meter(p.confidence, `Confidence ${ui.pct(p.confidence, 0)}`)}` },
+    { key: 'why', label: 'Why', pri: 3, render: (p) => `<span class="why2">${ui.esc(p.reasons[0])}</span>` },
+    { key: 'stake', label: 'Stake', align: 'r', sort: (p) => p.stake, title: ui.kellyLabel(), render: (p) => `<span class="stk"><b>${ui.money(p.stake, 0)}</b><small>${p.contracts.toLocaleString()} ct</small></span>` },
+  ];
+  let t = null;
+  function sortedPicks() {
+    const s = t?.sortState() || { key: 'edge', dir: 'desc' };
+    const c = COLS.find((x) => x.key === s.key);
+    if (!c?.sort) return picks;
+    const m = s.dir === 'asc' ? 1 : -1;
+    return [...picks].sort((a, b) => (c.sort(a) - c.sort(b)) * m);
+  }
+  // The table is rebuilt (not patched) when filters, sort or the page size change, so rows that only left
+  // the current page never show as "Gone"; ticks patch it in place.
+  function mountTable(focusSort) {
+    t?.destroy();
+    t = ui.table({
+      id: 'pm-picks', caption: 'All AI picks', rowKey: (p) => p.id, columns: COLS, sort: { key: 'edge', dir: 'desc' },
+      action: (p) => ui.actions(buy(p), [['log', 'Log']]),
+      onAction: { buy: (p) => openPick(p), log: (p) => logPick(p) },
+      mobile: { areas: ['contract contract edge', 'pick price stake', 'grade grade model', 'act act act'], cols: 'minmax(0,1fr) auto auto' },
+      empty: () => ui.empty({ title: 'No picks for these filters', msg: 'Loosen the grade or pick another venue or category.',
+        actions: [{ label: 'Reset filters', act: 'reset' }, { label: 'Browse markets', href: '#/pm-markets' }] }),
+    });
+    const slot = root.querySelector('[data-table]');
+    slot.replaceChildren(t.el);
+    t.update(pg.slice(sortedPicks()));
+    root.querySelector('[data-more]').innerHTML = pg.more(picks.length);
+    t.el.querySelectorAll('[data-sort]').forEach((b) => b.addEventListener('click', () => { pg.reset(); mountTable(b.dataset.sort); }));
+    if (focusSort) t.el.querySelector(`[data-sort="${focusSort}"]`)?.focus({ preventScroll: true });
+  }
+  pg.onMore(() => mountTable());
+  const patchTable = () => { t.update(pg.slice(sortedPicks())); root.querySelector('[data-more]').innerHTML = pg.more(picks.length); };
+
+  // ---------- cross-venue comparison ----------
   function renderCompare() {
     const keys = [...new Set(picks.map((p) => p.key))].slice(0, 18);
     const rows = keys.map((k) => pm.compare(k)).filter(Boolean);
-    const vs = st.venue === 'All' ? pm.VENUES : [st.venue];
-    root.querySelector('[data-cmp]').innerHTML = `<thead><tr><th>Contract (${st.side})</th>${vs.map((v) => `<th class="vc">${pm.VENUE_NAMES[v]}</th>`).join('')}<th class="vc">Sportsbook</th><th class="r">Model fair</th><th class="r">Save</th></tr></thead><tbody>
+    const vs = fb.values.venue === 'All' ? pm.VENUES : [fb.values.venue];
+    const price = (r) => (st.side === 'YES' ? r.yes : r.no);
+    root.querySelector('[data-cmp]').innerHTML = `<thead><tr><th>Contract (${st.side})</th>${vs.map((x) => `<th class="vc">${venueName(x)}</th>`).join('')}<th class="vc">Sportsbook</th><th class="r">Model fair</th><th class="r">Save</th></tr></thead><tbody data-bf-nodata>
       ${rows.map((c) => {
-        const price = (r) => (st.side === 'YES' ? r.yes : r.no);
         const best = st.side === 'YES' ? c.cheapestYes : c.cheapestNo;
         const worst = c.rows.reduce((a, b) => (price(b) > price(a) ? b : a));
         const fair = st.side === 'YES' ? c.fairProb : 1 - c.fairProb;
         const sb = c.sportsbook && st.side === 'YES' ? c.sportsbook : null;
-        return `<tr><td data-label="Contract"><div class="ttl">${ui.esc(c.title)}</div><div class="sub">${c.sport ? ui.sport(c.sport) : ui.tag(c.category)}</div></td>
-          ${vs.map((v) => { const r = c.rows.find((x) => x.venue === v); return `<td class="vc ${r && r.marketId === best.marketId ? 'best' : ''}" data-label="${pm.VENUE_NAMES[v]}">${r ? `<button type="button" data-open="${r.marketId}" data-side="${st.side}" title="Open in ${pm.VENUE_NAMES[v]}"><span>${price(r)}¢</span></button>` : '<span class="na">—</span>'}</td>`; }).join('')}
-          <td class="vc" data-label="Sportsbook">${sb ? `${Math.round(sb.implied * 100)}¢<small>${ui.esc(api.bookById[sb.book].short)} ${ui.fmtAmerican(sb.american)}</small>` : '<span class="na">—</span>'}</td>
+        return `<tr><td data-label="Contract"><div class="cttl">${ui.esc(c.title)}</div><div class="sub">${c.sport ? ui.sport(c.sport) : ui.tag(c.category)}</div></td>
+          ${vs.map((x) => { const r = c.rows.find((y) => y.venue === x); const isBest = r && r.marketId === best.marketId; return `<td class="vc" data-label="${venueName(x)}">${r ? `<button type="button" data-open="${r.marketId}" data-side="${st.side}" title="Open in ${venueName(x)}${isBest ? ' · cheapest' : ''}">${ui.cents(price(r), { best: isBest })}</button>` : ui.na('Not listed on this venue')}</td>`; }).join('')}
+          <td class="vc" data-label="Sportsbook">${sb ? `${ui.price(sb.american)}<small>${ui.esc(api.bookById[sb.book].short)} · ${Math.round(sb.implied * 100)}% implied</small>` : ui.na('No sportsbook price')}</td>
           <td class="r" data-label="Model fair">${(fair * 100).toFixed(1)}%</td>
           <td class="r" data-label="Save"><span class="save">${price(worst) - price(best)}¢ at ${ui.esc(api.bookById[best.venue].short)}</span></td></tr>`;
       }).join('')}</tbody>`;
   }
 
-  root.addEventListener('click', (e) => {
-    const o = e.target.closest('[data-open]');
-    if (o) {
-      const d = pm.deepLink(o.dataset.open, o.dataset.side);
-      ui.toast(`Opening ${d.name} · ${d.ticker} · Buy ${o.dataset.side} @ ${d.price}¢${o.dataset.stake ? ` · ${ui.money(+o.dataset.stake, 0)}` : ''}`);
-      return;
-    }
-    const l = e.target.closest('[data-log]');
-    if (l) {
-      const p = picks.find((x) => x.id === l.dataset.log);
-      if (!p) return;
-      const m = p.market;
-      ui.logBet({ kind: 'prediction', book: m.venue, sport: m.sport || m.category, market: 'Prediction', selection: `${m.title} · ${p.side} @ ${p.marketPrice}¢`, price: odds.probToAmerican(p.marketPrice / 100), stake: p.stake || 25 });
-    }
+  // ---------- actions ----------
+  const pickById = (id) => picks.find((x) => x.id === id);
+  function openPick(p) {
+    const d = pm.deepLink(p.marketId, p.side);
+    ui.toast(`Opening ${d.name} · ${d.ticker} · Buy ${p.side} @ ${d.price}¢ · ${ui.money(p.stake, 0)}`);
+  }
+  function logPick(p) {
+    const m = p.market;
+    ui.logBet({ kind: 'prediction', book: m.venue, sport: m.sport || m.category, market: 'Prediction', selection: `${m.title} · ${p.side} @ ${p.marketPrice}¢`, price: odds.probToAmerican(p.marketPrice / 100), stake: p.stake || 25 });
+  }
+  ui.onAction(root.querySelector('[data-top]'), {
+    buy: (id) => { const p = pickById(id); if (p) openPick(p); },
+    log: (id) => { const p = pickById(id); if (p) logPick(p); },
+    reset: () => fb.reset(),
   });
-  ui.onSelect(root, 'venue', (v) => { st.venue = v; renderAll(); });
-  ui.onSelect(root, 'grade', (v) => { st.minGrade = v; renderAll(); });
-  ui.onSeg(root, 'cat', (v) => { st.category = v; root.querySelectorAll('[data-seg="cat"] button').forEach((b) => b.classList.toggle('on', b.dataset.v === v)); renderAll(); });
-  ui.onSeg(root, 'side', (v) => { st.side = v; root.querySelectorAll('[data-seg="side"] button').forEach((b) => b.classList.toggle('on', b.dataset.v === v)); renderCompare(); });
+  root.querySelector('[data-table]').addEventListener('click', (e) => { if (e.target.closest('[data-act="reset"]')) fb.reset(); });
+  root.querySelector('[data-cmp]').addEventListener('click', (e) => {
+    const o = e.target.closest('[data-open]');
+    if (!o) return;
+    const d = pm.deepLink(o.dataset.open, o.dataset.side);
+    ui.toast(`Opening ${d.name} · ${d.ticker} · Buy ${o.dataset.side} @ ${d.price}¢`);
+  });
+  ui.onSeg(root, 'side', (val) => {
+    st.side = val; v.set({ side: val });
+    root.querySelectorAll('[data-seg="side"] button').forEach((b) => b.classList.toggle('on', b.dataset.v === val));
+    renderCompare();
+  });
 
-  renderAll();
+  compute(); paintFacts(); paintTop(); mountTable(); renderCompare();
+  // Ticks: picks re-price every tick (patched in place); the comparison every tick too.
+  const tick = () => { compute(); paintFacts(); paintTop(); patchTable(); renderCompare(); ui.setLiveStatus(root, { updated: Date.now() }); };
   let n = 0;
-  const unsub = pm.subscribe(() => { if (++n % 2 === 0) renderAll(); else renderCompare(); });
-  const unStore = store.subscribe(renderAll);
-  return () => { unsub(); unStore(); };
+  const unsub = pm.subscribe(() => { if (++n % 2 === 0) tick(); else renderCompare(); });
+  const unStore = store.subscribe(() => { compute(); paintFacts(); paintTop(); patchTable(); });
+  return () => { unsub(); unStore(); t?.destroy(); fb.destroy?.(); };
 }

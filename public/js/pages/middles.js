@@ -1,167 +1,367 @@
 // Middles finder: Over a low number at one book + Under a higher number at another.
-// Either you roughly break even, or the result lands in the middle and both sides win.
+// Usually one side wins and you lose a little; if the result lands in the middle, both sides win.
+//
+// Layout (UX rebuild, items B1–B17 + C7): results-first page head with live status and facts, the shared
+// filter bar, one keyed ui.table (legs as slip lines, one "Bet both" primary, Calc · Log · Alert), and a
+// middle slip drawer with the two-step Bet both (ui.legFlow), the stale-price guard and the scenarios.
+// The classic middle calculator (editable odds) stays in ../slips.js and opens from the row's "Calc".
+// `middleMath` is re-exported here for Calculators.
 
-import { toDecimal, fmtAmerican, money, pct } from '../lib/odds.js';
+import { money, pct } from '../lib/odds.js';
+import { middleMath, openMidCalc } from '../slips.js';
+
+export { middleMath } from '../slips.js';
 
 const CSS = `
-.bf-mid .t .r { text-align:right; font-variant-numeric:tabular-nums; }
-.bf-mid .width { display:inline-flex; flex-direction:column; align-items:flex-start; gap:2px; }
-.bf-mid .width b { font:600 18px var(--serif); }
-.bf-mid .width small { color:var(--muted); font-size:11.5px; font-variant-numeric:tabular-nums; }
-.bf-mid .hit { display:flex; gap:8px; align-items:center; justify-content:flex-end; }
-.bf-mid .win { color:var(--pos); font-weight:700; font-variant-numeric:tabular-nums; }
-.bf-mid .cost { color:var(--neg); font-weight:600; font-variant-numeric:tabular-nums; }
-.bf-mid .leg .oc { font-weight:600; font-size:12.5px; }
-.midcalc .ruler { position:relative; height:34px; margin:6px 4px 22px; }
-.midcalc .ruler .ln { position:absolute; left:0; right:0; top:16px; height:2px; background:var(--line); }
-.midcalc .ruler .mz { position:absolute; top:8px; height:18px; background:color-mix(in srgb, var(--lime) 70%, transparent); border:1px solid var(--lime-2); border-radius:5px; }
-.midcalc .ruler .tk { white-space:nowrap; position:absolute; top:30px; transform:translateX(-50%); font-size:11.5px; color:var(--muted); font-variant-numeric:tabular-nums; }
-@media (max-width:860px) { .bf-mid table.stack-sm td.evc { flex-direction:column; text-align:left; } .bf-mid table.stack-sm td .legs { align-items:flex-end; } }
-.midcalc .sc { width:100%; border-collapse:collapse; font-size:13px; }
-.midcalc .sc td, .midcalc .sc th { padding:8px 6px; border-bottom:1px solid var(--line-2); text-align:right; font-variant-numeric:tabular-nums; }
-.midcalc .sc th { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.05em; font-weight:600; }
-.midcalc .sc td:first-child, .midcalc .sc th:first-child { text-align:left; }
-.midcalc .sc tr.mid td { background:color-mix(in srgb, var(--lime) 35%, transparent); font-weight:700; }
-.midcalc .big { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
-.midcalc .big > div { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
-.midcalc .big span { display:block; font-size:11.5px; color:var(--muted); }
-.midcalc .big strong { font:600 19px var(--serif); font-variant-numeric:tabular-nums; }
-.midcalc .pos { color:var(--pos); } .midcalc .neg { color:var(--neg); }
-.midcalc .lg { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--line-2); flex-wrap:wrap; }
-.midcalc .lg input { width:96px; border:1px solid var(--line); border-radius:8px; padding:6px 8px; background:var(--paper); }
-@media (max-width:520px) { .midcalc .big strong { font-size:16px; } }`;
-
-/** Stakes / outcomes for a middle with a total stake split for equal single-side payouts. */
-export function middleMath(prices, total, p, round = 0) {
-  const d = prices.map(toDecimal);
-  const inv = 1 / d[0] + 1 / d[1];
-  let stakes = d.map((x) => (total / x) / inv);
-  if (round) stakes = stakes.map((s) => Math.max(round, Math.round(s / round) * round));
-  const staked = stakes[0] + stakes[1];
-  const overOnly = stakes[0] * d[0] - staked;
-  const underOnly = stakes[1] * d[1] - staked;
-  const both = stakes[0] * d[0] + stakes[1] * d[1] - staked;
-  const worst = Math.min(overOnly, underOnly);
-  const evv = p * both + (1 - p) * ((overOnly + underOnly) / 2);
-  return { stakes, staked, overOnly, underOnly, both, worst, ev: evv };
+.bf-mid .mid-w { display:inline-flex; flex-direction:column; gap:2px; }
+.bf-mid .mid-w b { font:900 var(--t-lg)/1 var(--f-head); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.bf-mid .mid-w small { color:var(--muted); font-size:var(--t-xs); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.bf-mid .mid-mkt { margin-bottom:4px; font-size:var(--t-xs); font-weight:700; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:290px; }
+.bf-mid .mid-avg { display:inline-flex; flex-direction:column; align-items:flex-end; gap:5px; }
+.bf-mid .miss { color:var(--muted); font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.bf-mid .hits { color:var(--pos); font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.bf-mid .chance { display:inline-flex; gap:8px; align-items:center; justify-content:flex-end; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.bf-mid .m-only { display:none; }
+.bf-mid [data-lock-slot]:empty { display:none; }
+.bf-mid [data-lock-slot] { margin-top:12px; }
+/* Facts and filters share one row on wide screens, so the first middle sits high on the page (B1). */
+.bf-mid .mid-bar { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:10px 28px; margin:0 0 8px; }
+.bf-mid .mid-bar .stats.facts { margin:0; }
+.bf-mid .mid-bar .toolbar.fb { margin:0; }
+@media (min-width:861px) {
+  /* Table tools (density, Columns) ride in the empty actions header instead of taking their own row. */
+  .bf-mid .tbl-tools { position:absolute; top:0; right:0; z-index:calc(var(--z-thead) + 1); padding:2px 0 0; }
+  .bf-mid .tbl-tools [data-tbl-density] span { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  .bf-mid .tbl.scrolls .ui-t th { top:0; }
+  /* Long outcome heads wrap to two lines so all nine columns and the actions fit at laptop widths. */
+  .bf-mid .ui-t th[data-col="miss"] { white-space:normal; min-width:104px; line-height:1.25; }
+  .bf-mid .ui-t th[data-col="chance"], .bf-mid .ui-t th[data-col="hit"] { white-space:normal; width:72px; line-height:1.25; }
+  .bf-mid .ui-t th .th-sort { text-align:inherit; }
+  .bf-mid .ui-t td[data-col="event"] { min-width:132px; }
+  .bf-mid .tbl[data-density="compact"] .ui-t th, .bf-mid .tbl[data-density="compact"] .ui-t td { padding-inline:8px; }
 }
-
-function openMidCalc(o, ctx, total0) {
-  const { ui } = ctx;
-  const st = { total: total0, round: 0, prices: o.legs.map((l) => l.price), p: o.meta.middleProb };
-  const { low, high } = o.meta;
-  const body = ui.drawer('Middle calculator', `<div class="midcalc stack">
-    ${ui.eventCell(o.eventId)}
-    <div class="row">${ui.tag(`${o.meta.width} pt middle`, 'dark')} ${ui.tag(o.market)} ${o.live ? ui.liveDot() : ''}</div>
-    <div><div class="muted" style="font-size:12px">Middle zone: both bets win</div><div class="ruler"><div class="ln"></div><div class="mz" style="left:33%;width:34%"></div><span class="tk" style="left:0;transform:none">Under wins</span><span class="tk" style="left:33%">${low}</span><span class="tk" style="left:50%;color:var(--pos);font-weight:700">BOTH WIN</span><span class="tk" style="left:67%">${high}</span><span class="tk" style="left:auto;right:0;transform:none">Over wins</span></div></div>
-    <div class="callout lime">Special arbs where you either break even or both sides win for a huge payout.</div>
-    <div class="row">
-      ${ui.numberInput('mtotal', st.total, 'Total stake', { prefix: '$', step: 50 })}
-      <label class="field"><span>Round stakes</span>${ui.seg('mround', [[0, 'Exact'], [1, '$1'], [5, '$5']], 0)}</label>
-      ${ui.numberInput('mprob', (st.p * 100).toFixed(1), 'Middle hit %', { step: 0.1 })}
-    </div>
-    <div>${o.legs.map((l, i) => `<div class="lg"><div><div style="font-weight:600">${ui.esc(l.outcome)}</div><div class="row" style="margin-top:4px">${ui.book(l.book, { full: true })}
-      <input data-mp="${i}" value="${fmtAmerican(l.price)}" aria-label="Odds"></div></div>
-      <div style="text-align:right"><div class="muted" style="font-size:11.5px">Stake</div><strong data-ms="${i}" style="font-size:17px"></strong><div style="margin-top:6px">${ui.betBtn(l.book)}</div></div></div>`).join('')}</div>
-    <div class="big"><div><span>Worst case</span><strong data-o="worst"></strong></div><div><span>If middle hits</span><strong data-o="both" class="pos"></strong></div><div><span>Expected value</span><strong data-o="ev"></strong></div></div>
-    <div><h3 style="font-size:15px;margin:4px 0 8px">Scenarios</h3><table class="sc"><thead><tr><th>Final result</th><th>Chance</th><th>Profit</th></tr></thead><tbody data-o="sc"></tbody></table></div>
-    <div class="row"><button class="btn primary" data-log>Log both bets</button></div>
-  </div>`);
-  const paint = () => {
-    const m = middleMath(st.prices, st.total, st.p, st.round);
-    m.stakes.forEach((s, i) => { body.querySelector(`[data-ms="${i}"]`).textContent = money(s, st.round ? 0 : 2); });
-    const set = (k, v, tone) => { const el = body.querySelector(`[data-o="${k}"]`); el.textContent = v; if (tone !== undefined) el.className = tone; };
-    set('worst', `${m.worst >= 0 ? '+' : ''}${money(m.worst)}`, m.worst >= 0 ? 'pos' : 'neg');
-    set('both', `+${money(m.both)}`);
-    set('ev', `${m.ev >= 0 ? '+' : ''}${money(m.ev)}`, m.ev >= 0 ? 'pos' : 'neg');
-    const side = (1 - st.p) / 2;
-    const row = (label, ch, v, cls = '') => `<tr class="${cls}"><td>${label}</td><td>${pct(ch, 1)}</td><td class="${v >= 0 ? 'pos' : 'neg'}" style="font-weight:700">${v >= 0 ? '+' : ''}${money(v)}</td></tr>`;
-    body.querySelector('[data-o="sc"]').innerHTML =
-      row(`Under ${low} → Under wins`, side, m.underOnly) +
-      row(`Between ${low} and ${high} → Middle hits, both win`, st.p, m.both, 'mid') +
-      row(`Over ${high} → Over wins`, side, m.overOnly);
-  };
-  ui.onNumber(body, 'mtotal', (v) => { st.total = v; paint(); });
-  ui.onNumber(body, 'mprob', (v) => { st.p = Math.min(0.9, Math.max(0, v / 100)); paint(); });
-  ui.onSeg(body, 'mround', (v) => { st.round = Number(v); body.querySelectorAll('[data-seg="mround"] button').forEach((b) => b.classList.toggle('on', b.dataset.v === v)); paint(); });
-  body.querySelectorAll('[data-mp]').forEach((inp) => inp.addEventListener('input', () => {
-    const v = parseFloat(inp.value); if (Number.isNaN(v) || Math.abs(v) < 100) return;
-    st.prices[Number(inp.dataset.mp)] = v; paint();
-  }));
-  body.querySelector('[data-log]').addEventListener('click', () => {
-    const m = middleMath(st.prices, st.total, st.p, st.round);
-    o.legs.forEach((l, i) => ui.logBet({ kind: 'middle', book: l.book, sport: o.sport, market: o.market, selection: l.outcome, price: st.prices[i], stake: Math.round(m.stakes[i] * 100) / 100, event: o.event }));
-    ui.toast(`Logged both sides of the ${o.meta.width} pt middle`);
-  });
-  ui.wireBetButtons(body);
-  paint();
+@media (max-width:860px) {
+  .bf-mid .m-only { display:block; margin-top:4px; font-size:var(--t-xs); color:var(--muted); text-align:right; white-space:nowrap; }
+  .bf-mid .mid-w b { font-size:var(--t-md); }
+  /* Phone rows stay short: one-line event name, risk label as its icon (the text stays for screen readers). */
+  .bf-mid td[data-col="event"] .evt-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bf-mid .mid-mkt { max-width:none; }
 }
+/* Middle slip (drawer) */
+.mid-slip { display:grid; gap:16px; }
+.mid-slip .ms-legs { display:grid; gap:8px; }
+.mid-slip .ms-bets { display:flex; flex-wrap:wrap; gap:8px; }
+.mid-slip .ms-figs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:12px 0; }
+.mid-slip .ms-figs > div { display:grid; gap:4px; }
+.mid-slip .ms-figs span { font-size:var(--t-xs); color:var(--muted); font-weight:700; }
+.mid-slip .ms-figs .hero-fig { align-items:flex-start; }
+.mid-slip .ms-figs .hero-fig b { font-size:var(--t-xl); }
+.mid-slip .ms-ctl { display:flex; flex-wrap:wrap; gap:10px 14px; align-items:flex-end; }
+.mid-slip .ms-ctl .field input { width:110px; }
+.mid-slip h3 { font-size:var(--t-md); margin:0 0 6px; }
+.mid-slip .ms-ruler { position:relative; height:48px; margin:2px 6px 4px; }
+.mid-slip .ms-ruler .ln { position:absolute; left:0; right:0; top:14px; height:2px; background:var(--line-strong); }
+.mid-slip .ms-ruler .zone { position:absolute; left:33%; width:34%; top:6px; height:18px; background:var(--hl); border:2px solid var(--g); border-radius:6px; }
+.mid-slip .ms-ruler .tk { position:absolute; top:28px; transform:translateX(-50%); font-size:var(--t-xs); color:var(--muted); white-space:nowrap; font-variant-numeric:tabular-nums; }
+.mid-slip .ms-ruler .tk.both { color:var(--text); font-weight:800; }
+.mid-slip .ms-ruler .k1 { left:9%; } .mid-slip .ms-ruler .k2 { left:33%; } .mid-slip .ms-ruler .k3 { left:50%; } .mid-slip .ms-ruler .k4 { left:67%; } .mid-slip .ms-ruler .k5 { left:91%; }
+.mid-slip .sc { width:100%; border-collapse:collapse; font-size:var(--t-cell); }
+.mid-slip .sc th { text-align:right; font-size:var(--t-xs); color:var(--muted); text-transform:uppercase; letter-spacing:.04em; padding:6px; border-bottom:1px solid var(--line); }
+.mid-slip .sc td { text-align:right; padding:8px 6px; border-bottom:1px solid var(--line-2); font-variant-numeric:tabular-nums; }
+.mid-slip .sc th:first-child, .mid-slip .sc td:first-child { text-align:left; }
+.mid-slip .sc tr.mid td { background:var(--hl); font-weight:800; }
+.mid-slip .sc .pos { color:var(--pos); font-weight:800; } .mid-slip .sc .cost { color:var(--muted); font-weight:700; }
+.mid-slip .ms-note { font-size:var(--t-xs); color:var(--muted); margin:0; }
+.mid-slip .ms-links { display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; }
+@media (max-width:520px) { .mid-slip .ms-figs .hero-fig b { font-size:var(--t-lg); } }`;
+
+/** Signed money with a true minus ("−$41.37"), "+$917.26". */
+const signed = (x) => `${x < 0 ? '−' : '+'}${money(Math.abs(x))}`;
 
 export default function render(root, ctx) {
   const { api, store, ui, params } = ctx;
   if (!document.getElementById('css-middles')) document.head.insertAdjacentHTML('beforeend', `<style id="css-middles">${CSS}</style>`);
-  const st = { mode: params.mode === 'live' ? 'live' : 'pre', sport: 'All', stake: store.get().arbStake || 1000, sort: 'ev' };
-  let rows = [];
+
+  const st = { mode: ui.initialMode(params, 'pre', ['pre', 'live']) };
+  const seen = new Map(); // opp id → first time we saw it (Age column)
+  const short = (b) => api.bookById[b]?.short || b;
+  const roundPref = () => ([0, 1, 5].includes(+store.get().stakeRound) ? +store.get().stakeRound : 0);
 
   root.innerHTML = `<div class="bf-mid">
-    ${ui.header({ title: 'Middles', tool: 'middles',
-      subtitle: 'Special arbs where you either break even or both sides win for a huge payout. Bet the Over on the low number and the Under on the high number.',
-      actions: ui.seg('mode', [['pre', 'Pre-match'], ['live', 'Live']], st.mode) })}
-    <div data-stats></div>
-    <div class="toolbar">
-      ${ui.select('sport', ['All', ...api.sports], st.sport, 'Sport')}
-      ${ui.numberInput('stake', st.stake, 'Total stake', { prefix: '$', step: 50 })}
-      <label class="field"><span>Sort by</span>${ui.seg('sort', [['ev', 'Best EV'], ['width', 'Widest'], ['cost', 'Lowest cost']], st.sort)}</label>
-    </div>
-    <div class="card"><div data-table></div></div>
+    ${ui.pageHead({
+      title: 'Middles', tool: 'middles', live: true,
+      subtitle: 'Bet the Over on the low number and the Under on the high number at two books. Most of the time one side wins and you lose a little. If the result lands between the numbers, both bets win.',
+      actions: ui.modeSwitch([['pre', 'Pre-match', 0], ['live', 'Live', 0]], st.mode),
+    })}
+    <div class="mid-bar"><div data-facts></div><div data-filters></div></div>
+    <div data-table></div>
+    <div data-lock-slot></div>
+    ${ui.how({
+      summary: 'Two bets that usually cost a little and sometimes both win.',
+      checks: [
+        `Take the ${ui.term('middle', 'Over on the low number')} at one book and the Under on the high number at another`,
+        'Stakes are split so either single win pays back about the same',
+        'If the result lands between the two numbers, both bets win: that rare big payout is the point',
+        'Most of the time only one side wins and you lose a little. The Average column is what it’s worth per try over many tries',
+      ],
+    })}
   </div>`;
   const q = (s) => root.querySelector(s);
 
-  function refresh(flash = new Set()) {
-    rows = api.middles({ books: store.get().books, live: st.mode === 'live', sport: st.sport })
-      .map((o) => ({ o, m: middleMath(o.legs.map((l) => l.price), st.stake, o.meta.middleProb) }));
-    rows.sort((a, b) => st.sort === 'width' ? b.o.meta.width - a.o.meta.width || b.m.ev - a.m.ev
-      : st.sort === 'cost' ? b.m.worst - a.m.worst : b.m.ev - a.m.ev);
-    const best = rows.reduce((a, r) => Math.max(a, r.m.ev), -Infinity);
-    const widest = rows.reduce((a, r) => Math.max(a, r.o.meta.width), 0);
-    q('[data-stats]').innerHTML = ui.stats([
-      { label: st.mode === 'live' ? 'Live middles' : 'Pre-match middles', value: rows.length, note: 'across your books' },
-      { label: 'Widest middle', value: rows.length ? `${widest} pts` : '—' },
-      { label: 'Biggest middle payout', value: rows.length ? money(Math.max(...rows.map((r) => r.m.both))) : '—', tone: 'pos', note: `at ${money(st.stake, 0)} total` },
-      { label: 'Best EV', value: rows.length ? `${best >= 0 ? '+' : ''}${money(best)}` : '—', tone: best >= 0 ? 'pos' : '' },
-    ]);
-    if (!rows.length) { q('[data-table]').innerHTML = `<div class="pad">${ui.empty('No middles for this filter right now.')}</div>`; return; }
-    q('[data-table]').innerHTML = `<div class="table-wrap"><table class="t stack-sm"><thead><tr>
-      <th>Width</th><th>Event</th><th>Legs</th><th class="r">Worst case</th><th class="r">Middle hit</th><th class="r">EV</th><th class="r">If middle hits</th><th></th></tr></thead><tbody>
-      ${rows.map(({ o, m }) => `<tr class="click${flash.has(o.id) ? ' flash' : ''}" data-id="${o.id}">
-        <td data-label="Width"><span class="width"><b>${o.meta.width} pt${o.meta.width === 1 ? '' : 's'}</b><small>${o.meta.low} – ${o.meta.high}</small></span></td>
-        <td data-label="Event" class="evc"><div>${ui.eventCell(o.eventId)}<div class="muted" style="font-size:12px;margin-top:2px">${ui.esc(o.market === 'Player Prop' ? o.label : 'Game total')}</div></div></td>
-        <td data-label="Legs"><div class="legs">${o.legs.map((l) => `<div class="leg">${ui.book(l.book)} ${ui.price(l.price)} <span class="oc">${ui.esc(l.outcome)}</span></div>`).join('')}</div></td>
-        <td data-label="Worst case" class="r"><span class="${m.worst >= 0 ? 'win' : 'cost'}">${m.worst >= 0 ? '+' : ''}${money(m.worst)}</span></td>
-        <td data-label="Middle hit" class="r"><span class="hit">${ui.meter(Math.min(1, o.meta.middleProb * 4))} ${pct(o.meta.middleProb, 1)}</span></td>
-        <td data-label="EV" class="r"><span class="${m.ev >= 0 ? 'win' : 'cost'}">${m.ev >= 0 ? '+' : ''}${money(m.ev)}</span></td>
-        <td data-label="If middle hits" class="r"><span class="win">+${money(m.both)}</span></td>
-        <td data-label=""><button class="btn sm lime">Calculator</button></td></tr>`).join('')}
-      </tbody></table></div>`;
-    q('[data-table]').querySelectorAll('tr[data-id]').forEach((tr) => tr.addEventListener('click', () => {
-      const r = rows.find((x) => x.o.id === tr.dataset.id); if (r) openMidCalc(r.o, ctx, st.stake);
-    }));
+  // ---- filters: Sport · Books · Sort, plus the total stake used to size every row ----
+  const fb = ui.filterBar({
+    id: 'middles',
+    fields: [
+      { key: 'sport', type: 'select', label: 'Sport', default: 'All', options: ['All', ...api.sports], query: true },
+      { key: 'stake', type: 'number', label: 'Total stake', default: store.get().arbStake || 1000, prefix: '$', step: 50, min: 10, count: false },
+      { key: 'books', type: 'books', label: 'Books' },
+      { key: 'sort', type: 'sort', label: 'Sort by', default: 'ev', options: [['ev', 'Best average'], ['width', 'Widest'], ['cost', 'Lowest cost'], ['chance', 'Most likely to hit'], ['age', 'Newest']] },
+    ],
+    onChange: (_, key) => { if (key === 'sort' || key === 'reset') syncSort(); paint(); },
+  });
+  q('[data-filters]').append(fb.el);
+  const total = () => Math.max(10, +fb.values.stake || 1000);
+
+  // ---- data ----
+  const load = (mode = st.mode) => api.middles({ books: store.get().books, live: mode === 'live', sport: fb.values.sport })
+    .map((o) => {
+      if (!seen.has(o.id)) seen.set(o.id, Date.now());
+      return { o, m: middleMath(o.legs.map((l) => l.price), total(), o.meta.middleProb) };
+    });
+  const legsOf = (r) => r.o.legs.map((l, i) => ({ ...l, side: l.outcome, stake: r.m.stakes[i] }));
+
+  // ---- table ----
+  const t = ui.table({
+    id: 'middles', caption: 'Middles at your books', rowKey: (r) => r.o.id,
+    columns: [
+      { key: 'width', label: 'Width', sort: (r) => r.o.meta.width, title: ui.termTitle('middle'),
+        render: (r) => `<span class="mid-w"><b>${r.o.meta.width} pt${r.o.meta.width === 1 ? '' : 's'}</b><small>${r.o.meta.low} – ${r.o.meta.high}</small></span>` },
+      { key: 'event', label: 'Event', render: (r) => ui.eventCell(r.o.eventId) },
+      // The market caption sits above the two legs it describes.
+      { key: 'legs', label: 'Legs', render: (r) => `<div class="mid-mkt">${ui.esc(r.o.market === 'Player Prop' ? r.o.label : 'Game total')}</div>${ui.slipLegs(legsOf(r))}` },
+      { key: 'miss', label: 'If it misses (likely)', align: 'r', sort: (r) => r.m.worst, render: (r) => `<span class="miss">${signed(r.m.worst)}</span>` },
+      { key: 'chance', label: 'Chance it hits', align: 'r', sort: (r) => r.o.meta.middleProb, render: (r) => `<span class="chance">${pct(r.o.meta.middleProb, 1)}</span>` },
+      { key: 'hit', label: 'If it hits', align: 'r', sort: (r) => r.m.both, render: (r) => `<span class="hits">${signed(r.m.both)}</span>` },
+      { key: 'avg', label: 'Average', align: 'r', sort: (r) => r.m.ev, trend: (r) => r.m.ev, title: ui.termTitle('ev'),
+        // The hero average carries the row's one risk label: worth it on average, and it can lose.
+        render: (r) => `<span class="mid-avg">${ui.heroFig(signed(r.m.ev), '', { tone: r.m.ev >= 0 ? 'pos' : '' })}${ui.risk('middle', { short: true })}<span class="m-only" data-bf-nodata>${signed(r.m.worst)} if it misses</span></span>` },
+      { key: 'age', label: 'Age', align: 'r', sort: (r) => seen.get(r.o.id), render: (r) => `<span class="muted">${ui.age(seen.get(r.o.id))}</span>` },
+    ],
+    // One primary per row; Alert lives in the slip footer and the empty state (keeps rows compact).
+    action: () => ui.actions(ui.betAction({ verb: 'Bet both' }), [['calc', 'Calc'], ['log', 'Log']]),
+    onAction: { bet: (r) => openSlip(r.o, { start: true }), calc: (r) => openMidCalc(r.o, ctx, total()), log: (r) => logPlay(r.o, r.m) },
+    onOpen: (r) => openSlip(r.o),
+    sort: { key: 'avg', dir: 'desc' },
+    mobile: { areas: ['width event age', 'legs legs avg', 'act act act'], cols: 'auto minmax(0,1fr) auto' },
+    empty: () => emptyState(),
+  });
+  q('[data-table]').append(t.el);
+
+  // The Sort select drives the table's sort (one source of truth: the table remembers it too).
+  const SORTS = { ev: { key: 'avg', dir: 'desc' }, width: { key: 'width', dir: 'desc' }, cost: { key: 'miss', dir: 'desc' }, chance: { key: 'chance', dir: 'desc' }, age: { key: 'age', dir: 'desc' } };
+  function syncSort() { const s = SORTS[fb.values.sort] || SORTS.ev; const cur = t.sortState(); if (cur?.key !== s.key || cur?.dir !== s.dir) t.setSort(s); }
+
+  function alertHref(o) {
+    return `#/alerts?tool=middles&min=${o.meta.width}${fb.values.sport !== 'All' ? `&sport=${encodeURIComponent(fb.values.sport)}` : ''}`;
   }
 
-  ui.onSeg(root, 'mode', (v) => { st.mode = v; root.querySelectorAll('[data-seg="mode"] button').forEach((b) => b.classList.toggle('on', b.dataset.v === v)); refresh(); });
-  ui.onSeg(root, 'sort', (v) => { st.sort = v; root.querySelectorAll('[data-seg="sort"] button').forEach((b) => b.classList.toggle('on', b.dataset.v === v)); refresh(); });
-  ui.onSelect(root, 'sport', (v) => { st.sport = v; refresh(); });
-  ui.onNumber(root, 'stake', (v) => { st.stake = v; refresh(); });
-  refresh();
-  let prevKey = new Map(rows.map((r) => [r.o.id, r.o.legs.map((l) => l.price).join()]));
-  const offTick = api.onTick(() => {
-    if (st.mode !== 'live') return;
-    const before = prevKey;
-    refresh();
-    const changed = new Set(rows.filter((r) => before.get(r.o.id) !== r.o.legs.map((l) => l.price).join()).map((r) => r.o.id));
-    prevKey = new Map(rows.map((r) => [r.o.id, r.o.legs.map((l) => l.price).join()]));
-    if (changed.size) refresh(changed);
+  function emptyState() {
+    const other = st.mode === 'live' ? 'pre' : 'live';
+    const n = load(other).length;
+    const allSports = fb.values.sport !== 'All' ? api.middles({ books: store.get().books, live: st.mode === 'live' }).slice(0, 3) : [];
+    return ui.empty({
+      title: 'No middles match right now',
+      msg: fb.activeCount() ? 'Your filters hide every current middle. Loosen them, switch modes, or get pinged when one opens up.' : 'Nothing is open at your books right now. Lines move all day, so check back or set an alert.',
+      actions: [
+        ...(fb.activeCount() ? [{ label: 'Reset filters', act: 'reset' }] : []),
+        { label: `Switch to ${other === 'live' ? 'Live' : 'Pre-match'} (${n})`, act: 'switch' },
+        { label: 'Alert me', href: '#/alerts?tool=middles&min=1' },
+      ],
+      near: allSports.length ? allSports.map((o) => `<div>${ui.esc(o.event)} · <b>${o.meta.width} pt</b> ${ui.esc(o.label)}</div>`).join('') : '',
+      nearLabel: 'Open in other sports',
+      mate: true,
+    });
+  }
+  ui.onAction(q('[data-table]'), {
+    reset: () => fb.reset(),
+    switch: () => q(`.page-head [data-seg="mode"] button[data-v="${st.mode === 'live' ? 'pre' : 'live'}"]`)?.click(),
   });
-  const offStore = store.subscribe(() => refresh());
-  return () => { offTick(); offStore(); };
+
+  // ---- facts strip (patched in place: labels static, figures nodata) ----
+  function facts(rows) {
+    const best = rows.reduce((a, r) => Math.max(a, r.m.ev), -Infinity);
+    const widest = rows.reduce((a, r) => Math.max(a, r.o.meta.width), 0);
+    const big = rows.reduce((a, r) => Math.max(a, r.m.both), 0);
+    return [
+      { label: st.mode === 'live' ? 'Live middles' : 'Pre-match middles', value: String(rows.length), note: 'at your books' },
+      { label: 'Widest middle', value: rows.length ? `${widest} pts` : ui.na() },
+      { label: 'Biggest if it hits', value: rows.length ? signed(big) : ui.na(), tone: 'pos', note: `at ${money(total(), 0)} total` },
+      { label: 'Best average', value: rows.length ? signed(best) : ui.na(), tone: best >= 0 ? 'pos' : '', term: 'ev' },
+    ];
+  }
+
+  function paint() {
+    const rows = load();
+    const { rows: shown, card } = ui.lockRows(rows, 'middles', { n: 3, noun: 'middles' });
+    t.update(shown);
+    const slot = q('[data-lock-slot]');
+    if (slot.innerHTML !== card) slot.innerHTML = card;
+    patchFacts(q('[data-facts]'), facts(rows), ui);
+    ui.setModeCount(root, st.mode, rows.length);
+    ui.setModeCount(root, st.mode === 'live' ? 'pre' : 'live', load(st.mode === 'live' ? 'pre' : 'live').length);
+  }
+
+  ui.onMode(root, (m) => { st.mode = m; paint(); }, { def: 'pre' });
+  syncSort();
+  paint();
+
+  // ---- Bet both, Log ----
+  function logPlay(o, m) {
+    // Both legs of a middle can win, so the group is not exclusive.
+    api.tracker.addGroup(o.legs.map((l, i) => ({ kind: 'middle', book: l.book, sport: o.sport, market: o.market, selection: l.outcome,
+      price: l.price, stake: Math.round(m.stakes[i] * 100) / 100, event: o.event })));
+    if (ui.legFlow.get()?.id === o.id) ui.legFlow.clear();
+    ui.toast(`Logged both sides of the ${o.meta.width} pt middle`);
+  }
+  function startFlow(o, m) {
+    ui.legFlow.start({
+      id: o.id, title: `${o.event} · ${o.meta.width} pt middle`, exclusive: false,
+      legs: o.legs.map((l, i) => ({ book: l.book, label: l.outcome, stake: m.stakes[i],
+        bet: { kind: 'middle', book: l.book, sport: o.sport, market: o.market, selection: l.outcome, price: l.price, stake: Math.round(m.stakes[i] * 100) / 100, event: o.event } })),
+    });
+  }
+
+  /**
+   * Middle slip: legs with stakes, per-leg buttons (one deep link per tap), the two-step Bet both,
+   * cash needed per book, outcome figures, stake / rounding / chance controls and the scenarios.
+   * opts.start: the person pressed "Bet both" in the row → start the play and open leg 1 right away.
+   */
+  function openSlip(o0, { start = false } = {}) {
+    let o = o0;
+    const S = { total: total(), round: roundPref(), p: o.meta.middleProb };
+    const math = () => middleMath(o.legs.map((l) => l.price), S.total, S.p, S.round);
+    const flowLegs = () => { const f = ui.legFlow.get(); return f && f.id === o.id ? f.legs : null; };
+
+    const legsHtml = (m) => {
+      const fl = flowLegs();
+      return `${ui.slipLegs(o.legs.map((l, i) => ({ ...l, side: l.outcome, stake: m.stakes[i] })))}
+        ${ui.cashNeeded(o.legs.map((l, i) => ({ book: l.book, stake: m.stakes[i] })))}
+        <div class="ms-bets">${o.legs.map((l, i) => ui.betAction({
+          verb: fl?.[i]?.opened ? 'Opened ✓' : 'Bet', amount: `${money(m.stakes[i], S.round ? 0 : 2)} at ${ui.esc(short(l.book))}`,
+          act: 'leg', book: l.book, tone: fl?.[i]?.opened ? 'outline' : 'primary', autofocus: i === 0, attrs: { 'data-leg': i },
+        })).join('')}</div>`;
+    };
+    const figsHtml = (m) => `<div><span>If it misses (likely)</span>${ui.heroFig(signed(m.worst), '', { tone: '' })}</div>
+      <div><span>If it hits</span>${ui.heroFig(signed(m.both))}</div>
+      <div><span>${ui.term('ev', 'Average')}</span>${ui.heroFig(signed(m.ev), '', { tone: m.ev >= 0 ? 'pos' : '' })}</div>`;
+    const scHtml = (m) => {
+      const side = (1 - S.p) / 2;
+      const { low, high } = o.meta;
+      const row = (label, ch, v, cls = '') => `<tr class="${cls}"><td>${label}</td><td>${pct(ch, 1)}</td><td class="${v >= 0 ? 'pos' : 'cost'}">${signed(v)}</td></tr>`;
+      return row(`Under ${low}: Under wins`, side, m.underOnly) + row(`Between ${low} and ${high}: both win`, S.p, m.both, 'mid') + row(`Over ${high}: Over wins`, side, m.overOnly);
+    };
+    const footHtml = (m) => {
+      const fl = flowLegs();
+      const next = fl ? fl.findIndex((l) => !l.opened) : 0;
+      const primary = !fl ? ui.betAction({ verb: 'Bet both', amount: money(m.staked, 0), size: '' })
+        : next === -1 ? ui.betAction({ verb: 'Log both bets', act: 'confirm', size: '' })
+          : ui.betAction({ verb: `Next: leg ${next + 1}`, amount: ui.esc(short(o.legs[next].book)), act: 'leg', book: o.legs[next].book, size: '', attrs: { 'data-leg': next } });
+      return `${primary}${fl && next === -1 ? '' : ui.ghost('log', 'Log both bets')}${ui.ghost('alert', 'Alert', { href: alertHref(o) })}`;
+    };
+
+    const m0 = math();
+    const body = ui.drawer('Middle slip', `<div class="mid-slip">
+      <div class="ms-legs" data-lines>${legsHtml(m0)}</div>
+      <div class="ms-figs" data-figs>${figsHtml(m0)}</div>
+      <div><h3>Middle zone</h3><div class="ms-ruler" aria-hidden="true"><div class="ln"></div><div class="zone"></div>
+        <span class="tk k1">Under wins</span><span class="tk k2">${o.meta.low}</span><span class="tk k3 both">Both win</span><span class="tk k4">${o.meta.high}</span><span class="tk k5">Over wins</span></div>
+        <p class="ms-note">If the result lands between ${o.meta.low} and ${o.meta.high}, both bets win. Most of the time one side wins and you lose a little.</p></div>
+      <div class="ms-ctl">
+        ${ui.numberInput('mtotal', Math.round(S.total), 'Total stake', { prefix: '$', step: 50 })}
+        <label class="field"><span>Round stakes</span>${ui.seg('mround', [[0, 'Exact'], [1, '$1'], [5, '$5']], S.round)}</label>
+        ${ui.numberInput('mprob', (S.p * 100).toFixed(1), 'Chance it hits %', { step: 0.1 })}
+      </div>
+      <div><h3>Scenarios</h3><table class="sc"><thead><tr><th>Final result</th><th>Chance</th><th>Profit</th></tr></thead><tbody data-sc data-bf-nodata>${scHtml(m0)}</tbody></table></div>
+      <p class="ms-note">Books can cap your stake on props and totals. If one does, lower the total stake so both legs fit, and check both prices before you submit.</p>
+      <div class="ms-links">${ui.calcLink({ tab: 'middle', a: o.legs[0].price, b: o.legs[1].price, stake: S.total })}
+        <button type="button" class="btn sm ghost" data-act="calc"><span data-bf-text>Edit odds in the middle calculator</span></button></div>
+      ${ui.related([['arbitrage', 'Arbitrage'], ['low-holds', 'Low Holds'], ['tracker', 'Bet Tracker']])}
+    </div>`, { risk: 'middle', kicker: `${ui.esc(o.event)} · ${o.meta.width} pt middle · ${ui.esc(o.label)}`, footer: footHtml(m0) });
+
+    const repaint = () => {
+      const m = math();
+      body.querySelector('[data-lines]').innerHTML = legsHtml(m);
+      body.querySelector('[data-figs]').innerHTML = figsHtml(m);
+      body.querySelector('[data-sc]').innerHTML = scHtml(m);
+      body.setFooter(footHtml(m));
+      return m;
+    };
+    const openLeg = (i) => {
+      if (!flowLegs()) startFlow(o, math());
+      ui.legFlow.open(i);
+      repaint();
+    };
+    ui.onAction(body.panel, {
+      bet: () => openLeg(0),
+      leg: (_, el) => openLeg(+el.dataset.leg),
+      confirm: () => { ui.legFlow.confirm(); repaint(); },
+      log: () => { logPlay(o, math()); repaint(); },
+      calc: () => openMidCalc(o, ctx, S.total),
+    });
+    ui.onNumber(body, 'mtotal', (v) => { if (v > 0) { S.total = v; repaint(); } });
+    ui.onNumber(body, 'mprob', (v) => { S.p = Math.min(0.9, Math.max(0, v / 100)); repaint(); });
+    ui.onSeg(body, 'mround', (v) => {
+      S.round = Number(v);
+      body.querySelectorAll('[data-seg="mround"] button').forEach((b) => { const on = b.dataset.v === v; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+      repaint();
+    });
+    // Stale-price guard: re-read this middle every tick; stakes and figures follow the new prices.
+    ui.liveGuard(body, {
+      read: () => api.middles({ books: store.get().books, live: o.live }).find((x) => x.id === o.id) || null,
+      onUpdate: (n) => {
+        const before = math().ev;
+        o = n;
+        const m = repaint();
+        return `Price moved: average now ${signed(m.ev)} (was ${signed(before)})`;
+      },
+      goneMsg: 'This middle is gone: one of the prices moved. Nothing was placed.',
+    });
+    if (start) openLeg(0);
+  }
+
+  // Deep link from the Daily Card: #/middles?id=<opp id> opens that middle's slip.
+  if (params.id) {
+    const hit = [...load('pre'), ...load('live')].find((r) => r.o.id === params.id);
+    if (hit) setTimeout(() => openSlip(hit.o), 0);
+    else ui.toast('That middle is gone. Here are the ones open now.');
+  }
+
+  const offTick = api.onTick(() => paint());
+  const offStore = store.subscribe(() => paint());
+  return () => { offTick(); offStore(); fb.destroy?.(); t.destroy(); };
+}
+
+/**
+ * Patch a page head's facts strip in place: values update without re-rendering the labels (so the
+ * owner editor's overrides and the content.js watcher stay quiet). Rebuilds a fact only when its label changes.
+ */
+export function patchFacts(head, items, ui) {
+  const tpl = document.createElement('template');
+  tpl.innerHTML = ui.facts(items).trim();
+  const next = tpl.content.firstElementChild;
+  const cur = head.querySelector('.facts');
+  if (!cur) { head.append(next); return; }
+  const a = [...cur.children], b = [...next.children];
+  if (a.length !== b.length) { cur.replaceWith(next); return; }
+  b.forEach((nb, i) => {
+    const ca = a[i];
+    if (ca.querySelector('.fact-l')?.textContent !== nb.querySelector('.fact-l')?.textContent || ca.tagName !== nb.tagName) { ca.replaceWith(nb); return; }
+    for (const sel of ['strong', 'small']) {
+      const x = ca.querySelector(sel), y = nb.querySelector(sel);
+      if (!x && !y) continue;
+      if (!x || !y) { ca.replaceWith(nb); return; }
+      if (x.innerHTML !== y.innerHTML) x.innerHTML = y.innerHTML;
+      if (x.className !== y.className) x.className = y.className;
+    }
+  });
 }
