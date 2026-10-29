@@ -5,14 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BetFriend</title>
   <meta name="description" content="BetFriend: arbitrage, +EV, sharp money, promos, AI picks and prediction markets in one membership.">
+  <meta name="theme-color" content="#FFFFFF">
+  <!-- Pre-paint theme (keep in sync with js/theme.js): sets data-theme before first paint, so there's
+       no flash. Nothing stored means light (like the landing page); 'dark' is dark; only an explicit
+       'auto' (Settings → System) leaves the attribute off so CSS follows prefers-color-scheme. -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('bf-theme'); } catch (e) { /* storage unavailable */ }
+      var d = document.documentElement;
+      if (t !== 'auto') d.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+      var dark = t === 'dark' || (t === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#06140D' : '#FFFFFF');
+    })();
+  </script>
   <link rel="icon" href="../img/mate-face.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Figtree:wght@500;600;700;800;900&display=swap">
-  <meta name="theme-color" content="#0C5C34">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
   <div id="app"></div>
+  <!-- Screen-reader announcements (ui.announce). Outside #app so screen re-renders never wipe them. -->
+  <div id="sr-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div id="sr-alert" class="sr-only" role="alert" aria-atomic="true" data-bf-ignore></div>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

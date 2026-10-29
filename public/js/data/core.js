@@ -202,11 +202,37 @@ function buildLines() {
 export const LINES = buildLines();
 
 // ---------- live ticking ----------
+// One clock drives every live screen. Screens subscribe with api.onTick and never run their own timers
+// for prices. Two things stop the clock centrally:
+//   - a hidden tab (document.hidden): nothing ticks or redraws while nobody is looking, and one catch-up
+//     tick runs when the tab comes back (if a tick was due);
+//   - the shared pause (setPaused), used by the "Pause" control on live screens so rows stop moving
+//     while someone reads them. The shell resumes it on every route change.
+/** Milliseconds between ticks (exposed as api.tickMs so "updated 4s ago" style copy matches the clock). */
+export const TICK_MS = 4000;
 const listeners = new Set();
+const pauseSubs = new Set();
 let tickN = 0;
+let paused = false;
+let lastTick = Date.now();
 export function onTick(cb) { listeners.add(cb); return () => listeners.delete(cb); }
 
-setInterval(() => {
+/** Freeze or resume every live screen. Notifies onPauseChange listeners when the state changes. */
+export function setPaused(on) {
+  on = !!on;
+  if (on === paused) return;
+  paused = on;
+  pauseSubs.forEach((cb) => { try { cb(paused); } catch (err) { console.error(err); } });
+}
+export const isPaused = () => paused;
+/** Listen for pause/resume. Returns an unsubscribe function. */
+export function onPauseChange(cb) { pauseSubs.add(cb); return () => pauseSubs.delete(cb); }
+
+const hidden = () => typeof document !== 'undefined' && document.hidden;
+
+/** Advance the sample board by one tick (scores, live prices, slow pre-match drift) and notify listeners.
+ *  Exported so QA scripts can step the board deterministically; the app runs it every 4s. */
+export function tick() {
   tickN++;
   const r = rng(1000 + tickN);
   for (const ev of EVENTS) {
@@ -231,5 +257,13 @@ setInterval(() => {
     const bid = pick(r, Object.keys(line.prices));
     line.prices[bid] = line.fair.map((f) => priceFor(r, bookById[bid], f, line.fair.length, 0));
   }
-  listeners.forEach((cb) => cb(tickN));
-}, 4000);
+  lastTick = Date.now();
+  // One failing screen must not stop the others (or the data modules) from updating.
+  listeners.forEach((cb) => { try { cb(tickN); } catch (err) { console.error(err); } });
+}
+setInterval(() => { if (!paused && !hidden()) tick(); }, TICK_MS);
+if (typeof document !== 'undefined') {
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && !paused && Date.now() - lastTick >= TICK_MS) tick();
+  });
+}

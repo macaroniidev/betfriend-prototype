@@ -43,7 +43,12 @@ export const api = {
   fairProbs: opp.fairProbs,
 
   // Live updates: callback fires on every odds/score tick. Returns an unsubscribe function.
+  // Ticks skip hidden tabs and stop while paused (one shared pause for every live screen).
   onTick: core.onTick,
+  tickMs: core.TICK_MS,
+  setPaused: core.setPaused,
+  isPaused: core.isPaused,
+  onPauseChange: core.onPauseChange,
 
   // Domain modules
   tracker,

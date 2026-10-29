@@ -16,7 +16,15 @@
   let selEl = null;
   let dragKey = null;
 
+  // Live data: never editable as text (content.js skips the same [data-bf-nodata] subtrees). A [data-bf-text]
+  // island inside it is static wording (e.g. a row's "Bet both") and stays editable.
   const DATA_SEL = 'table tbody, .price, .edge, .book, .stat strong, .live-dot, input, select, textarea, svg, .spark, .meter, .bar, .drawer-wrap, [data-bf-nodata]';
+  const ISLAND_SEL = '[data-bf-text]';
+  // Shell widgets that are not page content: never selected, hovered or edited. The theme toggle keeps
+  // working (so the owner can check both themes); clicks on the others are swallowed.
+  const EXCLUDE_SEL = '#theme-toggle, [data-bf-theme-toggle], #palette, .palette, [data-bf-palette], .drawer-wrap, [data-bf-drawer], [role=dialog], #sr-live, [data-bf-noedit]';
+  const PASS_SEL = '#theme-toggle, [data-bf-theme-toggle]';
+  const excluded = (t) => !!t?.closest?.(EXCLUDE_SEL);
   const TEXT_SEL = 'h1,h2,h3,h4,h5,h6,p,li,a,button,span,strong,b,em,small,td,th,dt,dd,label,figcaption,summary,div,blockquote,i,u,mark,sup,sub,time,caption,legend,q,cite';
   const STRIP = ['contenteditable', 'spellcheck', 'data-bf-sel', 'data-bf-hover', 'data-bf-hidden', 'data-bf-deleted', 'data-bf-key', 'draggable'];
   const rid = () => 'c-' + Math.random().toString(36).slice(2, 9);
@@ -77,6 +85,9 @@
       const title = h ? txt(h).slice(0, 50) : '';
       if (title) return title;
       const cls = (typeof b.el.className === 'string' ? b.el.className : '').split(/\s+/);
+      // Shared names from content.js (filter rows, action bars, legends, tables, results lists …), then the old map.
+      const shared = C()?.blockName?.(b.el);
+      if (shared) return shared;
       const NAMES = { 'page-head': 'Page title', stats: 'Stats row', toolbar: 'Filters', 'live-bar': 'Live status bar', chips: 'Filter chips', feed: 'Feed', callout: 'Message', 'table-wrap': 'Table', card: 'Panel', welcome: 'Welcome banner' };
       for (const c of cls) if (NAMES[c]) return NAMES[c];
       const first = txt(b.el).slice(0, 40);
@@ -95,6 +106,7 @@
   function keyOf(el) { return isApp ? el.dataset.bfKey : el.dataset.bfBlock; }
   function blockOf(t) {
     if (!t?.closest) return null;
+    if (excluded(t)) return null;
     if (!isApp) return t.closest('[data-bf-block]');
     const list = A.list();
     let best = null;
@@ -220,7 +232,13 @@
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       selectBlockEl(el);
     },
-    setInteract(b) { interact = !!b; if (interact) { commitEdit(); hideToolbar(); clearSel(); } document.documentElement.classList.toggle('bf-interact', interact); },
+    setInteract(b) {
+      // Back to editing: close any drawer opened while using the page (its close button still works now).
+      if (!b && interact) document.querySelectorAll('.drawer-wrap [data-close], [data-bf-drawer] [data-close]').forEach((x) => x.click());
+      interact = !!b;
+      if (interact) { commitEdit(); hideToolbar(); clearSel(); }
+      document.documentElement.classList.toggle('bf-interact', interact);
+    },
     setAppDoc(doc) { if (isApp) C()?.setDoc(JSON.parse(JSON.stringify(doc))); },
   };
 
@@ -265,12 +283,13 @@
   function editableTarget(t, ev) {
     let el = t;
     for (let i = 0; i < 4 && el && el !== document.body; i++, el = el.parentElement) {
-      if (el.id === 'bf-tb') return null;
+      if (el.id === 'bf-tb' || excluded(el)) return null;
       if (el.matches(TEXT_SEL) && directText(el)) break;
     }
     if (!el || el === document.body || !el.matches?.(TEXT_SEL) || !directText(el)) return null;
     if (!isApp) return el.closest('[data-bf-block],[data-bf-region]') ? el : null;
-    if (el.closest(DATA_SEL)) return null;
+    if (excluded(el)) return null;
+    if (el.closest(DATA_SEL) && !el.closest(ISLAND_SEL)) return null;
     if (!el.closest('#view, .side, .topbar')) return null;
     void ev;
     return el;
@@ -346,7 +365,9 @@
       return;
     }
     if (editing && editing.el.contains(t)) return;
+    if (t.closest?.(PASS_SEL)) { commitEdit(); return; } // theme toggle: let the app handle it
     e.preventDefault(); e.stopPropagation();
+    if (excluded(t)) return;
     commitEdit();
     if (t.tagName === 'IMG') return selectImage(t);
     if (isApp && route() === 'pricing' && t.closest?.('.pricing .plan, .pricing .hero, .pricing .price-big')) { setSel(t.closest('.plan, .hero')); return E.openPlans(); }
@@ -359,7 +380,7 @@
   // Keep app/page handlers from firing while editing (buttons, toggles, forms).
   for (const type of ['submit', 'change', 'input', 'mousedown', 'pointerdown', 'dblclick', 'auxclick']) {
     document.addEventListener(type, (e) => {
-      if (interact || e.target.closest?.('#bf-tb')) return;
+      if (interact || e.target.closest?.('#bf-tb') || e.target.closest?.(PASS_SEL)) return;
       if (editing && editing.el.contains(e.target)) return;
       if (type === 'submit') e.preventDefault();
       if (type !== 'mousedown' && type !== 'pointerdown') e.stopPropagation();

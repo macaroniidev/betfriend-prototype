@@ -16,9 +16,9 @@ export const PLANS = [
   },
   {
     id: 'prematch', name: 'Pre-Match Arbitrage & EV', monthly: 79.99, annual: 639.99, popular: false,
-    tagline: 'Lock in profit by betting on both sides before the game starts. No promos needed.',
+    tagline: 'Bet both sides at two books before the game starts, for a profit if both legs fill. No promos needed.',
     tools: ['arbitrage', 'calculators'],
-    bullets: ['Pairs of bets that make guaranteed profit', 'We give you the exact bet size for each book, so you keep the difference either way'],
+    bullets: ['Pairs of bets that pay out whichever side wins, if both legs fill', 'We give you the exact bet size for each book, so you keep the difference either way'],
     bonus: [
       { tool: 'positive-ev', name: 'Pre-Match +EV Tool', value: 199, desc: 'We find bets paying out higher than they should.' },
       { tool: 'middles', name: 'Middles Tool', value: 99, desc: 'Break even or both sides win for a huge payout.' },
@@ -31,7 +31,7 @@ export const PLANS = [
     id: 'live', name: 'Live Arbitrage & EV', monthly: 149.99, annual: 1199.99, popular: true,
     tagline: 'Everything in Pre-Match, plus arbs and +EV while games are live.',
     tools: ['arbitrage', 'positive-ev', 'middles', 'low-holds', 'promo-converter', 'parlay-builder', 'screen', 'ev-builder', 'calculators'],
-    bullets: ['Everything in Pre-Match Arbitrage & EV', 'Lock in profit by betting on both sides while games are live', 'Live arbs are 2 to 3x more profitable because books adjust odds in real time', 'Industry-leading auto refresh'],
+    bullets: ['Everything in Pre-Match Arbitrage & EV', 'Bet both sides at two books while games are live', 'Live arbs are 2 to 3x more profitable because books adjust odds in real time', 'Industry-leading auto refresh'],
     bonus: [
       { tool: 'positive-ev', name: 'Live +EV Tool', value: 319, desc: 'Live +EV bets: the volume makes this a staple for nearly every pro.' },
       { tool: 'screen', name: 'Sportsbooks Screen', value: 99, desc: 'See every market in real time to run your own strategy.' },
@@ -75,6 +75,25 @@ export const ALL_ACCESS = {
 };
 
 export const allTools = () => [...new Set(PLANS.flatMap((p) => [...p.tools, ...p.bonus.map((b) => b.tool)]))];
-/** Plans (standalone) that include a given tool, as headline or bonus. */
-export const plansForTool = (tool) => PLANS.filter((p) => p.id !== 'free' && (p.tools.includes(tool) || p.bonus.some((b) => b.tool === tool)));
+/** Plans that include a given tool, as headline or bonus. Free tools list the Free plan (first), so a
+ *  free tool is shown as Free instead of as a paid upsell. */
+export const plansForTool = (tool) => PLANS.filter((p) => p.tools.includes(tool) || p.bonus.some((b) => b.tool === tool));
+/** Paid plans that include a tool (what "Included in" chips list when the tool is locked). */
+export const paidPlansForTool = (tool) => plansForTool(tool).filter((p) => p.id !== 'free');
+/** True when the tool is free for everyone. */
+export const isFreeTool = (tool) => PLANS.some((p) => p.id === 'free' && p.tools.includes(tool));
+/**
+ * Does `planId` unlock `tool`? All-Access unlocks everything; tools that belong to no plan (Alerts,
+ * Settings, Pricing, Glossary…) and free tools are always open.
+ */
+export function planHasTool(planId, tool) {
+  if (!tool || planId === 'all-access' || planId === ALL_ACCESS.id) return true;
+  if (isFreeTool(tool) || !allTools().includes(tool)) return true;
+  const p = PLANS.find((x) => x.id === planId);
+  return !!p && (p.tools.includes(tool) || p.bonus.some((b) => b.tool === tool));
+}
+/** Display name for a plan id (All-Access included). */
+export const planName = (planId) => (planId === 'all-access' || planId === ALL_ACCESS.id ? 'All-Access' : PLANS.find((p) => p.id === planId)?.name || 'Free');
+/** Cheapest paid plan that unlocks a tool (for lock cards: "Unlock … · $79.99/mo"). */
+export const cheapestPlanFor = (tool) => paidPlansForTool(tool).sort((a, b) => a.monthly - b.monthly)[0] || null;
 export const standaloneTotal = (period = 'monthly') => PLANS.filter((p) => p.id !== 'free').reduce((a, p) => a + p[period], 0);

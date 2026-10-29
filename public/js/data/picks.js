@@ -162,6 +162,14 @@ function selectionText(line, i) {
   return o;
 }
 
+/** Market label from the picked side's point of view. A spread line is labelled from the home side
+ *  ("Spread -3"), so the away pick reads "Spread +3" and the title and market line always agree. */
+function sideLabel(line, i) {
+  if (line.market !== 'Spread' || line.point == null) return line.label;
+  const pt = i === 0 ? line.point : -line.point;
+  return `Spread ${pt > 0 ? '+' : ''}${pt}`;
+}
+
 function projectionFor(line, side, modelProb, m) {
   const e = eventById[line.eventId];
   const S = SCORE[line.sport];
@@ -206,7 +214,7 @@ export function picks({ sport = 'All', market = 'All', books, minGrade } = {}) {
     const ev = eventById[line.eventId];
     out.push({
       id: `pk-${line.id}`, kind: 'ai-pick', eventId: line.eventId, lineId: line.id, sport: line.sport, market: line.market,
-      event: `${ev.away} @ ${ev.home}`, start: ev.start, label: line.label, player: line.player,
+      event: `${ev.away} @ ${ev.home}`, start: ev.start, label: sideLabel(line, m.side), player: line.player,
       selection: selectionText(line, m.side), outcome: line.outcomes[m.side], outcomeIndex: m.side,
       modelProb, marketProb, impliedProb: impliedProb(best.price), edge, grade,
       confidence: clamp(m.conf + (edge - 0.04) * 2, 0.35, 0.97),
@@ -429,7 +437,7 @@ export function liveAnalysis(eventId, { books } = {}) {
     best.forEach((b, i) => {
       if (!b) return;
       const ed = evFn(model[i], b.price);
-      sugg.push({ id: `lv-${line.id}-${i}`, kind: 'live', eventId: e.id, lineId: line.id, sport: e.sport, market: line.market, label: line.label,
+      sugg.push({ id: `lv-${line.id}-${i}`, kind: 'live', eventId: e.id, lineId: line.id, sport: e.sport, market: line.market, label: sideLabel(line, i),
         event: `${e.away} @ ${e.home}`, live: true, selection: selectionText(line, i), outcome: line.outcomes[i], outcomeIndex: i,
         modelProb: model[i], impliedProb: impliedProb(b.price), edge: ed, bestBook: b.book, bestPrice: b.price,
         legs: [{ outcome: line.outcomes[i], book: b.book, price: b.price }] });

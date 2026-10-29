@@ -23,7 +23,7 @@ Edits are saved as a draft; **Preview** shows it, **Publish** makes it live, **H
 version. Code: `server/` (login, drafts, publishing, uploads), `public/admin/` (editor), `public/js/content.js`
 (applies published edits inside the app).
 
-## Screens (27)
+## Screens (28)
 
 | Area | Screens |
 |---|---|
@@ -33,7 +33,7 @@ version. Code: `server/` (login, drafts, publishing, uploads), `public/admin/` (
 | Signals | Sharp Money (Novig/ProphetX volume spikes → best US price, what and how much to bet), Pro Bettor Signals (profitable bettors leaderboard + live signals) |
 | AI | AI Sports Picks (graded record), Live AI Analysis, Prop Research, Ask BetFriend AI (chat) |
 | Prediction Markets | Prediction Traders (algorithmically selected traders, sizing, deep links), AI Market Picks (cross-venue prices), Markets & Order Book, Exit Alerts |
-| My Betting | Bet Tracker & Account Health, Alerts, Calculators (8), Settings (state, books, bankroll, theme) |
+| My Betting | Bet Tracker & Account Health, Alerts, Calculators (8), Settings (state, books, bankroll, theme), Glossary (every term behind the dotted-underline popovers) |
 
 ## Plans (proposed prices, `public/js/plans.js`)
 
